@@ -293,13 +293,13 @@ footer{text-align:center;font-size:12px;color:var(--faint);line-height:1.6;displ
   </section>
   <div class="card">
     <h2 class="label" data-i18n="flyerH">Share the flyer</h2>
-    <a class="flyer-img" href="flyer.jpg" target="_blank" rel="noopener"><img src="flyer.jpg" alt="Flyer: Attention, Community Park School. DLI is at risk of being cut." loading="lazy"></a>
+    <a class="flyer-img" href="flyer.jpeg" target="_blank" rel="noopener"><img src="flyer.jpeg" alt="Flyer: Attention, Community Park School. DLI is at risk of being cut." loading="lazy"></a>
     <div class="btns">
       <button type="button" class="btn btn-email btn-big" id="fl-native" data-i18n="flNative" hidden>Share the flyer…</button>
       <a class="btn btn-copy btn-big" id="fl-sms" data-i18n="shText">Text</a>
       <a class="btn btn-copy btn-big" id="fl-wa" target="_blank" rel="noopener">WhatsApp</a>
       <a class="btn btn-copy btn-big" id="fl-mail" data-i18n="shMail">Email</a>
-      <a class="btn btn-copy btn-big" id="fl-save" href="flyer.jpg" download="DLI-flyer.jpg" data-i18n="flSave">Save image</a>
+      <a class="btn btn-copy btn-big" id="fl-save" href="flyer.jpeg" download="DLI-flyer.jpg" data-i18n="flSave">Save image</a>
     </div>
     <p class="fl-note" data-i18n="flNote"><strong>Note:</strong> the flyer lists 25 Valley Road for the October 27 Board meeting, but the location is still being confirmed (it may be at Princeton High School). Check this page for updates.</p>
     <p class="sub" data-i18n="flTip">On a phone, “Share the flyer…” sends the image itself. The other buttons send a link to it.</p>
@@ -596,9 +596,9 @@ function renderShare(){
   $("fl-wa").href="https://wa.me/?text="+encodeURIComponent(fmsg);
   $("fl-mail").href="mailto:?subject="+encodeURIComponent(L.shareSubj)+"&body="+encodeURIComponent(fmsg);
 }
-const FLYER=SITE+"flyer.jpg";
+const FLYER=SITE+"flyer.jpeg";
 let flyerFile=null;
-(async()=>{ try{ if(!navigator.canShare) return; const r=await fetch("flyer.jpg"); const b=await r.blob(); const f=new File([b],"DLI-flyer.jpg",{type:"image/jpeg"}); if(navigator.canShare({files:[f]})){ flyerFile=f; $("fl-native").hidden=false; } }catch(e){} })();
+(async()=>{ try{ if(!navigator.canShare) return; const r=await fetch("flyer.jpeg"); const b=await r.blob(); const f=new File([b],"DLI-flyer.jpg",{type:"image/jpeg"}); if(navigator.canShare({files:[f]})){ flyerFile=f; $("fl-native").hidden=false; } }catch(e){} })();
 $("fl-native").addEventListener("click",async()=>{ try{ await navigator.share({files:[flyerFile],text:T[lang].flMsg+" "+SITE}); }catch(e){} });
 $("sh-native").addEventListener("click",async()=>{try{await navigator.share({title:T[lang].shareSubj,text:T[lang].shareMsg,url:SITE});}catch(e){}});
 $("sh-copy").addEventListener("click",e=>copyText(SITE,e.currentTarget,T[lang].shCopy).then(ok=>{if(ok){e.currentTarget.textContent=T[lang].shCopied;}}));
