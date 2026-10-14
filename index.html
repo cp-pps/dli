@@ -193,14 +193,12 @@ footer{text-align:center;font-size:12px;color:var(--faint);line-height:1.6;displ
       <a class="way" href="#sign">
         <span class="way-num">3</span>
         <span class="way-t" data-i18n="w3T">Put up a lawn sign</span>
-        <span class="way-stat" id="sign-stat" hidden><b id="sign-n">0</b><span data-i18n="signTot">people have checked out the lawn sign</span></span>
         <span class="way-d" data-i18n="w3D">Show the Board and your neighbors that families care. Order a "Defend Princeton DLI" yard sign.</span>
         <span class="way-go" data-i18n="w3Go">Get a sign ↓</span>
       </a>
       <a class="way" href="#share">
         <span class="way-num">4</span>
         <span class="way-t" data-i18n="w4T">Pass out a flyer or share this page</span>
-        <span class="way-stat" id="share-stat" hidden><b id="share-n">0</b><span data-i18n="shareTot">shares of the flyer or this page so far</span></span>
         <span class="way-d" data-i18n="w4D">Send the flyer to other families by text, email or WhatsApp, or share this page with your class group chat.</span>
         <span class="way-go" data-i18n="w4Go">Spread the word ↓</span>
       </a>
@@ -641,7 +639,7 @@ function logAct(action,key){
 $("sign-btn").addEventListener("click",()=>logAct("sign","sign"));
 ["fl-native","fl-sms","fl-wa","fl-mail","fl-save","sh-native","sh-copy","sh-sms","sh-wa","sh-mail"].forEach(id=>$(id).addEventListener("click",()=>logAct("share",id)));
 (function(){const w=$("ways"), b=$("to-top"); const upd=()=>{b.hidden=w.getBoundingClientRect().bottom>0;}; addEventListener("scroll",upd,{passive:true}); upd();})();
-render(); renderShare(); loadCounter(); loadGoing(); loadActs();
+render(); renderShare(); loadCounter(); loadGoing();
 </script>
 </body>
 </html>
