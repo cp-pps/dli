@@ -419,6 +419,9 @@ close:["Gracias por su servicio a los estudiantes de Princeton.", "Gracias por s
 };
 
 /* ── COUNTER ─────────────────────────────────────────────────── */
+/* Organizers' own browsers: open the page once with ?me=1 and nothing from that browser is counted (?me=0 undoes it). */
+let ME=false;
+try{const q=new URLSearchParams(location.search).get("me"); if(q==="1") localStorage.setItem("cpdli-me","1"); if(q==="0") localStorage.removeItem("cpdli-me"); ME=localStorage.getItem("cpdli-me")==="1";}catch(e){}
 let db=null, SESSION="";
 try{SESSION=sessionStorage.getItem("cpdli_sid")||""; if(!SESSION){SESSION=Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2); sessionStorage.setItem("cpdli_sid",SESSION);}}catch(e){SESSION=Math.random().toString(36).slice(2);}
 try{ if(SUPABASE_URL && SUPABASE_KEY && window.supabase) db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY); }catch(e){db=null}
@@ -426,13 +429,13 @@ const COUNTED=["send_email","copy"];
 function bump(){const el=document.getElementById("counter-number"); const n=parseInt(el.textContent.replace(/[^0-9]/g,""))||0; el.textContent=(n+1).toLocaleString(); el.style.transform="scale(1.18)"; setTimeout(()=>el.style.transform="scale(1)",200);}
 let lastInsight="";
 async function saveInsight(){
-  if(!db) return;
+  if(!db||ME) return;
   const s=state(); const key=JSON.stringify([s.who,!!s.note,s.pts]);
   if(key===lastInsight) return; lastInsight=key;
   try{await db.from("email_insights").insert([{who:s.who,has_reasons:!!s.note,arguments:s.pts,lang}]);}catch(e){}
 }
 async function track(action,recipient){
-  if(!db) return;
+  if(!db||ME) return;
   saveInsight();
   try{await db.from("email_actions").insert([{action,recipient,session_id:SESSION,lang}]);}catch(e){}
 }
@@ -574,7 +577,7 @@ async function commitTo(k){
   try{localStorage.setItem("cpdli-going-"+k,"1");}catch(e){}
   if(typeof GOING[k]==="number") GOING[k]++;
   showGoing();
-  if(db){ try{await db.from("event_commitments").insert([{event:k,session_id:SESSION}]);}catch(e){} }
+  if(db&&!ME){ try{await db.from("event_commitments").insert([{event:k,session_id:SESSION}]);}catch(e){} }
 }
 
 /* ── SUGGESTIONS (stored in Supabase; readable only from the dashboard) ── */
@@ -632,11 +635,17 @@ function logAct(action,key){
   if(actDone(key)) return;
   try{localStorage.setItem("cpdli-act-"+key,"1");}catch(e){}
   if(typeof ACT[action]==="number"){ ACT[action]++; showActs(); }
-  if(db){ db.from("site_actions").insert([{action,channel:key,session_id:SESSION}]).then(()=>{},()=>{}); }
+  if(db&&!ME){ db.from("site_actions").insert([{action,channel:key,session_id:SESSION}]).then(()=>{},()=>{}); }
 }
 $("sign-btn").addEventListener("click",()=>logAct("sign","sign"));
 ["fl-native","fl-sms","fl-wa","fl-mail","fl-save","sh-native","sh-copy","sh-sms","sh-wa","sh-mail"].forEach(id=>$(id).addEventListener("click",()=>logAct("share",id)));
 (function(){const w=$("ways"), b=$("to-top"); const upd=()=>{b.hidden=w.getBoundingClientRect().bottom>0;}; addEventListener("scroll",upd,{passive:true}); upd();})();
+/* ── VISITS: one anonymous row per browser session ── */
+(function(){ if(!db||ME) return; try{
+  if(sessionStorage.getItem("cpdli-visited")) return; sessionStorage.setItem("cpdli-visited","1");
+  let v=localStorage.getItem("cpdli-vid"); if(!v){ v=Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2); localStorage.setItem("cpdli-vid",v); }
+  db.from("page_visits").insert([{visitor_id:v,session_id:SESSION,lang}]).then(()=>{},()=>{});
+}catch(e){} })();
 render(); renderShare(); loadCounter(); loadGoing();
 </script>
 </body>
