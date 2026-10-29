@@ -4,24 +4,19 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Save CP Dual Language</title>
-<meta name="description" content="The Superintendent proposed ending DLI immersion at Community Park. Read what happened on Oct 27 and email the Board before the vote. Mantengamos la Inmersión Dual en Community Park.">
+<meta name="description" content="What happened at the Oct 27 Board meeting on Dual Language Immersion at Community Park, where CP parents stand, and how to help. / Mantengamos y mejoremos la Inmersión Dual en Community Park.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://cp-pps.github.io/dli/">
 <meta property="og:site_name" content="Keep DLI at Community Park">
 <meta property="og:title" content="Keep and improve Dual Language Immersion at Community Park">
-<meta property="og:description" content="What happened Oct 27, and how to email the Board before the vote, sign the petition and order a yard sign. / Mantengamos la Inmersión Dual en Community Park.">
+<meta property="og:description" content="What happened at the Oct 27 Board meeting, where CP parents stand, and how to help. / Mantengamos y mejoremos la Inmersión Dual en Community Park.">
 <meta property="og:image" content="https://cp-pps.github.io/dli/preview2.png">
-<meta property="og:image:width" content="1200">
-<meta property="og:image:height" content="630">
-<meta property="og:image:alt" content="Keep and improve Dual Language Immersion at Community Park. Board meeting Oct 27. See how you can help.">
 <meta name="twitter:card" content="summary_large_image">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2.45.4/dist/umd/supabase.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <style>
-/* Layout: one 680px column of white cards on a cool grey page, red reserved for the badge and the main send button. */
+/* Same tokens and card layout as index.html. */
 :root{
   --bg:#f4f6f9; --card:#ffffff; --ink:#1a1a2e; --muted:#5b6170; --faint:#8a8f9c; --line:#e2e8f0;
-  --red:#d62828; --red-dark:#b52020; --red-soft:#fdecec; --link:#2f6fbf; --ok:#16a34a; --ok-soft:#f0fdf4;
+  --red:#d62828; --red-dark:#b52020; --red-soft:#fdecec; --link:#2f6fbf;
   --font:-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color-scheme:light;
 }
@@ -31,679 +26,615 @@ body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--font);padd
 h1,h2,h3,p{margin:0}
 a{color:var(--link)}
 :focus-visible{outline:3px solid var(--red);outline-offset:2px}
-
+[hidden]{display:none!important}
 .lang{display:inline-flex;margin-top:4px;border:1.5px solid #d0d8e4;border-radius:10px;overflow:hidden;background:var(--card)}
 .lang button{border:0;background:none;font:600 14px var(--font);color:var(--muted);padding:7px 18px;cursor:pointer;min-width:96px}
 .lang button[aria-pressed="true"]{background:var(--ink);color:#fff}
-
 header{text-align:center;display:flex;flex-direction:column;align-items:center;gap:10px}
 .badge{display:inline-block;background:var(--red);color:#fff;font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;padding:4px 12px;border-radius:20px}
 header h1{font-size:26px;font-weight:800;line-height:1.25;text-wrap:balance}
-header p{font-size:15px;color:var(--muted);line-height:1.6;max-width:56ch}
-
-.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:12px}
+.back{align-self:flex-end;font-size:13px;font-weight:700;color:var(--red);text-decoration:none}
+.back:hover{text-decoration:underline}
+.lang-block{display:flex;flex-direction:column;gap:18px}
+.intro{font-size:15px;color:var(--muted);line-height:1.6;text-align:center}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:18px 20px;display:flex;flex-direction:column;gap:12px;min-width:0}
+.card p{font-size:15px;line-height:1.55}
 .label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;color:var(--faint)}
-.card h2{font-size:15px;font-weight:700}
-.sub{font-size:13px;color:var(--muted);line-height:1.5}
-
-
+.sec-h{color:var(--red);font-size:19px;font-weight:800;line-height:1.3}
+.card h3{font-size:15px;font-weight:700;margin-top:6px}
+.h-note{font-weight:400;color:var(--muted);font-size:13px}
+.list,.reasons{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:8px;font-size:15px;line-height:1.55}
+.reasons{gap:14px}
+.reasons ul{margin:6px 0 0;padding-left:18px;display:flex;flex-direction:column;gap:4px}
+.list .key{font-weight:600;color:var(--red)}
+.evidence{margin-top:8px!important;font-size:14px!important;line-height:1.5;background:var(--bg);border-left:3px solid #d0d8e4;border-radius:0 8px 8px 0;padding:8px 12px;color:#333}
+.evidence ul,.comment ol{margin:6px 0 0;padding-left:20px;display:flex;flex-direction:column;gap:6px}
+.comment p{margin:8px 0 0!important;font-size:14px!important}
+.comment{margin-top:6px!important;font-size:14px!important;line-height:1.5;background:var(--red-soft);border-left:3px solid var(--red);border-radius:0 8px 8px 0;padding:8px 12px;color:var(--red-dark)}
+.quote{background:var(--red-soft);border:1px solid #f5c2c2;border-radius:10px;padding:12px 14px}
+.ts{font-variant-numeric:tabular-nums;font-size:13px;font-weight:600;white-space:nowrap}
+.tbl{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table{border-collapse:collapse;width:100%;font-size:14px;line-height:1.45}
+th,td{text-align:left;vertical-align:top;padding:9px 10px;border-top:1px solid var(--line)}
+thead th{border-top:0;background:var(--bg);font-size:12px;text-transform:uppercase;letter-spacing:.3px;color:var(--muted)}
+tbody th{font-weight:600;width:30%}
 .alert{background:var(--red-soft);border:1px solid #f5c2c2;border-radius:12px;padding:16px 18px;display:flex;flex-direction:column;gap:10px}
-.alert h2{font-size:15px;color:#8a1515}
-.dates{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
-.dates li{display:flex;gap:12px;align-items:flex-start;font-size:14px;line-height:1.45}
-.ev{display:flex;flex-direction:column;gap:6px;min-width:0}
-.cal{display:flex;flex-wrap:wrap;gap:6px;align-items:center}
-.cal span{font-size:12px;color:var(--muted)}
-.cal .cal-lab{flex-basis:100%;font-weight:600;color:var(--ink)}
-.cal .going{font-weight:700;color:var(--red);font-variant-numeric:tabular-nums}
+.alert h2{font-size:17px;font-weight:800;color:#8a1515}
+.cal{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:8px}
+.cal span{flex-basis:100%;font-size:12px;font-weight:600;color:var(--ink)}
 .cal a{font:600 12px var(--font);color:var(--ink);background:var(--card);border:1.5px solid #f5c2c2;border-radius:7px;padding:4px 10px;text-decoration:none}
 .cal a:hover{border-color:var(--red)}
-.date{flex:none;width:52px;text-align:center;background:var(--card);border:1px solid #f5c2c2;border-radius:8px;padding:4px 0;font-weight:800;color:var(--red);font-size:12px;line-height:1.2;text-transform:uppercase}
-.tag{align-self:flex-start;font-size:10px;font-weight:800;letter-spacing:.6px;text-transform:uppercase;color:#fff;background:var(--red);border-radius:4px;padding:2px 6px}
-.tag-also{background:none;color:var(--muted);border:1px solid #d0d8e4}
-.tag-past{background:#e2e8f0;color:var(--muted)}
-.dates li.past{opacity:.55}
-.dates li.past .going{display:none}
-.date b{display:block;font-size:20px;color:var(--ink)}
 
-.cta{display:flex;flex-direction:column;gap:6px;padding-top:6px}
-.cta-kicker{font-size:11px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:var(--red)}
-.cta h2{font-size:22px;font-weight:800;line-height:1.25;text-wrap:balance}
-.cta p:last-child{font-size:15px;color:var(--muted);line-height:1.55}
-.ways{display:flex;flex-direction:column;gap:10px}
-.ways h2{font-size:22px;font-weight:800;line-height:1.25}
-.ways-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-@media (max-width:540px){.ways-grid{grid-template-columns:minmax(0,1fr)}}
-.way{display:flex;flex-direction:column;gap:6px;background:var(--card);border:2px solid var(--red);border-radius:12px;padding:16px 18px;color:var(--ink);text-decoration:none;min-width:0}
-.way:hover{background:var(--red-soft)}
-.way-num{width:28px;height:28px;border-radius:50%;background:var(--red);color:#fff;font-weight:800;font-size:14px;display:flex;align-items:center;justify-content:center}
-.way-t{font-size:17px;font-weight:800}
-.way-stat{display:flex;align-items:baseline;gap:6px;flex-wrap:wrap;font-size:13px;color:var(--muted);font-weight:600}
-.way-stat b{display:inline-block;font-size:28px;font-weight:800;line-height:1.1;color:var(--ink);font-variant-numeric:tabular-nums;transition:transform .18s ease}
-[hidden]{display:none!important}
-.way-d{font-size:14px;color:var(--muted);line-height:1.5;flex:1}
-.way-wide{grid-column:1/-1}
-.way-go{font-size:13px;font-weight:700;color:var(--red)}
+.tabs a{display:inline-block;padding:7px 13px;border:1.5px solid #d0d8e4;border-radius:999px;background:var(--card);color:var(--ink);font:600 14px var(--font);text-decoration:none;line-height:1.3}
+.tabs a:hover{border-color:var(--ink);text-decoration:none}
+.tabs a[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.tabs a.stand-tab{border-color:var(--red);color:var(--red)}
+.tabs a.stand-tab[aria-selected="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.stand{border-color:#f5c2c2}
+.tabs a.help-tab{background:var(--red);border-color:var(--red);color:#fff}
+.tabs a.help-tab:hover{background:var(--red-dark)}
+.sub{font-size:16px;font-weight:600;color:var(--muted);margin-top:-4px}
+.next{align-self:flex-start;margin-top:4px;font:700 14px var(--font);color:var(--link);background:none;border:0;padding:0;cursor:pointer}
+.next:hover{text-decoration:underline}
+.toc ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.45}
+.toc a{font-weight:600;text-decoration:none}
+.toc a:hover{text-decoration:underline}
+.toc .tabs{list-style:none;margin:0;padding:0;flex-direction:row;flex-wrap:wrap;gap:8px}
+.toc .tabs a:hover{text-decoration:none}
+section[id]{scroll-margin-top:16px}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
-.cta{scroll-margin-top:16px}
-.steps{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:8px}
-.steps li{display:flex;gap:10px;font-size:14px;line-height:1.5;color:#333}
-.num{background:var(--ink);color:#fff;font-size:11px;font-weight:700;min-width:20px;height:20px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex:none;margin-top:1px}
-
-fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
-legend{font-size:14px;font-weight:700;margin-bottom:8px;padding:0}
-.opt{display:flex;gap:10px;align-items:flex-start;cursor:pointer;font-size:14px;line-height:1.45;color:#333}
-.opt input{width:18px;height:18px;margin-top:1px;accent-color:var(--red);flex:none;cursor:pointer}
-.opt small{display:block;font-size:12px;color:var(--faint)}
-.know-list{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.5;color:var(--ink)}
-.know-key{font-weight:800;color:var(--red)}
-.btns{display:flex;flex-wrap:wrap;gap:8px}
-.btn-big{font-size:14px;padding:10px 16px}
-.flyer-img{display:block;max-width:360px;border:1px solid var(--line);border-radius:8px;overflow:hidden}
-.flyer-img img{display:block;width:100%;height:auto}
-.fl-note{margin:0;font-size:13px;line-height:1.5;background:var(--red-soft);border:1px solid #f5c2c2;border-radius:8px;padding:8px 10px;color:var(--ink)}
-.back{align-self:flex-start;font-size:13px;font-weight:700;color:var(--red);text-decoration:none;margin-top:-6px}
-.back:hover{text-decoration:underline}
-#ways{scroll-margin-top:16px}
-.to-top{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:44px;height:44px;border-radius:50%;background:var(--red);color:#fff;font-size:20px;font-weight:800;display:flex;align-items:center;justify-content:center;text-decoration:none;box-shadow:0 2px 8px rgba(0,0,0,.25);z-index:10}
-.to-top:hover{background:var(--red-dark)}
-.ind{display:flex;flex-direction:column;gap:10px}
-.ind summary{cursor:pointer;font-size:13px;font-weight:600;color:var(--muted);padding:4px 0}
-.ind[open] summary{margin-bottom:6px}
-.why-link{font-size:14px;font-weight:700;color:var(--red);text-decoration:none;margin-top:4px}
-.why-link:hover,.why-mini:hover{text-decoration:underline}
-.why-mini{display:inline-block;font-size:13px;font-weight:600;color:var(--red);text-decoration:none;margin:-4px 0 4px}
-.why-list{gap:0}
-.why-item{display:flex;flex-direction:column;gap:6px;padding:14px 0;border-top:1px solid var(--line)}
-.why-item:first-child{border-top:0;padding-top:0}
-.why-item:last-child{padding-bottom:0}
-.why-item h3{font-size:15px;font-weight:700;margin:0}
-.why-item ul{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:4px}
-.why-item li{font-size:14px;line-height:1.55;color:#333}
-.why-note{font-size:14px;line-height:1.55;color:var(--ink);background:var(--red-soft);border:1px solid #f5c2c2;border-radius:10px;padding:12px 14px;margin:0}
-#why{scroll-margin-top:16px}
-.en-note{font-size:13px;line-height:1.5;color:var(--muted,#555);margin:-4px 0 4px}
-.en-note:empty{display:none}
-.qr-row{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-.qr{width:120px;height:120px;flex:none;background:#fff;padding:6px;border:1px solid var(--line);border-radius:8px}
-.qr img,.qr canvas{width:100%!important;height:100%!important}
-.qr-row .sub{flex:1;min-width:180px}
-.signs{display:flex;gap:14px;align-items:center;flex-wrap:wrap}
-.signs .sub{flex:1;min-width:180px;margin:0}
-.sign-thumbs{display:flex;gap:12px}
-.sign-thumbs a{display:flex;flex-direction:column;align-items:center;gap:4px;font-size:12px;font-weight:600;color:var(--muted);text-decoration:none;width:96px;text-align:center;line-height:1.3}
-.sign-thumbs img{width:96px;height:auto;border:1px solid var(--line);border-radius:4px;display:block}
-.fb-h{color:var(--red)!important;font-size:17px!important;font-weight:800}
-.subsec{display:flex;flex-direction:column;gap:12px;border-top:1px solid var(--line);padding-top:14px}
-.subsec h3{font-size:15px;font-weight:700}
-.send-note{font-size:14px;font-weight:700;color:var(--red);margin:0}
-.ready{background:var(--red-soft);border:1px solid #f5c2c2;border-radius:10px;padding:12px 14px;display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.5}
-.ready a{font-weight:700;color:var(--red);text-decoration:none;font-size:13px}
-#emails{scroll-margin-top:16px}
-.card .sec-h{color:var(--red);font-size:17px;font-weight:800;line-height:1.3}
-#who legend.sec-h{margin-bottom:10px}
-.row{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-@media (max-width:540px){.row{grid-template-columns:minmax(0,1fr)}}
-.field{display:flex;flex-direction:column;gap:5px;font-size:13px;font-weight:600}
-input[type=text],textarea{font:15px var(--font);color:var(--ink);background:#fff;border:1.5px solid #d0d8e4;border-radius:8px;padding:9px 11px;width:100%}
-textarea{min-height:80px;resize:vertical}
-#f-note{min-height:120px}
-.pts-leg{font-size:14px;font-weight:700;margin:6px 0 2px;padding:0}
-.pers-intro{font-size:14px;font-weight:700;line-height:1.5;margin:0}
-.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
-
-.list{display:flex;flex-direction:column;gap:10px}
-.auth{background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}
-.auth.primary{border:2px solid var(--red)}
-.auth-top{padding:14px 16px;display:flex;align-items:center;justify-content:space-between;gap:12px}
-.auth-info{min-width:0;display:flex;flex-direction:column;gap:2px}
-.auth-info h3{font-size:14px;font-weight:700}
-.auth-info span{font-size:12px;color:var(--faint)}
-.email-addr{font-size:12px;color:var(--link);word-break:break-all;user-select:all}
-.actions{display:flex;align-items:center;gap:8px;flex:none}
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font:600 12px var(--font);padding:8px 14px;border-radius:7px;cursor:pointer;white-space:nowrap;text-decoration:none;transition:background .15s}
-.btn-email{background:var(--ink);color:#fff;border:1.5px solid var(--ink)}
-.btn-email:hover{background:#2d2d4e}
-.primary .btn-email{background:var(--red);border-color:var(--red)}
-.primary .btn-email:hover{background:var(--red-dark)}
-.btn-copy{background:#fff;color:var(--ink);border:1.5px solid #d0d8e4}
-.btn-copy:hover{background:#f0f4f8}
-.btn-copy.copied{color:var(--ok);border-color:#86efac;background:var(--ok-soft)}
-.btn-preview{font:12px var(--font);color:var(--faint);background:none;border:0;cursor:pointer;text-decoration:underline;padding:0}
-.preview{border-top:1px solid #f0f4f8;background:#f8fafc;padding:14px 16px}
-.preview .subj{font-size:12px;font-weight:600;padding-bottom:10px;margin-bottom:10px;border-bottom:1px solid var(--line)}
-.preview pre{margin:0;white-space:pre-wrap;font:13px/1.7 var(--font);color:#333}
-.hl-note{font-size:12px;color:var(--muted);margin-top:10px}
-.preview mark{background:#fff0b3;color:inherit;border-radius:3px;padding:1px 2px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
-.rec{font-size:11px;font-weight:700;color:var(--red);text-transform:uppercase;letter-spacing:.5px}
-@media (max-width:540px){
-  header h1{font-size:22px}
-  .auth-top{flex-direction:column;align-items:flex-start}
-  .actions{width:100%}
-  .actions .btn{flex:1;padding:10px 12px;font-size:13px}
-}
-
-.facts{margin:0;padding-left:18px;display:flex;flex-direction:column;gap:6px;font-size:14px;line-height:1.5;color:#333}
-.fb-unused-x{margin:0;white-space:pre-wrap;font:14px/1.65 var(--font);background:#f8fafc;border:1px solid var(--line);border-radius:8px;padding:14px;color:#333}
-.ai-note{display:flex;flex-direction:column;gap:6px;scroll-margin-top:16px;padding-bottom:48px}
-.ai-link{color:var(--red);font-weight:600;text-decoration:underline;text-underline-offset:2px}
-.ai-more-btn{border:0;background:none;padding:0;font:inherit;color:var(--red);text-decoration:underline;text-underline-offset:2px;cursor:pointer}
-.ai-more{font-size:14px;line-height:1.55;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:0}
-footer{text-align:center;font-size:12px;color:var(--faint);line-height:1.6;display:flex;flex-direction:column;gap:6px}
-@media (prefers-reduced-motion:reduce){#counter-number,.btn{transition:none}}
+.ask{margin-top:10px;background:var(--card);border:1.5px solid var(--red);border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.5}
+.flag{color:var(--red)}
+.note{display:block;margin-top:4px;font-size:14px;line-height:1.5}
+.mail{display:block;margin-top:4px;color:var(--red);font-size:14px}
+.mail a{color:var(--red)}
+.foot{font-size:12px;color:var(--faint);text-align:center;line-height:1.6}
+@media (max-width:540px){header h1{font-size:22px} .card{padding:16px} tbody th{width:auto} table{font-size:13px} th,td{padding:8px 6px;overflow-wrap:break-word;hyphens:auto;-webkit-hyphens:auto} thead th{font-size:11px;letter-spacing:0}}
 </style>
 </head>
 <body>
 <div class="container">
   <header>
-    <div class="badge" data-i18n="badge">Community Park DLI · Parent Action</div>
-    <h1 data-i18n="h1">Keep and Improve Dual Language Immersion at Community Park</h1>
+    <div class="badge">Community Park DLI · Parent Action</div>
+    <h1 id="title">Keep and Improve Dual Language Immersion at Community Park</h1>
+    <p class="sub" id="sub">What happened at the Oct 27 Board meeting</p>
     <div class="lang" role="group" aria-label="Language / Idioma">
       <button id="lang-en" type="button" aria-pressed="true">English</button>
       <button id="lang-es" type="button" aria-pressed="false">Español</button>
     </div>
   </header>
+  <a class="back" id="back" href="help.html">How you can help →</a>
+  <div class="lang-block" id="block-en" lang="en">
 
-  <section class="card know" aria-labelledby="know-h">
-    <h2 class="label" id="know-h" data-i18n="knowH">What happened on October 27</h2>
-    <ul class="know-list">
-      <li data-i18n="k1">On October 27 the Superintendent recommended ending immersion at Community Park: Spanish would become one 45-minute class a day, math and science would be taught in English, and families outside the CP zone could no longer opt in.</li>
-      <li data-i18n="k2">Parents, students and a Princeton University expert on bilingual development spoke against cutting immersion. None of the 21 speakers endorsed the plan.</li>
-      <li class="know-key" data-i18n="k3">Nothing is decided yet. The Board could vote at its next meeting.</li>
-      <li data-i18n="k5">Next: Thursday, October 29, 8:30 AM, session with the Superintendent at Community Park School.</li>
-    </ul>
-    <a class="why-link" href="oct-27.html" data-i18n="sumLink">Read the full meeting summary →</a>
-    <a class="why-link" href="#why" data-i18n="whyLink">Not sure why we should keep and improve DLI? Here are 6 reasons ↓</a>
-  </section>
+<p class="intro">For parents who couldn't attend. Each timestamp links to that moment in the <a href="https://www.youtube.com/watch?v=KmP_fZecncM" target="_blank" rel="noopener">meeting video</a>, so you can hear it yourself.</p>
 
+<section class="card">
+  <h2 class="label">In short</h2>
+  <ul class="list">
+    <li>Superintendent <strong>Michael LaSusa</strong> recommended <strong>ending dual language immersion at CP</strong> and replacing it with a <strong>"Spanish-intensive" program</strong>: one 45-minute Spanish class every day, with math and science taught in English.</li>
+    <li>CP would also become a <strong>neighborhood-only school</strong>, with no opting in from other parts of town.</li>
+    <li class="key"><strong>Nothing has been decided yet.</strong> The Board could vote at its next meeting, if the superintendent formally recommends the plan. He wants a decision by Thanksgiving, before kindergarten registration. Watch the agenda when it is posted.</li>
+    <li><strong>Email</strong> reaches the whole Board at <a href="mailto:ppsboe@princetonk12.org">ppsboe@princetonk12.org</a> and the superintendent at <a href="mailto:michaellasusa@princetonk12.org">michaellasusa@princetonk12.org</a>. <a href="help.html#email">This page writes the email for you →</a></li>
+  </ul>
+</section>
 
-  <section class="ways" id="ways" aria-labelledby="ways-h">
-    <h2 id="ways-h" data-i18n="waysH">Five ways to help</h2>
-    <p class="sub" data-i18n="waysSub">Do as many as you can. Every email, every signature, every sign and every person in the room counts.</p>
-    <div class="ways-grid">
-      <a class="way" href="#email">
-        <span class="way-num">1</span>
-        <span class="way-t" data-i18n="w1T">Email the Board</span>
-        <span class="way-stat" id="counter" hidden><b id="counter-number">0</b><span data-i18n="counter">emails sent to the Board so far</span></span>
-        <span class="way-d" data-i18n="w1D">This page helps you write it in under 2 minutes, even from your phone. Send yours today.</span>
-        <span class="way-go" data-i18n="w1Go">Write my email ↓</span>
-      </a>
-      <a class="way" href="#events">
-        <span class="way-num">2</span>
-        <span class="way-t" data-i18n="w2T">Add the meetings to your calendar</span>
-        <span class="way-stat" id="going-total" hidden><b id="going-total-n">0</b><span data-i18n="goingTot">events added to calendars so far</span></span>
-        <span class="way-d" data-i18n="w2D">One click adds the details. Don't miss the Oct 29 session with the Superintendent.</span>
-        <span class="way-go" data-i18n="w2Go">Add to my calendar ↓</span>
-      </a>
-      <a class="way" id="way-sign" href="https://www.zazzle.com/defend_princeton_dli_sign-256968503446004618" target="_blank" rel="noopener">
-        <span class="way-num">3</span>
-        <span class="way-t" data-i18n="w3T">Order a yard sign</span>
-        <span class="way-d" data-i18n="w3D">Show the Board and your neighbors that families care. Order a "Defend Princeton DLI" yard sign.</span>
-        <span class="way-go" data-i18n="w3Go">Get a sign ↗</span>
-      </a>
-      <a class="way" id="way-petition" href="https://www.change.org/p/defend-the-dli-program-at-community-park" target="_blank" rel="noopener">
-        <span class="way-num">4</span>
-        <span class="way-t" data-i18n="w5T">Sign the petition</span>
-        <span class="way-d" data-i18n="w5D">Takes 30 seconds. Add your name to show the Board how many people support DLI.</span>
-        <span class="way-go" data-i18n="w5Go">Sign now ↗</span>
-      </a>
-      <a class="way way-wide" href="#share">
-        <span class="way-num">5</span>
-        <span class="way-t" data-i18n="w4T">Spread the word</span>
-        <span class="way-d" data-i18n="w4D">Many DLI families don't know about this yet. Share this page in your group chats, or print a sign for the next birthday party or playground visit.</span>
-        <span class="way-go" data-i18n="w4Go">Share the page or a sign ↓</span>
-      </a>
-    </div>
-  </section>
+<nav class="card toc" aria-label="Sections">
+  <h2 class="label">Sections</h2>
+  <ol class="tabs" role="tablist">
+    <li><a href="#en-s1" role="tab">The proposal</a></li>
+    <li><a href="#en-s2" role="tab">Reasons given</a></li>
+    <li><a href="#en-s3" role="tab">Principal &amp; Board</a></li>
+    <li><a href="#en-s4" role="tab">Public comment</a></li>
+    <li><a href="#en-s5" role="tab" class="stand-tab">Where CP parents stand</a></li>
+    <li><a href="help.html" class="help-tab">How you can help →</a></li>
+  </ol>
+</nav>
 
-  <section class="cta" id="email" aria-labelledby="cta-h">
-    <p class="cta-kicker" data-i18n="ctaK">Way 1 · Email</p>
-    <h2 id="cta-h" data-i18n="ctaH">Email the Board before the vote</h2>
-    <p data-i18n="ctaP">The Board and the superintendent need to hear from DLI families before they vote. This page writes the email for you. It takes about two minutes.</p>
-  </section>
+<section class="card" id="en-s1">
+  <h2 class="sec-h">What's being proposed</h2>
+  <p>The superintendent said they had considered, and <strong>rejected</strong>, phasing the program out entirely <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4146s" target="_blank" rel="noopener">1:09:06</a>. The recommendation itself starts at <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4222s" target="_blank" rel="noopener">1:10:22</a>.</p>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Today (DLI)</th><th>Proposed ("Spanish-intensive")</th></tr></thead>
+    <tbody>
+      <tr><th>Spanish language arts</th><td>30 min/day</td><td><strong>45 min/day</strong></td></tr>
+      <tr><th>Math</th><td>Taught in Spanish</td><td><strong>Taught in English</strong></td></tr>
+      <tr><th>Science</th><td>Taught in Spanish</td><td><strong>Taught in English</strong></td></tr>
+      <tr><th>English and Spanish homerooms ("the switch")</th><td>Yes</td><td><strong>No.</strong> One homeroom, like the other schools</td></tr>
+      <tr><th>Total Spanish per day</th><td>About 90–120 min (parents' estimate; the superintendent's analysis showed less than half the core day)</td><td><strong>45 min</strong></td></tr>
+      <tr><th>Who attends CP</th><td>Lottery; open to families from all zones</td><td><strong>CP-zone families only.</strong> No opt-in or opt-out</td></tr>
+      <tr><th>Specials / science-social studies block</th><td>50 / 45 min</td><td>45 / 40 min (see below)</td></tr>
+    </tbody>
+  </table></div>
+  <h3>Where the extra 15&nbsp;minutes of Spanish come from</h3>
+  <p>The school day stays the same length (395&nbsp;minutes), so the longer Spanish class has to come out of other parts of the day <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4374s" target="_blank" rel="noopener">1:12:54</a>:</p>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Today</th><th>Proposed</th><th>Change</th></tr></thead>
+    <tbody>
+      <tr><th>Spanish language arts</th><td>30&nbsp;min</td><td>45&nbsp;min</td><td><strong>+15</strong></td></tr>
+      <tr><th>The "switch" (moving between the English and Spanish rooms)</th><td>5&nbsp;min</td><td>None</td><td>−5</td></tr>
+      <tr><th>Specials (such as art, music and PE)</th><td>50&nbsp;min</td><td>45&nbsp;min</td><td>−5</td></tr>
+      <tr><th>Science, social studies and reading period</th><td>45&nbsp;min</td><td>40&nbsp;min</td><td>−5</td></tr>
+    </tbody>
+  </table></div>
+  <ul class="list">
+    <li>Everything else stays as it is now.</li>
+    <li>The superintendent said CP's specials and science blocks are <strong>already shorter than at the other schools</strong>, so this cuts "five more minutes". CP's morning meeting is also 10 minutes shorter than elsewhere (20 against 30) <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4222s" target="_blank" rel="noopener">1:10:22</a>.</li>
+    <li>The superintendent called the cuts "a definite sacrifice". The district's science, social studies, arts and library supervisors "think we need more time, not less" <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4453s" target="_blank" rel="noopener">1:14:13</a>.</li>
+  </ul>
+  <h3>Also in the plan</h3>
+  <ul class="list">
+    <li>Hire about <strong>two certified Spanish teachers</strong>, each with their own classroom <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4936s" target="_blank" rel="noopener">1:22:16</a>.</li>
+    <li>Develop a new Spanish curriculum, and possibly add a coordinator for the program.</li>
+    <li>Keep the middle school DLI courses.
+      <span class="flag note">Though note: the superintendent said the middle school's social studies course in Spanish depends on a single teacher certified in both Spanish and social studies. If that teacher left, the district "will not find another teacher who possesses those credentials" and would "have to rethink what we're doing at the middle school" <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6326s" target="_blank" rel="noopener">1:45:26</a>.</span></li>
+    <li>Add at least one more <strong>advanced Spanish course at the high school</strong>.</li>
+    <li>Possibly add social studies themes in Spanish in grades 4–5.</li>
+    <li>Students already placed at other schools would stay where they are, and their younger siblings could follow them <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4915s" target="_blank" rel="noopener">1:21:55</a>.</li>
+  </ul>
+  <p><strong>The superintendent's math</strong> <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4534s" target="_blank" rel="noopener">1:15:34</a>: 45 min/day adds up to about <strong>788 hours</strong> of Spanish over K–5. Students at the other elementary schools get about 210 hours (60 min/week). The superintendent called this "four times as much" as anyone else in the district. Critics noted it is still <strong>less than half</strong> the Spanish CP students get today.</p>
+</section>
 
-  <div class="card">
-    <h2 class="label" data-i18n="howH">How it works</h2>
-    <ul class="steps">
-      <li><span class="num">1</span><span data-i18n="h1s">Tell us who you are and if you want to personalize your message with the points that matter to you.</span></li>
-      <li><span class="num">2</span><span data-i18n="h2s">Click <strong>Send email</strong> to open your email app with the message ready.</span></li>
-      <li><span class="num">3</span><span data-i18n="h3s">Or click <strong>Copy</strong> and paste the address and message into Gmail or any app.</span></li>
-      <li><span class="num">4</span><span data-i18n="h4s">Hit Send.</span></li>
-    </ul>
-    <p class="send-note"><span data-i18n="sendNote">Nothing is sent until you send it yourself.</span> <span data-i18n="aiShort">No AI writes your email.</span> <button type="button" class="ai-more-btn" id="ai-more-btn" aria-expanded="false" aria-controls="ai-more" data-i18n="aiMore">How it works</button></p>
-    <p class="ai-more" id="ai-more" data-i18n="aiNote2" hidden><strong>No AI writes your email.</strong> To compose it, the page puts together our pre-written opening and closing with your details, the talking points you pick and anything you write in your own words. It all happens on your device, and nothing you type is sent to an AI or saved in any way. We used AI to help research and draft text, but parents chose every point, edited the wording and checked all facts against public sources and with other CP parents. AI also wrote the code that runs this page.</p>
-  </div>
-
-  <div class="card">
-    <h2 class="label" data-i18n="basicsH">The basics · Who are you?</h2>
-    <fieldset id="who">
-      <label class="opt"><input type="radio" name="who" id="who-current" value="current" checked><span><span data-i18n="w1">Current DLI family</span><small data-i18n="w1d">Your child is in DLI at Community Park now</small></span></label>
-      <label class="opt"><input type="radio" name="who" id="who-incoming" value="incoming"><span><span data-i18n="w2">Incoming or prospective family</span><small data-i18n="w2d">You plan to enroll your child in DLI</small></span></label>
-      <label class="opt"><input type="radio" name="who" id="who-alum" value="alum"><span><span data-i18n="w3">DLI alumni family</span><small data-i18n="w3d">Your child continues the pathway at PMS or PHS</small></span></label>
-      <label class="opt"><input type="radio" name="who" id="who-community" value="community"><span><span data-i18n="w4">Princeton community member</span><small data-i18n="w4d">You care about the program without a child in it</small></span></label>
-    </fieldset>
-    <div class="row">
-      <label class="field"><span data-i18n="nameL">Your name</span><input type="text" id="f-name" autocomplete="name"></label>
-      <label class="field"><span data-i18n="gradeL">Child's grade (optional)</span><input type="text" id="f-grade" data-i18n-ph="gradePh" placeholder="e.g. 2nd grade"></label>
-    </div>
-    <div class="ready">
-      <p data-i18n="readyP"><strong>That's all you need.</strong> A basic email is already written for you below. A quick email beats no email! Want to make it more personal? Use the next box.</p>
-      <a href="#emails" data-i18n="readyGo">Skip to my email ↓</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <h2 class="label" data-i18n="persOptH">Personalize your message (optional)</h2>
-    <p class="pers-intro" data-i18n="ptsL">Include your support for DLI in your own words and/or add some of the talking points below.</p>
-    <label class="field"><span class="sr-only" data-i18n="noteL">Your own words</span><textarea id="f-note" data-i18n-ph="notePh" placeholder="Write your own reasons for supporting DLI, or anything else you want to add. It will go into your email as its own paragraph, exactly as you write it."></textarea></label>
-    <fieldset id="points">
-      <legend class="pts-leg" data-i18n="ptsLeg">Add talking points:</legend>
-      <label class="opt"><input type="checkbox" id="pt-evaluate" value="evaluate"><span><span data-i18n="pE">Too soon to judge</span><small data-i18n="pEd">The first cohort graduates in 2027, and research shows the biggest gains come in later grades</small></span></label>
-      <label class="opt"><input type="checkbox" id="pt-demand" value="demand"><span><span data-i18n="pD">Growing demand</span><small data-i18n="pDd">Three full DLI kindergarten classes this year</small></span></label>
-      <label class="opt"><input type="checkbox" id="pt-pathway" value="pathway"><span><span data-i18n="p1">Keep the promise to DLI families</span><small data-i18n="p1d">Younger siblings would lose their place, and current students would be left in a shrinking program</small></span></label>
-      <label class="opt"><input type="checkbox" id="pt-equity" value="equity"><span><span data-i18n="p3">Fairness for Spanish-speaking families</span><small data-i18n="p3d">Children learn from each other: Spanish speakers help classmates with Spanish, classmates help them with English</small></span></label>
-      <label class="opt"><input type="checkbox" id="pt-improve" value="improve"><span><span data-i18n="pI">Improve DLI, don't end it</span><small data-i18n="pId">Teachers asked for improvements; the state named Princeton's program a model in 2016, and it can earn that again</small></span></label>
-      <label class="opt"><input type="checkbox" id="pt-neighbors" value="neighbors"><span><span data-i18n="pN">Our neighbors are expanding, not cutting</span><small data-i18n="pNd">West Windsor-Plainsboro runs Spanish and Mandarin DLI, with a waitlist and a new middle school program</small></span></label>
-    </fieldset>
-  </div>
-
-  <p class="label" id="emails" data-i18n="recL">Your email · ready to send</p>
-  <p class="en-note" data-i18n="enNote"></p>
-  <div class="list" id="primary-list"></div>
-
-  <details class="ind">
-    <summary data-i18n="indL">Want to write to a Board member directly? (optional)</summary>
-    <p class="sub" data-i18n="indSub">You don't need to: the email above already goes to every Board member. Use these only if you'd like to write to someone in particular.</p>
-    <div class="list" id="member-list"></div>
-  </details>
-  <a class="back" href="#ways" data-i18n="back">↑ Back to the five ways to help</a>
-
-  <section class="cta" id="events" aria-labelledby="ev-h">
-    <p class="cta-kicker" data-i18n="evK">Way 2 · Show up</p>
-    <h2 id="ev-h" data-i18n="evH">Add the meetings to your calendar</h2>
-    <p data-i18n="evP">Click <strong>Google</strong> or <strong>Apple / Outlook</strong> under each date to add it to your calendar with the time and place already filled in. A full room tells the Board how many families care, so come to as many as you can and make sure to speak up.</p>
-  </section>
-
-  <section class="alert" aria-labelledby="dates-h">
-    <h2 id="dates-h" data-i18n="datesH">Mark your calendar</h2>
-    <ul class="dates">
-      <li><span class="date"><span data-i18n="oct">Oct</span><b>27</b></span><div class="ev"><span class="tag" data-i18n="tagKey">Most important</span><span data-i18n="d1"><strong>Board of Education meeting, 7:00 PM</strong>, Princeton High School Performing Arts Center (PAC), 151 Moore St. Come and speak during public comment.</span><div class="cal" data-ev="boe"></div></div></li>
-      <li><span class="date"><span data-i18n="oct">Oct</span><b>29</b></span><div class="ev"><span class="tag" data-i18n="tagKey">Most important</span><span data-i18n="d2"><strong>Session with the Superintendent, 8:30 AM</strong>, at Community Park School, where families can learn more and ask questions.</span><div class="cal" data-ev="forum"></div></div></li>
-      <li><span class="date"><span data-i18n="oct">Oct</span><b>18</b></span><div class="ev"><span class="tag tag-also" data-i18n="tagAlso">Also</span><span data-i18n="d0"><strong>Meet the school board candidates, Sunday 3:00–4:00 PM</strong>, clocktower picnic area, Princeton Shopping Center. Ask Beth Behrend, Eleanor Hubbard and Adam Bierman where they stand on DLI.</span><div class="cal" data-ev="meet"></div></div></li>
-    </ul>
-  </section>
-  <a class="back" href="#ways" data-i18n="back">↑ Back to the five ways to help</a>
-
-  <section class="cta" id="share" aria-labelledby="share-h">
-    <p class="cta-kicker" data-i18n="shK">Way 5 · Share</p>
-    <h2 id="share-h" data-i18n="shH">Spread the word</h2>
-    <p data-i18n="shP">Many DLI families don't know about this yet. Post this page in your parent and neighborhood group chats so they can email the Board too, send it to anyone in Princeton who would support DLI, or print one of the signs below.</p>
-  </section>
-  <div class="card">
-    <h2 class="label" data-i18n="shareH">Share this page</h2>
-    <div class="btns">
-      <button type="button" class="btn btn-email btn-big" id="sh-native" data-i18n="shNative">Share…</button>
-      <button type="button" class="btn btn-copy btn-big" id="sh-copy" data-i18n="shCopy">Copy link</button>
-      <a class="btn btn-copy btn-big" id="sh-sms" data-i18n="shText">Text</a>
-      <a class="btn btn-copy btn-big" id="sh-wa" target="_blank" rel="noopener">WhatsApp</a>
-      <a class="btn btn-copy btn-big" id="sh-mail" data-i18n="shMail">Email</a>
-    </div>
-    <div class="signs">
-      <div class="sign-thumbs">
-        <a id="sg-party" href="sign-party.pdf" target="_blank" rel="noopener"><img src="sign-party-thumb.jpg" alt="" width="96" height="124"><span data-i18n="signsParty">Party sign (PDF)</span></a>
-        <a id="sg-play" href="sign-playground.pdf" target="_blank" rel="noopener"><img src="sign-playground-thumb.jpg" alt="" width="96" height="124"><span data-i18n="signsPlay">Playground sign (PDF)</span></a>
+<section class="card" id="en-s2">
+  <h2 class="sec-h">Reasons given for the recommendation</h2>
+  <p>The full presentation starts at <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=641s" target="_blank" rel="noopener">0:10:41</a> and runs about 75 minutes. The main reasons given:</p>
+  <p class="flag">Note: the data behind these reasons has not been shared with parents, despite pending public-records (OPRA) requests, so families have not been able to check it themselves. Our comments below rely only on the analysis Dr. LaSusa presented at the meeting.</p>
+  <ol class="reasons">
+    <li><strong>The program as currently implemented falls short of the "Dual Language Immersion" promise.</strong>
+      <ul>
+        <li>CP is a "one-way" program (mostly English speakers learning Spanish). It has never had enough Spanish-dominant students to be "two-way".</li>
+        <li>By the superintendent's count, actual Spanish time falls short of half even in core subjects. Math is often re-taught in English, and the supplemental math program is in English <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=1648s" target="_blank" rel="noopener">0:27:28</a>–<a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2114s" target="_blank" rel="noopener">0:35:14</a>.</li>
+      </ul>
+      <p class="evidence"><b>Evidence shown:</b> the superintendent's own minute-by-minute breakdown of a CP teacher's daily schedule, compared with the Center for Applied Linguistics definition of dual language and its Guiding Principles rubric. Also the 2014 program plan, district demographic data, and teachers' reports that math is re-taught in English.</p>
+      <p class="comment"><b>DLI parents' comment:</b> Yet the superintendent's own data show that <strong>the program, as currently implemented, works for Spanish proficiency</strong>. On the AAPPL Spanish proficiency test, CP students are close to the national average for DLI programs in 3rd grade, at or above it in 4th, and pull further ahead in 5th and 8th grade. The longer students stay in the program, the more proficient they become <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2793s" target="_blank" rel="noopener">0:46:33</a>–<a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2875s" target="_blank" rel="noopener">0:47:55</a>.</p>
+    </li>
+    <li><strong>Concerns about students' math performance.</strong> Parents raised math as a concern in the survey, and some teachers raised it with Dr. LaSusa directly. Comparing CP students without special education services with those at Johnson Park, Littlebrook and Riverside, he found only "a slight gap." Some teachers think learning math in Spanish is harder for children who are still learning English <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3574s" target="_blank" rel="noopener">0:59:34</a>, so Dr. LaSusa looked at those students separately. Among those who are also from low-income families, fewer CP students met the state math standard than at the other schools.
+      <div class="evidence"><b>Evidence shown:</b>
+        <ul>
+          <li><b>Most students (no special education services).</b> On the 2026 state math test, CP students scored close to students at the other schools. CP was second-best in 4th grade and lowest in 3rd and 5th. The superintendent called it "a slight gap" <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3497s" target="_blank" rel="noopener">0:58:17</a>.</li>
+          <li><b>Students still learning English who are also from low-income families.</b> With grades 3–5 and the years 2024–2026 combined, 0 of 29 at CP met the state standard in math. At Johnson Park it was 3 of 14 (21%). At Littlebrook and Riverside combined it was 44%, but the slide says only "fewer than 10" for the number of students.</li>
+        </ul>
       </div>
-      <p class="sub" data-i18n="signsP">Going to a birthday party or the playground? Print a sign and put it up where other parents will see it.</p>
-    </div>
-    <div class="qr-row">
-      <div id="qr" class="qr" aria-hidden="true"></div>
-      <p class="sub" data-i18n="qrP">Talking to someone in person? Let them scan this code with their phone camera.</p>
-    </div>
+      <div class="comment"><b>DLI parents' comment:</b> For most CP students, math is not a concern, and the superintendent said so himself. We would still like access to the data to understand it in more detail, but we accept his finding. The concern is about a small group of students who are still learning English and come from low-income families. A few notes:
+        <ol>
+          <li><b>The fair comparison is with similar students.</b> At CP, almost all students still learning English (29 of 34) come from low-income families. At Littlebrook and Riverside, fewer than 10 of 106 do. Children who are new to English and from low-income families face extra challenges at any school. So the fair comparison is between students who are still learning English and also from low-income families. Littlebrook and Riverside have too few of them to compare, which leaves Johnson Park.</li>
+          <li><b>The groups are very small.</b> Even with three grades and three years combined, the math comparison rests on 29 results at CP and 14 at Johnson Park. A few children can move the percentages a lot, which makes it hard to draw conclusions about the program.</li>
+          <li><b>It isn't clear what is being counted.</b> The slide doesn't say whether each number is a different student, or whether a student tested in more than one year is counted more than once. With numbers this small, knowing exactly how the data was put together matters.</li>
+          <li><b>The math gap comes down to three results.</b> Against similar students at Johnson Park, the difference in students who met the state standard is 0 of 29 at CP vs 3 of 14 at Johnson Park.</li>
+          <li><b>In English, the result reverses.</b> By the same analysis, CP comes out ahead in English: among the same students, 3 of 25 (12%) met the English standard at CP, against 1 of 13 (8%) at Johnson Park.</li>
+          <li><b>There's no view of these students over time.</b> These are one-time test results. Nothing showed how these students' results change from year to year, or how they do later in middle school.</li>
+        </ol>
+        <p>If these students need more help in math, the answer is to give them that help. That doesn't require ending immersion for every child.</p>
+      </div>
+    </li>
+    <li><strong>Teacher workload and sustainability.</strong> He said this is where he "put the most weight," based on a year and a half of conversations with CP teachers, whom he called the most professional he has worked with <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=985s" target="_blank" rel="noopener">0:16:25</a>. He made four points:
+      <ul>
+        <li><b>CP teachers carry a double load.</b> They teach two groups of students, hold twice the parent conferences, and must coordinate constantly with a partner teacher, which teachers called "demanding and draining" <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=1201s" target="_blank" rel="noopener">0:20:01</a>. Giving every class a single teacher for both languages isn't possible, because not all CP teachers are bilingual. Among homeroom teachers, 6 teach in English, 6 in Spanish, and 2 do both <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=1272s" target="_blank" rel="noopener">0:21:12</a>.</li>
+        <li><b>The program has lacked stability and support.</b> Staff described constant year-to-year adjustments, and said the central office ("Valley Road") hadn't been engaged enough until recently <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=1368s" target="_blank" rel="noopener">0:22:48</a>.</li>
+        <li><b>Teachers are teaching Spanish without Spanish-teaching training.</b> Only one CP teacher is certified to teach Spanish. The Spanish partner teachers teach Spanish language arts and make or adapt their own materials, which he called "a little bit unfair" to them <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=5841s" target="_blank" rel="noopener">1:37:21</a>.</li>
+        <li><b>Certified Spanish teachers are very hard to hire.</b> Last spring a kindergarten opening had zero qualified applicants from March until the last week of June, even with an offer of over $100,000 <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=5017s" target="_blank" rel="noopener">1:23:37</a>.</li>
+      </ul>
+      <p class="evidence"><b>Evidence shown:</b> a survey of CP staff (27 responses, including every classroom teacher), with one written comment displayed in which a teacher questions how much longer the program can continue <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2657s" target="_blank" rel="noopener">0:44:17</a>–<a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2793s" target="_blank" rel="noopener">0:46:33</a>. Also a count of teachers' certifications and the one hiring example. A Board member added that New Jersey has closed many language-teacher programs.</p>
+      <div class="comment"><b>DLI parents' comment:</b>
+        <ol>
+          <li><b>Teachers love CP.</b> In the same survey, every teacher said CP is caring and welcoming, and almost none want to transfer <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2657s" target="_blank" rel="noopener">0:44:17</a>. The problem is the conditions they work under, not the school.</li>
+          <li><b>Most of these problems come from how the program has been supported.</b> He described instability, little central-office involvement, no structured Spanish curriculum, and teachers making their own materials.</li>
+          <li><b>One change is already underway.</b> This year's kindergarten was split into three classes instead of two to ease class sizes and teachers' load <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=1272s" target="_blank" rel="noopener">0:21:12</a>. It's too early to know how much that helps.</li>
+          <li><b>His proposal puts new resources into CP that could fix DLI instead of ending it:</b> curriculum development, a coordinator for CP, and certified Spanish teachers <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=5092s" target="_blank" rel="noopener">1:24:52</a>.</li>
+          <li><b>His proposal faces the same hiring problem.</b> It requires two new certified Spanish teachers <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4936s" target="_blank" rel="noopener">1:22:16</a>.</li>
+          <li><b>Nearby West Windsor-Plainsboro manages it.</b> It staffs a 50/50 Spanish and Mandarin immersion program in grades K–5, which New Jersey named a <a href="https://www.nj.gov/education/standards/worldlang/modelprograms.shtml" target="_blank" rel="noopener">2025–2028 model program</a>. The presentation didn't explain why West Windsor can do this and Princeton can't.</li>
+        </ol>
+      </div>
+    </li>
+    <li><strong>Attrition.</strong> He raised it as a caveat to the strong Spanish proficiency results <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2875s" target="_blank" rel="noopener">0:47:55</a>, and made two points:
+      <ul>
+        <li><b>Each class shrinks from about 41–45 in 1st grade to about 25–32 in high school.</b> Most of the loss comes between 1st and 5th grade. He said families mostly leave because they move away; others switch schools or decide the program isn't the right fit. New students can't join after 1st grade, so they aren't replaced <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2951s" target="_blank" rel="noopener">0:49:11</a>.</li>
+        <li><b>Students stop taking Spanish in high school.</b> He highlighted that only 8 of 25 seniors and 14 of 25 juniors are in a Spanish class now. The main reason he gave is that after AP Spanish, students "run out of runway," because the high school has only one more advanced course. He proposes adding courses <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3030s" target="_blank" rel="noopener">0:50:30</a>–<a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3108s" target="_blank" rel="noopener">0:51:48</a>.</li>
+      </ul>
+      <p class="evidence"><b>Evidence shown:</b> class-by-class counts for today's 9th–12th graders at grades 1, 5 and 8 and now, plus the Spanish course each high schooler is taking (slides 77–80). The current 8th grade was left out. It started 1st grade in 2019–20, when the pandemic hit, and he said it lost the most students.</p>
+      <div class="comment"><b>DLI parents' comment:</b>
+        <ol>
+          <li><b>Most students who reach high school keep taking Spanish through the most advanced levels.</b> Of the 25 seniors, 14 took Spanish through AP or Spanish VI A, and 6 of those finished early. Among juniors, 17 of 25 are taking or have finished advanced Spanish. Among sophomores and freshmen, 24 of 25 and 31 of 32 are still in Spanish.</li>
+          <li><b>We welcome more advanced courses at the high school.</b> It would let DLI students keep studying Spanish right through graduation.</li>
+          <li><b>The real issue is the drop in elementary school.</b> Three of the four classes lost 10–12 students between 1st and 5th grade, and those seats can't be filled. There's a fix the district already uses: in middle school, new students who test in can join the DLI Spanish courses <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3030s" target="_blank" rel="noopener">0:50:30</a>. Doing the same at CP would let children who already speak Spanish fill open seats.</li>
+          <li><b>The Spanish-intensive plan is not a solution, as it would face the same late-arrival problem.</b> When asked how a child arriving in 4th grade with no Spanish would fit into a daily Spanish class, the superintendent said it was still being worked out <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6017s" target="_blank" rel="noopener">1:40:17</a>.</li>
+        </ol>
+      </div>
+    </li>
+    <li><strong>Demographics.</strong> The program was meant to serve English learners, low-income students, Black students and students with disabilities. Over 10 years CP has become less representative of these groups. It is now the only majority-white elementary school, though it also has the largest Hispanic population <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2114s" target="_blank" rel="noopener">0:35:14</a>.
+      <p class="evidence"><b>Evidence shown:</b> district enrollment data by school, comparing about 10 years ago with today, against the goals stated in the 2014 program plan. The superintendent said the shift was unintended and "no one's fault".</p>
+      <p class="comment"><b>DLI parents' comment:</b> Every Princeton family can choose to enroll in DLI at CP or opt out to another school, so CP's makeup reflects those choices. Indeed, the superintendent called the shift "no one's fault", and it's unclear why it would be a reason to end the program. The proposed Spanish-intensive alternative would also make CP a neighborhood school with no opt-in or opt-out <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4702s" target="_blank" rel="noopener">1:18:22</a>. That removes the choice for every family, including the English learners and low-income families who now choose not to enroll in DLI and may also prefer a school without intensive Spanish.</p>
+    </li>
+    <li><strong>Transportation costs</strong> (the superintendent said this was <em>not</em> the main reason). He began by calling it a "false narrative" that the presentation would be about transportation costs, and said none of the teachers' concerns were about money <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3765s" target="_blank" rel="noopener">1:02:45</a>. He still made three points:
+      <ul>
+        <li><b>Transportation is the fastest-growing cost.</b> The district's budget grew about 21% over five years, roughly in line with inflation, but transportation grew 82%. Unlike health insurance, the district can't pass that increase on to taxpayers, so it takes money from other areas, including regular instruction. "Transportation is killing us" <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3844s" target="_blank" rel="noopener">1:04:04</a>.</li>
+        <li><b>Princeton's busing is the least efficient in Mercer County</b>, according to the state's rating. He said the main reason is that all Princeton schools start at the same time, so buses can't do one school run and then another. Changing start times would be "a different discussion" <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3920s" target="_blank" rel="noopener">1:05:20</a>.</li>
+        <li><b>CP's opt-in/opt-out adds busing.</b> About 159 students who live in the CP zone are bused to other schools, and about 65 are bused in to CP. The district has added three routes in three years for students not attending their neighborhood school, at about $90,000 per route, and he expects that cost to rise with diesel prices <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3995s" target="_blank" rel="noopener">1:06:35</a>.</li>
+      </ul>
+      <p class="evidence"><b>Evidence shown:</b> five-year budget trends from district documents; the state's transportation-efficiency ratings for Mercer County (Princeton 0.881, the others 1.26–1.78); school start times; and busing counts and the per-route cost from about six weeks before the meeting.</p>
+      <div class="comment"><b>DLI parents' comment:</b>
+        <ol>
+          <li><b>By his own account, the main cause is elsewhere.</b> He named shared start times as the main reason Princeton's busing is inefficient. Ending DLI doesn't change that.</li>
+          <li><b>No savings estimate was given.</b> We weren't told how many routes the proposal would cut, or how much it would save each year.</li>
+          <li><b>Savings would come slowly.</b> The neighborhood-school change would start with incoming kindergartners <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6212s" target="_blank" rel="noopener">1:43:32</a>, so older students' busing would continue for years.</li>
+          <li><b>Not all of this busing is because of DLI.</b> He said some students are bused out of CP because there isn't enough space yet, which construction will fix <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4702s" target="_blank" rel="noopener">1:18:22</a>. The three added routes cover all students not at their neighborhood school, not only CP's.</li>
+          <li><b>The trade-off wasn't weighed.</b> If cost is a factor, families and the Board need the actual savings figure to weigh against what CP students would lose.</li>
+        </ol>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section class="card" id="en-s3">
+  <h2 class="sec-h">Where the principal and the Board stand</h2>
+  <h3>CP's principal</h3>
+  <p>Principal <strong>Dineen Gruchacz</strong> has led CP since DLI began in 2015. The principal thanked the teachers and <strong>supported the change</strong> <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=5240s" target="_blank" rel="noopener">1:27:20</a>: "Supporting this decision does not diminish our pride in dual language… it may be time to move in a new direction."</p>
+  <h3>The Board</h3>
+  <p>No vote was taken. Board President <strong>Dafna Kendal</strong> chaired the meeting and did not state a position.
+    <span class="mail">You can email Dafna Kendal at <a href="mailto:DafnaKendal@princetonk12.org">DafnaKendal@princetonk12.org</a></span></p>
+  <p>Members who spoke:</p>
+  <ul class="list">
+    <li><strong>Mara Franceschi</strong> called the plan "incredibly generous" and "an improvement" <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6326s" target="_blank" rel="noopener">1:45:26</a>.
+      <span class="mail">You can email Mara Franceschi at <a href="mailto:MaraFranceschi@princetonk12.org">MaraFranceschi@princetonk12.org</a></span></li>
+    <li><strong>Ari Meisel</strong> was "really excited" about it, citing their own experience learning French in a daily class. They asked how success would be measured <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6543s" target="_blank" rel="noopener">1:49:03</a>.
+      <span class="mail">You can email Ari Meisel at <a href="mailto:AriMeisel@princetonk12.org">AriMeisel@princetonk12.org</a></span></li>
+    <li><strong>Beth Behrend</strong>: "We've waited for this for years". Excited for CP to remain "a special place for Spanish" <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6701s" target="_blank" rel="noopener">1:51:41</a>.
+      <span class="mail">You can email Beth Behrend at <a href="mailto:BethBehrend@princetonk12.org">BethBehrend@princetonk12.org</a></span></li>
+    <li><strong>Chris Santarpio</strong> (CP parent, past DLI advocate) asked how the new model would meet its Spanish goals and serve English learners and low-income students. No position stated <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=5762s" target="_blank" rel="noopener">1:36:02</a>.
+      <span class="mail">You can email Chris Santarpio at <a href="mailto:ChristopherSantarpio@princetonk12.org">ChristopherSantarpio@princetonk12.org</a></span></li>
+    <li><strong>Eleanor Hubbard</strong> asked how students who arrive at CP in later grades without any Spanish would fit into the daily Spanish class. Answer: still to be worked out. Options include adapting the class to their level, grading them pass/fail, or giving them a different activity during that block, which the superintendent called "preferable" to telling them they can't attend CP <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6017s" target="_blank" rel="noopener">1:40:17</a>.
+      <span class="mail">You can email Eleanor Hubbard at <a href="mailto:EleanorHubbard@princetonk12.org">EleanorHubbard@princetonk12.org</a></span></li>
+    <li><strong>Erica Snyder</strong> (parent of three in DLI, past advocate) welcomed the middle and high school continuation and asked about the timeline. No position stated <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6136s" target="_blank" rel="noopener">1:42:16</a>.
+      <span class="mail">You can email Erica Snyder at <a href="mailto:EricaSnyder@princetonk12.org">EricaSnyder@princetonk12.org</a></span></li>
+    <li>Vice President <strong>Susan Kanter</strong> asked about students in special education <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6841s" target="_blank" rel="noopener">1:54:01</a>.
+      <span class="mail">You can email Susan Kanter at <a href="mailto:SusanKanter@princetonk12.org">SusanKanter@princetonk12.org</a></span></li>
+    <li><strong>Adam Bierman</strong> asked when the vote would be. Answer: at the next meeting, if the superintendent formally recommends it <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6621s" target="_blank" rel="noopener">1:50:21</a>.
+      <span class="mail">You can email Adam Bierman at <a href="mailto:AdamBierman@princetonk12.org">AdamBierman@princetonk12.org</a></span></li>
+  </ul>
+</section>
+
+<section class="card" id="en-s4">
+  <h2 class="sec-h">What parents, students and community members said</h2>
+  <p>Public comment starts at <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=7056s" target="_blank" rel="noopener">1:57:36</a>. <strong>21 people spoke:</strong> 15 adults (mostly CP parents, plus a CP alum and a Princeton University professor) and 6 current or former DLI students.</p>
+  <h3>Where they stood</h3>
+  <ul class="list">
+    <li><strong>Everyone supported DLI itself.</strong> Many thanked the superintendent for a thorough review, and some were relieved the program isn't being cut entirely.</li>
+    <li><strong>No one endorsed the plan as presented.</strong> 10 adults opposed it; 4 were open to parts of it but asked for more Spanish or for changes; 1 spoke only about keeping CP inclusive.</li>
+    <li><strong>All 6 students spoke for DLI.</strong> Several said they had come expecting the program to be shut down.</li>
+  </ul>
+  <h3>Main objections <span class="h-note">(click to hear an example of each)</span></h3>
+  <ol class="reasons">
+    <li><strong>It ends immersion; "a phase-out under another name."</strong> Without math and science in Spanish, Spanish becomes a subject "in a silo" rather than a language students learn <em>in</em>. Several speakers called it a "slippery slope" toward ending the program. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=9515s" target="_blank" rel="noopener">2:38:35</a> · <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=9677s" target="_blank" rel="noopener">2:41:17</a></li>
+    <li><strong>It cuts Spanish time by more than half.</strong> Today's roughly 90–120 minutes a day falls to 45. One parent quoted the superintendent's own words back: becoming bilingual takes "one to two decades". <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=9757s" target="_blank" rel="noopener">2:42:37</a></li>
+    <li><strong>It isn't enough to become proficient.</strong> Prof. Casey Lew-Williams, Princeton's psychology chair, who studies bilingual development, opposed the plan. 45 minutes is about 5–6% of a child's waking hours; the professor said they usually advise families to aim for 20–25% exposure, and at least 15%. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=8315s" target="_blank" rel="noopener">2:18:35</a></li>
+    <li><strong>It doesn't fix the problems the data showed.</strong> The presentation identified two real issues: teacher workload, and math for English learners. The plan addresses workload but not math, "while throwing away" what works. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=10097s" target="_blank" rel="noopener">2:48:17</a></li>
+    <li><strong>It's too fast.</strong> CP is mid-construction, and the building will look different in two years. Several speakers asked the Board not to vote in November and to take time to explore other options. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=8047s" target="_blank" rel="noopener">2:14:07</a> · <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=9558s" target="_blank" rel="noopener">2:39:18</a></li>
+    <li><strong>It removes the opt-in.</strong> Letting families from anywhere in Princeton choose CP is a matter of fairness. Giving one school 45 min/day while the others get 60 min/week, with no way in, will "foster more resentment". If intensive Spanish is good, offer it at every school. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=8125s" target="_blank" rel="noopener">2:15:25</a> · <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=9434s" target="_blank" rel="noopener">2:37:14</a></li>
+    <li><strong>Other districts have found ways to make it work:</strong> West Windsor-Plainsboro next door, Davis, CA, and Allentown, PA. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=7210s" target="_blank" rel="noopener">2:00:10</a></li>
+    <li><strong>Transparency.</strong> Share the underlying data, and answer the pending public-records (OPRA) requests <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=7352s" target="_blank" rel="noopener">2:02:32</a>. One parent said a curriculum improvement proposed by teachers was turned down because of cost, and asked why <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=9515s" target="_blank" rel="noopener">2:38:35</a>.</li>
+  </ol>
+  <h3>Alternatives speakers proposed</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Idea</th><th>Hear it</th></tr></thead>
+    <tbody>
+      <tr><td>Teach <strong>specials</strong> (art, music, PE) in Spanish</td><td><a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=9434s" target="_blank" rel="noopener">2:37:14</a></td></tr>
+      <tr><td>Keep <strong>science</strong> in Spanish</td><td><a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=7654s" target="_blank" rel="noopener">2:07:34</a></td></tr>
+      <tr><td><strong>Hybrid:</strong> full immersion in K–2, the Spanish-intensive model in 3–5, and a separate Spanish level for late arrivals</td><td><a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=10555s" target="_blank" rel="noopener">2:55:55</a></td></tr>
+      <tr><td><strong>Two tracks</strong> in the expanded CP building, keeping the opt-in</td><td><a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=8200s" target="_blank" rel="noopener">2:16:40</a></td></tr>
+      <tr><td>Offer intensive Spanish at <strong>every</strong> elementary school</td><td><a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=7425s" target="_blank" rel="noopener">2:03:45</a></td></tr>
+      <tr><td>Add Spanish in <strong>pre-K</strong></td><td><a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=7654s" target="_blank" rel="noopener">2:07:34</a></td></tr>
+    </tbody>
+  </table></div>
+  <h3>What the students said</h3>
+  <ul class="list">
+    <li>Alumni now in high school described AP Spanish, exchange trips to Ecuador and Peru, a student-founded nonprofit, the new Spanish honor society, and DLI summer camp. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=8394s" target="_blank" rel="noopener">2:19:54</a> · <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=8774s" target="_blank" rel="noopener">2:26:14</a></li>
+    <li>Middle schoolers talked about learning math in Spanish and asked for <em>more</em> Spanish time, not less. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=8547s" target="_blank" rel="noopener">2:22:27</a> · <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=8677s" target="_blank" rel="noopener">2:24:37</a></li>
+    <li>A high school senior who wasn't in DLI said they envy the opportunities it gave their classmates. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=10174s" target="_blank" rel="noopener">2:49:34</a></li>
+  </ul>
+</section>
+
+<section class="card stand" id="en-s5">
+  <h2 class="sec-h">Where CP parents stand</h2>
+  <ul class="list">
+    <li><strong>We support DLI at CP, and we support reforming it.</strong> CP teachers have raised real concerns: they teach two groups of students, hold double the parent conferences, and adapt Spanish materials on their own time. We should listen to them and find creative solutions.</li>
+    <li><strong>Our objection is to the process.</strong> Dr. LaSusa spent a year and a half gathering input from teachers and families, and we're grateful for that effort. But it was one-way: he said at the outset that no one, including CP teachers, the principal and the Board, knew what he would recommend <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=985s" target="_blank" rel="noopener">0:16:25</a>. A single recommendation, developed by one person, is now headed for a possible vote at the Board's next meeting.</li>
+    <li><strong>The evidence isn't public.</strong> Families have filed public-records requests for per-pupil costs, Spanish proficiency results, academic performance, enrollment by group, and the teacher and parent input itself. The district has extended its deadline to October 30, three days after the recommendation.</li>
+    <li class="key"><strong>Our ask: don't vote in November.</strong> Convene a working group led by Dr. LaSusa, with CP teachers at its center and parents, students and administrators alongside them. Publish the underlying data, and give the group time to consider solutions. We're not resisting change. We're asking to help shape it.</li>
+    <li><strong>We can help.</strong> Among us are lawyers, scientists, and people whose profession is data and public information. The meeting ran more than three hours, out of reach for most working parents, so we built this account of it, with each point linked to the video.</li>
+  </ul>
+</section>
+
+<p class="foot">How this was made: from an automatic transcript of the meeting video. Please check the video before quoting anyone.</p>
+
   </div>
-  <a class="back" href="#ways" data-i18n="back">↑ Back to the five ways to help</a>
+  <div class="lang-block" id="block-es" lang="es" hidden>
 
-  <section class="cta" id="why" aria-labelledby="why-h">
-    <p class="cta-kicker" data-i18n="whyK">Why it matters</p>
-    <h2 id="why-h" data-i18n="whyTitle">Why we should keep and improve DLI</h2>
-    <p data-i18n="whyP">Six reasons, most important first. Use them in your own words when you talk with other families or with the Board.</p>
-  </section>
-  <div class="card why-list" id="why-list"></div>
-  <p class="why-note" data-i18n="whyNote"><strong>Speaking at a Board meeting?</strong> Use these as a starting point and add your own story: what DLI means for your child and your family.</p>
-  <a class="back" href="#ways" data-i18n="back">↑ Back to the five ways to help</a>
+<p class="intro">Para las familias que no pudieron asistir. Cada marca de tiempo enlaza a ese momento del <a href="https://www.youtube.com/watch?v=KmP_fZecncM" target="_blank" rel="noopener">video de la reunión</a> (en inglés), para que pueda escucharlo directamente.</p>
 
-  <div class="card" id="feedback" hidden>
-    <h2 class="fb-h" data-i18n="fbH">Ideas to make this page more helpful?</h2>
-    <p class="sub" data-i18n="fbSub">Spotted a mistake or have a suggestion? Tell the parents who run this page. Only they can read it.</p>
-    <label class="field"><span data-i18n="fbL">Your suggestion</span><textarea id="fb-text" maxlength="2000"></textarea></label>
-    <label class="field"><span data-i18n="fbC">Email or phone, if you'd like a reply (optional)</span><input type="text" id="fb-contact" maxlength="200"></label>
-    <div style="display:flex;gap:10px;align-items:center;flex-wrap:wrap"><button class="btn btn-email" type="button" id="fb-send" data-i18n="fbSend">Send suggestion</button><span class="sub" id="fb-status" role="status"></span></div>
+<section class="card">
+  <h2 class="label">En resumen</h2>
+  <ul class="list">
+    <li>El superintendente <strong>Michael LaSusa</strong> recomendó <strong>poner fin a la inmersión dual en CP</strong> y reemplazarla por un <strong>programa de "español intensivo"</strong>: una clase de español de 45 minutos al día, con matemáticas y ciencias en inglés.</li>
+    <li>CP también pasaría a ser una <strong>escuela solo para su zona</strong>, sin posibilidad de inscribirse desde otras partes de la ciudad.</li>
+    <li class="key"><strong>Todavía no hay nada decidido.</strong> La Junta podría votar en su próxima reunión, si el superintendente recomienda formalmente el plan. Él quiere una decisión antes de Thanksgiving, antes de la inscripción de kínder. Esté atento a la agenda cuando se publique.</li>
+    <li>Un <strong>correo</strong> a <a href="mailto:ppsboe@princetonk12.org">ppsboe@princetonk12.org</a> llega a toda la Junta, y al superintendente en <a href="mailto:michaellasusa@princetonk12.org">michaellasusa@princetonk12.org</a>. <a href="help.html#email">Esta página redacta el correo por usted →</a></li>
+  </ul>
+</section>
+
+<nav class="card toc" aria-label="Secciones">
+  <h2 class="label">Secciones</h2>
+  <ol class="tabs" role="tablist">
+    <li><a href="#es-s1" role="tab">La propuesta</a></li>
+    <li><a href="#es-s2" role="tab">Razones dadas</a></li>
+    <li><a href="#es-s3" role="tab">Dirección y Junta</a></li>
+    <li><a href="#es-s4" role="tab">Comentarios del público</a></li>
+    <li><a href="#es-s5" role="tab" class="stand-tab">La postura de las familias de CP</a></li>
+    <li><a href="help.html" class="help-tab">Cómo puede ayudar →</a></li>
+  </ol>
+</nav>
+
+<section class="card" id="es-s1">
+  <h2 class="sec-h">Qué se propone</h2>
+  <p>El superintendente dijo que había considerado, y <strong>descartado</strong>, eliminar el programa por completo de forma gradual <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4146s" target="_blank" rel="noopener">1:09:06</a>. La recomendación empieza en <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4222s" target="_blank" rel="noopener">1:10:22</a>.</p>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Hoy (DLI)</th><th>Propuesta ("español intensivo")</th></tr></thead>
+    <tbody>
+      <tr><th>Artes del lenguaje en español</th><td>30 min/día</td><td><strong>45 min/día</strong></td></tr>
+      <tr><th>Matemáticas</th><td>En español</td><td><strong>En inglés</strong></td></tr>
+      <tr><th>Ciencias</th><td>En español</td><td><strong>En inglés</strong></td></tr>
+      <tr><th>Aulas de inglés y de español (el "switch")</th><td>Sí</td><td><strong>No.</strong> Una sola aula, como en las demás escuelas</td></tr>
+      <tr><th>Total de español por día</th><td>Unos 90–120 min (estimación de las familias; el análisis del superintendente mostró menos de la mitad de la jornada principal)</td><td><strong>45 min</strong></td></tr>
+      <tr><th>Quién asiste a CP</th><td>Sorteo; abierto a familias de todas las zonas</td><td><strong>Solo familias de la zona de CP.</strong> Sin opción de entrar ni salir</td></tr>
+      <tr><th>Especiales / bloque de ciencias y estudios sociales</th><td>50 / 45 min</td><td>45 / 40 min (vea abajo)</td></tr>
+    </tbody>
+  </table></div>
+  <h3>De dónde salen los 15&nbsp;minutos extra de español</h3>
+  <p>La jornada escolar sigue durando lo mismo (395&nbsp;minutos), así que la clase de español más larga tiene que salir de otras partes del día <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4374s" target="_blank" rel="noopener">1:12:54</a>:</p>
+  <div class="tbl"><table>
+    <thead><tr><th></th><th>Hoy</th><th>Propuesta</th><th>Cambio</th></tr></thead>
+    <tbody>
+      <tr><th>Artes del lenguaje en español</th><td>30&nbsp;min</td><td>45&nbsp;min</td><td><strong>+15</strong></td></tr>
+      <tr><th>El "switch" (cambio entre el aula de inglés y la de español)</th><td>5&nbsp;min</td><td>Ninguno</td><td>−5</td></tr>
+      <tr><th>Especiales (como arte, música y educación física)</th><td>50&nbsp;min</td><td>45&nbsp;min</td><td>−5</td></tr>
+      <tr><th>Ciencias, estudios sociales y periodo de lectura</th><td>45&nbsp;min</td><td>40&nbsp;min</td><td>−5</td></tr>
+    </tbody>
+  </table></div>
+  <ul class="list">
+    <li>Todo lo demás queda igual que ahora.</li>
+    <li>Según el superintendente, en CP los especiales y el bloque de ciencias <strong>ya son más cortos que en las demás escuelas</strong>, así que esto les quita "cinco minutos más". La reunión matinal de CP también dura 10 minutos menos que en otras escuelas (20 frente a 30) <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4222s" target="_blank" rel="noopener">1:10:22</a>.</li>
+    <li>El superintendente lo calificó de "un sacrificio claro". Los supervisores de ciencias, estudios sociales, arte y biblioteca del distrito "creen que necesitamos más tiempo, no menos" <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4453s" target="_blank" rel="noopener">1:14:13</a>.</li>
+  </ul>
+  <h3>Además, el plan incluye</h3>
+  <ul class="list">
+    <li>Contratar a unos <strong>dos docentes certificados de español</strong>, cada uno con su propia aula <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4936s" target="_blank" rel="noopener">1:22:16</a>.</li>
+    <li>Desarrollar un nuevo currículo de español y posiblemente crear un puesto de coordinación del programa.</li>
+    <li>Mantener los cursos DLI de la escuela intermedia.
+      <span class="flag note">Pero ojo: el superintendente dijo que el curso de estudios sociales en español de la intermedia depende de un solo docente con certificación en español y en estudios sociales. Si ese docente se fuera, el distrito "no encontrará a otro docente con esas credenciales" y tendría que "replantear lo que hacemos en la escuela intermedia" <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6326s" target="_blank" rel="noopener">1:45:26</a>.</span></li>
+    <li>Añadir al menos un <strong>curso avanzado de español más en la secundaria</strong>.</li>
+    <li>Posiblemente incluir temas de estudios sociales en español en 4.º y 5.º grado.</li>
+    <li>Los estudiantes que ya están en otras escuelas se quedarían donde están, y sus hermanos menores podrían seguirlos <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4915s" target="_blank" rel="noopener">1:21:55</a>.</li>
+  </ul>
+  <p><strong>Las cuentas del superintendente</strong> <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4534s" target="_blank" rel="noopener">1:15:34</a>: 45 min/día suman unas <strong>788 horas</strong> de español de kínder a 5.º. Los estudiantes de las demás escuelas primarias reciben unas 210 horas (60 min/semana). El superintendente lo describió como "cuatro veces más" que cualquier otro estudiante del distrito. Los críticos señalaron que sigue siendo <strong>menos de la mitad</strong> del español que reciben hoy los estudiantes de CP.</p>
+</section>
+
+<section class="card" id="es-s2">
+  <h2 class="sec-h">Razones dadas para la recomendación</h2>
+  <p>La presentación completa empieza en <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=641s" target="_blank" rel="noopener">0:10:41</a> y dura unos 75 minutos. Las razones principales:</p>
+  <p class="flag">Nota: los datos en los que se basan estas razones no se han compartido con las familias, a pesar de las solicitudes de registros públicos (OPRA) pendientes, así que las familias no han podido revisarlos por su cuenta. Nuestros comentarios se basan únicamente en el análisis que el Dr. LaSusa presentó en la reunión.</p>
+  <ol class="reasons">
+    <li><strong>El programa, tal como se aplica hoy, no cumple con la promesa de "inmersión dual" (Dual Language Immersion).</strong>
+      <ul>
+        <li>CP es un programa "unidireccional" (sobre todo hablantes de inglés que aprenden español). Nunca ha tenido suficientes estudiantes con español dominante para ser "bidireccional".</li>
+        <li>Según el cálculo del superintendente, el tiempo real en español no llega a la mitad ni siquiera en las materias principales. Matemáticas a menudo se vuelve a explicar en inglés, y el programa complementario de matemáticas está en inglés <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=1648s" target="_blank" rel="noopener">0:27:28</a>–<a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2114s" target="_blank" rel="noopener">0:35:14</a>.</li>
+      </ul>
+      <p class="evidence"><b>Evidencia presentada:</b> el desglose, minuto a minuto, que hizo el superintendente del horario diario de un docente de CP, comparado con la definición de inmersión dual del Center for Applied Linguistics y su rúbrica de Principios Guía. También el plan del programa de 2014, datos demográficos del distrito y comentarios de docentes sobre que matemáticas se vuelve a explicar en inglés.</p>
+      <p class="comment"><b>Comentario de familias DLI:</b> Aun así, los propios datos del superintendente muestran que <strong>el programa, tal como se aplica hoy, funciona para lograr dominio del español</strong>. En la prueba de dominio AAPPL, los estudiantes de CP están cerca del promedio nacional de programas DLI en 3.º grado, lo alcanzan o superan en 4.º, y se adelantan aún más en 5.º y 8.º grado. Cuanto más tiempo siguen en el programa, más dominio alcanzan <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2793s" target="_blank" rel="noopener">0:46:33</a>–<a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2875s" target="_blank" rel="noopener">0:47:55</a>.</p>
+    </li>
+    <li><strong>Inquietudes sobre el desempeño en matemáticas.</strong> Las familias señalaron las matemáticas como una inquietud en la encuesta, y algunos docentes se lo plantearon directamente al Dr. LaSusa. Al comparar a los estudiantes de CP sin servicios de educación especial con los de Johnson Park, Littlebrook y Riverside, encontró solo "una pequeña diferencia". Algunos docentes creen que aprender matemáticas en español es más difícil para los niños que todavía están aprendiendo inglés <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3574s" target="_blank" rel="noopener">0:59:34</a>, así que el Dr. LaSusa analizó a esos estudiantes por separado. Entre los que además son de familias de bajos ingresos, menos estudiantes de CP alcanzaron el estándar estatal de matemáticas que en las otras escuelas.
+      <div class="evidence"><b>Evidencia presentada:</b>
+        <ul>
+          <li><b>La mayoría de los estudiantes (sin servicios de educación especial).</b> En la prueba estatal de matemáticas de 2026, los estudiantes de CP obtuvieron resultados cercanos a los de las otras escuelas. CP fue la segunda mejor en 4.º grado y la más baja en 3.º y 5.º. El superintendente lo llamó "una pequeña diferencia" <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3497s" target="_blank" rel="noopener">0:58:17</a>.</li>
+          <li><b>Estudiantes que todavía aprenden inglés y además son de familias de bajos ingresos.</b> Combinando 3.º a 5.º grado y los años 2024–2026, 0 de 29 en CP alcanzaron el estándar estatal de matemáticas. En Johnson Park fueron 3 de 14 (21%). En Littlebrook y Riverside juntas fue 44%, pero la diapositiva solo dice "menos de 10" como número de estudiantes.</li>
+        </ul>
+      </div>
+      <div class="comment"><b>Comentario de familias DLI:</b> Para la mayoría de los estudiantes de CP, las matemáticas no son una inquietud, y el propio superintendente lo dijo. Igual nos gustaría acceder a los datos para entenderlos con más detalle, pero aceptamos su conclusión. La inquietud se refiere a un grupo pequeño de estudiantes que todavía aprenden inglés y son de familias de bajos ingresos. Algunas observaciones:
+        <ol>
+          <li><b>La comparación justa es con estudiantes similares.</b> En CP, casi todos los estudiantes que todavía aprenden inglés (29 de 34) son de familias de bajos ingresos. En Littlebrook y Riverside, menos de 10 de 106 lo son. Los niños que recién aprenden inglés y son de familias de bajos ingresos enfrentan dificultades adicionales en cualquier escuela. Por eso, la comparación justa es entre estudiantes que todavía aprenden inglés y además son de familias de bajos ingresos. Littlebrook y Riverside tienen muy pocos para comparar, así que queda Johnson Park.</li>
+          <li><b>Los grupos son muy pequeños.</b> Aun combinando tres grados y tres años, la comparación en matemáticas se basa en 29 resultados en CP y 14 en Johnson Park. Unos pocos niños pueden mover mucho los porcentajes, lo que hace difícil sacar conclusiones sobre el programa.</li>
+          <li><b>No está claro qué se está contando.</b> La diapositiva no dice si cada número es un estudiante distinto, o si un estudiante evaluado en más de un año se cuenta más de una vez. Con números tan pequeños, importa saber exactamente cómo se armaron los datos.</li>
+          <li><b>La diferencia en matemáticas se reduce a tres resultados.</b> Frente a estudiantes similares de Johnson Park, la diferencia en quienes alcanzaron el estándar estatal es de 0 de 29 en CP frente a 3 de 14 en Johnson Park.</li>
+          <li><b>En inglés, el resultado se invierte.</b> Según el mismo análisis, CP sale adelante en inglés: entre los mismos estudiantes, 3 de 25 (12%) alcanzaron el estándar de inglés en CP, frente a 1 de 13 (8%) en Johnson Park.</li>
+          <li><b>No se muestra su evolución.</b> Son resultados de una sola prueba. Nada mostró cómo cambian los resultados de estos estudiantes de un año a otro, ni cómo les va después en la escuela intermedia.</li>
+        </ol>
+        <p>Si estos estudiantes necesitan más apoyo en matemáticas, la respuesta es darles ese apoyo. Eso no requiere terminar la inmersión para todos los niños.</p>
+      </div>
+    </li>
+    <li><strong>Carga de trabajo docente y sostenibilidad.</strong> Dijo que aquí es donde "puso más peso", a partir de año y medio de conversaciones con los docentes de CP, a quienes llamó los más profesionales con los que ha trabajado <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=985s" target="_blank" rel="noopener">0:16:25</a>. Planteó cuatro puntos:
+      <ul>
+        <li><b>Los docentes de CP tienen una carga doble.</b> Enseñan a dos grupos de estudiantes, tienen el doble de reuniones con familias y deben coordinarse todo el tiempo con un docente compañero, algo que los docentes describieron como "exigente y agotador" <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=1201s" target="_blank" rel="noopener">0:20:01</a>. No es posible que cada clase tenga un solo docente para ambos idiomas, porque no todos los docentes de CP son bilingües. Entre los docentes de aula, 6 enseñan en inglés, 6 en español y 2 en ambos <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=1272s" target="_blank" rel="noopener">0:21:12</a>.</li>
+        <li><b>Al programa le han faltado estabilidad y apoyo.</b> El personal describió ajustes constantes de un año a otro, y dijo que la oficina central ("Valley Road") no se había involucrado lo suficiente hasta hace poco <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=1368s" target="_blank" rel="noopener">0:22:48</a>.</li>
+        <li><b>Los docentes enseñan español sin formación para enseñarlo.</b> Solo un docente de CP tiene certificación para enseñar español. Los docentes compañeros de español enseñan artes del lenguaje en español y crean o adaptan sus propios materiales, algo que él llamó "un poco injusto" para ellos <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=5841s" target="_blank" rel="noopener">1:37:21</a>.</li>
+        <li><b>Es muy difícil contratar docentes certificados de español.</b> La primavera pasada, una vacante de kínder no tuvo ningún candidato calificado desde marzo hasta la última semana de junio, incluso con una oferta de más de $100,000 <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=5017s" target="_blank" rel="noopener">1:23:37</a>.</li>
+      </ul>
+      <p class="evidence"><b>Evidencia presentada:</b> una encuesta al personal de CP (27 respuestas, incluidos todos los docentes de aula), con un comentario escrito en el que un docente se pregunta cuánto tiempo más puede continuar el programa <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2657s" target="_blank" rel="noopener">0:44:17</a>–<a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2793s" target="_blank" rel="noopener">0:46:33</a>. También un recuento de las certificaciones del personal y el único ejemplo de contratación. Un miembro de la Junta añadió que Nueva Jersey ha cerrado muchos programas de formación de docentes de idiomas.</p>
+      <div class="comment"><b>Comentario de familias DLI:</b>
+        <ol>
+          <li><b>Los docentes adoran CP.</b> En la misma encuesta, todos los docentes dijeron que CP es un lugar cálido y acogedor, y casi ninguno quiere cambiarse de escuela <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2657s" target="_blank" rel="noopener">0:44:17</a>. El problema son las condiciones en que trabajan, no la escuela.</li>
+          <li><b>La mayoría de estos problemas vienen de cómo se ha apoyado al programa.</b> Describió inestabilidad, poca participación de la oficina central, ningún currículo estructurado de español y docentes que crean sus propios materiales.</li>
+          <li><b>Ya hay un cambio en marcha.</b> Este año, kínder se dividió en tres clases en lugar de dos para reducir el tamaño de las clases y la carga docente <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=1272s" target="_blank" rel="noopener">0:21:12</a>. Es pronto para saber cuánto ayuda.</li>
+          <li><b>Su propuesta destina a CP nuevos recursos que podrían mejorar DLI en lugar de terminarlo:</b> desarrollo curricular, un puesto de coordinación para CP y docentes certificados de español <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=5092s" target="_blank" rel="noopener">1:24:52</a>.</li>
+          <li><b>Su propuesta enfrenta el mismo problema de contratación.</b> Requiere dos nuevos docentes certificados de español <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4936s" target="_blank" rel="noopener">1:22:16</a>.</li>
+          <li><b>El distrito vecino de West Windsor-Plainsboro lo logra.</b> Tiene un programa de inmersión 50/50 en español y mandarín de kínder a 5.º, que Nueva Jersey nombró <a href="https://www.nj.gov/education/standards/worldlang/modelprograms.shtml" target="_blank" rel="noopener">programa modelo 2025–2028</a>. La presentación no explicó por qué West Windsor puede hacerlo y Princeton no.</li>
+        </ol>
+      </div>
+    </li>
+    <li><strong>Bajas.</strong> Lo planteó como una advertencia sobre los buenos resultados de dominio del español <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2875s" target="_blank" rel="noopener">0:47:55</a>, y señaló dos puntos:
+      <ul>
+        <li><b>Cada grupo pasa de unos 41–45 estudiantes en 1.º grado a unos 25–32 en la secundaria.</b> La mayor parte de la pérdida ocurre entre 1.º y 5.º grado. Dijo que las familias se van sobre todo porque se mudan; otras cambian de escuela o deciden que el programa no es para ellas. Los estudiantes nuevos no pueden entrar después de 1.º grado, así que no se reemplazan <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2951s" target="_blank" rel="noopener">0:49:11</a>.</li>
+        <li><b>Los estudiantes dejan de tomar español en la secundaria.</b> Destacó que solo 8 de 25 estudiantes de 12.º y 14 de 25 de 11.º están hoy en una clase de español. La razón principal que dio es que, después de AP Spanish, los estudiantes "se quedan sin pista", porque la secundaria solo ofrece un curso avanzado más. Propone añadir cursos <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3030s" target="_blank" rel="noopener">0:50:30</a>–<a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3108s" target="_blank" rel="noopener">0:51:48</a>.</li>
+      </ul>
+      <p class="evidence"><b>Evidencia presentada:</b> cifras de cada grupo de los actuales estudiantes de 9.º a 12.º en 1.º, 5.º y 8.º grado y hoy, y el curso de español que toma cada estudiante de secundaria (diapositivas 77–80). Se dejó fuera el actual 8.º grado. Empezó 1.º grado en 2019–20, cuando llegó la pandemia, y dijo que fue el que más estudiantes perdió.</p>
+      <div class="comment"><b>Comentario de familias DLI:</b>
+        <ol>
+          <li><b>La mayoría de quienes llegan a la secundaria sigue estudiando español hasta los niveles más avanzados.</b> De los 25 estudiantes de 12.º, 14 llegaron a AP Spanish o Spanish VI A, y 6 de ellos terminaron antes. En 11.º, 17 de 25 cursan o ya completaron español avanzado. En 10.º y 9.º, 24 de 25 y 31 de 32 siguen en español.</li>
+          <li><b>Bienvenidos más cursos avanzados en la secundaria.</b> Permitirían a los estudiantes de DLI seguir estudiando español hasta graduarse.</li>
+          <li><b>El verdadero problema es la caída en la primaria.</b> Tres de los cuatro grupos perdieron 10–12 estudiantes entre 1.º y 5.º grado, y esos lugares no se pueden cubrir. Hay una solución que el distrito ya usa: en la escuela intermedia, los estudiantes nuevos que aprueban una prueba pueden entrar a los cursos de español de DLI <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3030s" target="_blank" rel="noopener">0:50:30</a>. Hacer lo mismo en CP permitiría que niños que ya hablan español ocupen los lugares libres.</li>
+          <li><b>El plan de español intensivo no es una solución, porque enfrentaría el mismo problema con quienes llegan tarde.</b> Cuando se le preguntó cómo encajaría en una clase diaria de español un niño que llega en 4.º grado sin saber español, el superintendente dijo que todavía se estaba resolviendo <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6017s" target="_blank" rel="noopener">1:40:17</a>.</li>
+        </ol>
+      </div>
+    </li>
+    <li><strong>Demografía.</strong> El programa buscaba servir a estudiantes que aprenden inglés, estudiantes de bajos ingresos, estudiantes negros y estudiantes con discapacidades. En 10 años, CP se ha vuelto menos representativa de estos grupos. Hoy es la única primaria con mayoría blanca, aunque también tiene la mayor población hispana <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=2114s" target="_blank" rel="noopener">0:35:14</a>.
+      <p class="evidence"><b>Evidencia presentada:</b> datos de matrícula del distrito por escuela, comparando hace unos 10 años con hoy, frente a los objetivos del plan del programa de 2014. El superintendente dijo que el cambio no fue intencional y que "no es culpa de nadie".</p>
+      <p class="comment"><b>Comentario de familias DLI:</b> Toda familia de Princeton puede inscribirse en DLI en CP o elegir otra escuela, así que la composición de CP refleja esas decisiones. De hecho, el superintendente dijo que el cambio "no es culpa de nadie", y no queda claro por qué sería una razón para terminar el programa. La alternativa propuesta de español intensivo además convertiría a CP en una escuela de barrio, sin opción de entrar o salir <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4702s" target="_blank" rel="noopener">1:18:22</a>. Eso le quita la elección a todas las familias, incluidas las familias de estudiantes que aprenden inglés y de bajos ingresos que hoy eligen no inscribirse en DLI y quizás también prefieran una escuela sin español intensivo.</p>
+    </li>
+    <li><strong>Costos de transporte</strong> (el superintendente dijo que <em>no</em> era la razón principal). Empezó diciendo que era una "narrativa falsa" que la presentación tratara sobre los costos de transporte, y que ninguna de las inquietudes de los docentes tenía que ver con dinero <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3765s" target="_blank" rel="noopener">1:02:45</a>. Aun así, planteó tres puntos:
+      <ul>
+        <li><b>El transporte es el costo que más crece.</b> El presupuesto del distrito creció cerca de un 21% en cinco años, más o menos al ritmo de la inflación, pero el transporte creció un 82%. A diferencia del seguro médico, el distrito no puede trasladar ese aumento a los contribuyentes, así que saca dinero de otras áreas, incluida la enseñanza regular. "El transporte nos está matando" <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3844s" target="_blank" rel="noopener">1:04:04</a>.</li>
+        <li><b>El transporte escolar de Princeton es el menos eficiente del condado de Mercer</b>, según la calificación del estado. Dijo que la razón principal es que todas las escuelas de Princeton empiezan a la misma hora, así que los autobuses no pueden hacer un recorrido para una escuela y luego otro. Cambiar los horarios sería "otra discusión" <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3920s" target="_blank" rel="noopener">1:05:20</a>.</li>
+        <li><b>El sistema de entrar o salir de CP suma transporte.</b> Unos 159 estudiantes que viven en la zona de CP van en autobús a otras escuelas, y unos 65 llegan en autobús a CP. El distrito ha añadido tres rutas en tres años para estudiantes que no van a la escuela de su barrio, a unos $90,000 por ruta, y espera que ese costo suba con el precio del diésel <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3995s" target="_blank" rel="noopener">1:06:35</a>.</li>
+      </ul>
+      <p class="evidence"><b>Evidencia presentada:</b> la evolución del presupuesto en cinco años según documentos del distrito; las calificaciones de eficiencia de transporte del estado para el condado de Mercer (Princeton 0.881, los demás 1.26–1.78); los horarios de las escuelas; y cifras de transporte y el costo por ruta de unas seis semanas antes de la reunión.</p>
+      <div class="comment"><b>Comentario de familias DLI:</b>
+        <ol>
+          <li><b>Según él mismo, la causa principal está en otro lado.</b> Señaló que los horarios compartidos son la razón principal de la ineficiencia del transporte en Princeton. Terminar DLI no cambia eso.</li>
+          <li><b>No se dio ninguna estimación de ahorro.</b> No se nos dijo cuántas rutas eliminaría la propuesta ni cuánto ahorraría al año.</li>
+          <li><b>El ahorro llegaría de a poco.</b> El cambio a escuela de barrio empezaría con los nuevos estudiantes de kínder <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6212s" target="_blank" rel="noopener">1:43:32</a>, así que el transporte de los estudiantes mayores seguiría por años.</li>
+          <li><b>No todo este transporte se debe a DLI.</b> Dijo que algunos estudiantes van en autobús fuera de CP porque todavía no hay espacio suficiente, algo que resolverá la construcción <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4702s" target="_blank" rel="noopener">1:18:22</a>. Las tres rutas añadidas son para todos los estudiantes que no van a la escuela de su barrio, no solo los de CP.</li>
+          <li><b>No se sopesó el costo frente al beneficio.</b> Si el costo es un factor, las familias y la Junta necesitan la cifra real de ahorro para compararla con lo que perderían los estudiantes de CP.</li>
+        </ol>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<section class="card" id="es-s3">
+  <h2 class="sec-h">La posición de la dirección y de la Junta</h2>
+  <h3>La dirección de CP</h3>
+  <p><strong>Dineen Gruchacz</strong> dirige CP desde que empezó DLI en 2015. Agradeció a los docentes y <strong>apoyó el cambio</strong> <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=5240s" target="_blank" rel="noopener">1:27:20</a>: "Apoyar esta decisión no disminuye nuestro orgullo por la inmersión dual… puede que sea momento de tomar un nuevo rumbo".</p>
+  <h3>La Junta</h3>
+  <p>No hubo votación. La presidenta de la Junta, <strong>Dafna Kendal</strong>, dirigió la reunión y no expresó una posición.
+    <span class="mail">Puede escribir a Dafna Kendal a <a href="mailto:DafnaKendal@princetonk12.org">DafnaKendal@princetonk12.org</a></span></p>
+  <p>Miembros que hablaron:</p>
+  <ul class="list">
+    <li><strong>Mara Franceschi</strong> calificó el plan de "increíblemente generoso" y "una mejora" <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6326s" target="_blank" rel="noopener">1:45:26</a>.
+      <span class="mail">Puede escribir a Mara Franceschi a <a href="mailto:MaraFranceschi@princetonk12.org">MaraFranceschi@princetonk12.org</a></span></li>
+    <li><strong>Ari Meisel</strong> dijo que la propuesta le entusiasma mucho, citando su propia experiencia aprendiendo francés en una clase diaria. Preguntó cómo se medirá el éxito <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6543s" target="_blank" rel="noopener">1:49:03</a>.
+      <span class="mail">Puede escribir a Ari Meisel a <a href="mailto:AriMeisel@princetonk12.org">AriMeisel@princetonk12.org</a></span></li>
+    <li><strong>Beth Behrend</strong>: "Hemos esperado esto durante años". Le entusiasma que CP siga siendo "un lugar especial para el español" <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6701s" target="_blank" rel="noopener">1:51:41</a>.
+      <span class="mail">Puede escribir a Beth Behrend a <a href="mailto:BethBehrend@princetonk12.org">BethBehrend@princetonk12.org</a></span></li>
+    <li><strong>Chris Santarpio</strong> (familia de CP; ha defendido DLI en el pasado) preguntó cómo el nuevo modelo cumpliría sus metas de español y atendería a estudiantes que aprenden inglés y de bajos ingresos. No expresó una posición <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=5762s" target="_blank" rel="noopener">1:36:02</a>.
+      <span class="mail">Puede escribir a Chris Santarpio a <a href="mailto:ChristopherSantarpio@princetonk12.org">ChristopherSantarpio@princetonk12.org</a></span></li>
+    <li><strong>Eleanor Hubbard</strong> preguntó cómo se incorporarían a la clase diaria de español los estudiantes que llegan a CP en grados posteriores sin saber español. Respuesta: está por definir. Las opciones incluyen adaptar la clase a su nivel, calificarlos como aprobado/no aprobado o darles otra actividad durante ese bloque, lo que el superintendente consideró "preferible" a decirles que no pueden asistir a CP <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6017s" target="_blank" rel="noopener">1:40:17</a>.
+      <span class="mail">Puede escribir a Eleanor Hubbard a <a href="mailto:EleanorHubbard@princetonk12.org">EleanorHubbard@princetonk12.org</a></span></li>
+    <li><strong>Erica Snyder</strong> (con tres hijos en DLI; ha defendido DLI en el pasado) valoró la continuidad en la intermedia y la secundaria y preguntó por el calendario. No expresó una posición <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6136s" target="_blank" rel="noopener">1:42:16</a>.
+      <span class="mail">Puede escribir a Erica Snyder a <a href="mailto:EricaSnyder@princetonk12.org">EricaSnyder@princetonk12.org</a></span></li>
+    <li>La vicepresidenta <strong>Susan Kanter</strong> preguntó por los estudiantes de educación especial <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6841s" target="_blank" rel="noopener">1:54:01</a>.
+      <span class="mail">Puede escribir a Susan Kanter a <a href="mailto:SusanKanter@princetonk12.org">SusanKanter@princetonk12.org</a></span></li>
+    <li><strong>Adam Bierman</strong> preguntó cuándo se votaría. Respuesta: en la próxima reunión, si el superintendente lo recomienda formalmente <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=6621s" target="_blank" rel="noopener">1:50:21</a>.
+      <span class="mail">Puede escribir a Adam Bierman a <a href="mailto:AdamBierman@princetonk12.org">AdamBierman@princetonk12.org</a></span></li>
+  </ul>
+</section>
+
+<section class="card" id="es-s4">
+  <h2 class="sec-h">Qué dijeron familias, estudiantes y comunidad</h2>
+  <p>Los comentarios del público empiezan en <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=7056s" target="_blank" rel="noopener">1:57:36</a>. <strong>Hablaron 21 personas:</strong> 15 adultos (sobre todo familias de CP, además de una persona exalumna de CP y un miembro del profesorado de la Universidad de Princeton) y 6 estudiantes o exestudiantes de DLI.</p>
+  <h3>Sus posiciones</h3>
+  <ul class="list">
+    <li><strong>Todos apoyaron DLI en sí.</strong> Muchos agradecieron al superintendente un análisis detallado, y algunos se sintieron aliviados de que el programa no se elimine por completo.</li>
+    <li><strong>Nadie apoyó el plan tal como se presentó.</strong> 10 adultos se opusieron; 4 aceptaron partes pero pidieron más español o cambios; 1 habló solo de mantener CP como una escuela inclusiva.</li>
+    <li><strong>Los 6 estudiantes hablaron a favor de DLI.</strong> Varios dijeron que habían venido pensando que iban a cerrar el programa.</li>
+  </ul>
+  <h3>Objeciones principales <span class="h-note">(haga clic para escuchar un ejemplo de cada una)</span></h3>
+  <ol class="reasons">
+    <li><strong>Pone fin a la inmersión; "una eliminación con otro nombre".</strong> Sin matemáticas ni ciencias en español, el español pasa a ser una materia "aislada" en lugar de un idioma <em>en</em> el que se aprende. Varias personas lo describieron como el comienzo del fin del programa. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=9515s" target="_blank" rel="noopener">2:38:35</a> · <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=9677s" target="_blank" rel="noopener">2:41:17</a></li>
+    <li><strong>Reduce el tiempo en español a menos de la mitad.</strong> Los 90–120 minutos diarios de hoy pasarían a 45. Una familia le recordó al superintendente sus propias palabras: hacerse bilingüe lleva "una o dos décadas". <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=9757s" target="_blank" rel="noopener">2:42:37</a></li>
+    <li><strong>No basta para alcanzar dominio del idioma.</strong> Casey Lew-Williams, quien dirige el Departamento de Psicología de Princeton y estudia el desarrollo bilingüe, se opuso al plan. 45 minutos son un 5–6% de las horas que un niño pasa despierto; suele recomendar a las familias un 20–25% de exposición, y como mínimo un 15%. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=8315s" target="_blank" rel="noopener">2:18:35</a></li>
+    <li><strong>No resuelve los problemas que mostraron los datos.</strong> La presentación identificó dos problemas reales: la carga docente y las matemáticas de los estudiantes que aprenden inglés. El plan atiende la carga docente pero no las matemáticas, "tirando por la borda" lo que funciona. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=10097s" target="_blank" rel="noopener">2:48:17</a></li>
+    <li><strong>Es demasiado rápido.</strong> CP está en obras y el edificio será distinto en dos años. Varias personas pidieron a la Junta no votar en noviembre y tomarse tiempo para estudiar otras opciones. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=8047s" target="_blank" rel="noopener">2:14:07</a> · <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=9558s" target="_blank" rel="noopener">2:39:18</a></li>
+    <li><strong>Elimina la opción de inscribirse.</strong> Que familias de toda la ciudad puedan elegir CP es una cuestión de equidad. Dar a una escuela 45 min/día mientras las demás reciben 60 min/semana, sin forma de acceder, "generará más resentimiento". Si el español intensivo es bueno, que se ofrezca en todas las escuelas. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=8125s" target="_blank" rel="noopener">2:15:25</a> · <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=9434s" target="_blank" rel="noopener">2:37:14</a></li>
+    <li><strong>Otros distritos han encontrado la forma de lograrlo:</strong> West Windsor-Plainsboro, aquí al lado; Davis (California); y Allentown (Pensilvania). <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=7210s" target="_blank" rel="noopener">2:00:10</a></li>
+    <li><strong>Transparencia.</strong> Compartir los datos completos y responder a las solicitudes de registros públicos (OPRA) pendientes <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=7352s" target="_blank" rel="noopener">2:02:32</a>. Una familia dijo que se rechazó por costo una mejora curricular propuesta por los docentes, y preguntó por qué <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=9515s" target="_blank" rel="noopener">2:38:35</a>.</li>
+  </ol>
+  <h3>Alternativas que se propusieron</h3>
+  <div class="tbl"><table>
+    <thead><tr><th>Idea</th><th>Escúchela</th></tr></thead>
+    <tbody>
+      <tr><td>Dar los <strong>especiales</strong> (arte, música, educación física) en español</td><td><a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=9434s" target="_blank" rel="noopener">2:37:14</a></td></tr>
+      <tr><td>Mantener <strong>ciencias</strong> en español</td><td><a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=7654s" target="_blank" rel="noopener">2:07:34</a></td></tr>
+      <tr><td><strong>Modelo mixto:</strong> inmersión completa de kínder a 2.º, español intensivo de 3.º a 5.º y un nivel de español aparte para quienes llegan más tarde</td><td><a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=10555s" target="_blank" rel="noopener">2:55:55</a></td></tr>
+      <tr><td><strong>Dos programas</strong> en el edificio ampliado de CP, manteniendo la opción de inscribirse</td><td><a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=8200s" target="_blank" rel="noopener">2:16:40</a></td></tr>
+      <tr><td>Ofrecer español intensivo en <strong>todas</strong> las primarias</td><td><a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=7425s" target="_blank" rel="noopener">2:03:45</a></td></tr>
+      <tr><td>Añadir español en <strong>pre-kínder</strong></td><td><a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=7654s" target="_blank" rel="noopener">2:07:34</a></td></tr>
+    </tbody>
+  </table></div>
+  <h3>Qué dijeron los estudiantes</h3>
+  <ul class="list">
+    <li>Exalumnos que hoy están en la secundaria hablaron del español AP, intercambios en Ecuador y Perú, una organización sin fines de lucro creada por una de las personas que hablaron, la nueva sociedad de honor de español y el campamento de verano de DLI. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=8394s" target="_blank" rel="noopener">2:19:54</a> · <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=8774s" target="_blank" rel="noopener">2:26:14</a></li>
+    <li>Estudiantes de la intermedia hablaron de aprender matemáticas en español y pidieron <em>más</em> tiempo en español, no menos. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=8547s" target="_blank" rel="noopener">2:22:27</a> · <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=8677s" target="_blank" rel="noopener">2:24:37</a></li>
+    <li>Una persona de último año de secundaria que no estuvo en DLI dijo que envidia las oportunidades que el programa les dio a sus compañeros. <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=10174s" target="_blank" rel="noopener">2:49:34</a></li>
+  </ul>
+</section>
+
+<section class="card stand" id="es-s5">
+  <h2 class="sec-h">La postura de las familias de CP</h2>
+  <ul class="list">
+    <li><strong>Apoyamos DLI en CP, y apoyamos reformarlo.</strong> Los docentes de CP han planteado inquietudes reales: enseñan a dos grupos de estudiantes, tienen el doble de reuniones con familias y adaptan los materiales en español en su propio tiempo. Debemos escucharlos y buscar soluciones creativas.</li>
+    <li><strong>Lo que objetamos es el proceso.</strong> El Dr. LaSusa dedicó año y medio a recoger opiniones de docentes y familias, y agradecemos ese esfuerzo. Pero fue en una sola dirección: dijo al comienzo que nadie, ni los docentes de CP, ni la directora, ni la Junta, sabía lo que iba a recomendar <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=985s" target="_blank" rel="noopener">0:16:25</a>. Una sola recomendación, elaborada por una sola persona, va ahora hacia una posible votación en la próxima reunión de la Junta.</li>
+    <li><strong>La evidencia no es pública.</strong> Varias familias presentaron solicitudes de registros públicos sobre el costo por estudiante, los resultados de dominio del español, el desempeño académico, la matrícula por grupo y las propias opiniones de docentes y familias. El distrito extendió su plazo hasta el 30 de octubre, tres días después de la recomendación.</li>
+    <li class="key"><strong>Nuestro pedido: que no se vote en noviembre.</strong> Que se forme un grupo de trabajo dirigido por el Dr. LaSusa, con los docentes de CP en el centro y con familias, estudiantes y administradores a su lado. Que se publiquen los datos y se dé tiempo al grupo para considerar soluciones. No nos resistimos al cambio. Pedimos ser parte de darle forma.</li>
+    <li><strong>Podemos ayudar.</strong> Entre nosotros hay abogados, científicos y personas cuya profesión son los datos y la información pública. La reunión duró más de tres horas, algo imposible para la mayoría de las familias que trabajan, así que preparamos este resumen, con cada punto enlazado al video.</li>
+  </ul>
+</section>
+
+<p class="foot">Cómo se hizo: a partir de una transcripción automática del video de la reunión. Antes de citar a alguien, compruébelo en el video.</p>
+
   </div>
-
-  <a class="to-top" id="to-top" href="#ways" data-i18n-aria="back" aria-label="Back to the five ways to help" hidden>↑</a>
-
-  <footer>
-    <p data-i18n="foot">An independent effort by Community Park parents, not affiliated with Princeton Public Schools or the Community Park PTO.</p>
-  </footer>
 </div>
-
 <script>
-/* ── COUNTER SETUP ─────────────────────────────────────────────
-   Paste your Supabase project URL and publishable (anon) key here.
-   Leave them empty and the page works without a counter. */
-const SUPABASE_URL = "https://ryoscelucrwgtlkiuumm.supabase.co";
-const SUPABASE_KEY = "sb_publishable_CWB7pRj9niRdMi58a1OqyA_dh1aSd4q";
-
-/* ── RECIPIENTS ──────────────────────────────────────────────── */
-const PRIMARY = {id:"boe", to:["ppsboe@princetonk12.org","michaellasusa@princetonk12.org"]};
-const MEMBERS = [
- {id:"kendal",  name:"Dafna Kendal",          role:{en:"Board President",es:"Presidenta de la Junta"}, email:"DafnaKendal@princetonk12.org"},
- {id:"kanter",  name:"Susan Kanter",          role:{en:"Board Vice President",es:"Vicepresidenta de la Junta"}, email:"SusanKanter@princetonk12.org"},
- {id:"behrend", name:"Beth Behrend",          email:"BethBehrend@princetonk12.org"},
- {id:"bierman", name:"Adam Bierman",          email:"AdamBierman@princetonk12.org"},
- {id:"franceschi",name:"Mara Franceschi",     email:"MaraFranceschi@princetonk12.org"},
- {id:"hubbard", name:"Eleanor Hubbard",       email:"EleanorHubbard@princetonk12.org"},
- {id:"meisel",  name:"Ari Meisel",            email:"AriMeisel@princetonk12.org"},
- {id:"santarpio",name:"Christopher Santarpio",email:"ChristopherSantarpio@princetonk12.org"},
- {id:"snyder",  name:"Erica Snyder",          email:"EricaSnyder@princetonk12.org"},
-];
-
-const T = {
-en:{tagPast:"Past",aiNote:"<strong>How we used AI to make this page:</strong> parents built it with help from an AI assistant, which helped write the code, research the facts and draft the text. Parents chose every point, edited the wording and checked the facts against public sources.",aiNote2:"<strong>No AI writes your email.</strong> To compose it, the page puts together our pre-written opening and closing with your details, the talking points you pick and anything you write in your own words. It all happens on your device, and nothing you type is sent to an AI or saved in any way. We used AI to help research and draft text, but parents chose every point, edited the wording and checked all facts against public sources and with other CP parents. AI also wrote the code that runs this page.",aiShort:"No AI writes your email.",aiMore:"How it works",badge:"Community Park DLI · Parent Action",h1:"Keep and Improve Dual Language Immersion at Community Park",
-lede:"The Spanish–English Dual Language Immersion program at Community Park is under threat of being phased out at the upcoming Board of Education meeting.",
-counter:"emails sent to the Board so far",signTot:"people have checked out the yard sign",shareTot:"shares of the flyer or this page so far",goingTot:"events added to calendars so far",datesH:"Mark your calendar",oct:"Oct",
-d0:"<strong>Meet the school board candidates, Sunday 3:00–4:00 PM</strong>, clocktower picnic area, Princeton Shopping Center. Ask Beth Behrend, Eleanor Hubbard and Adam Bierman where they stand on DLI.",
-d1:"<strong>Board of Education meeting, 7:00 PM</strong>, Princeton High School Performing Arts Center (PAC), 151 Moore St. Come and speak during public comment.",
-d2:"<strong>Session with the Superintendent, 8:30 AM</strong>, at Community Park School, where families can learn more and ask questions.",
-ctaK:"Way 1 · Email",knowH:"What happened on October 27",k1:"On October 27 the Superintendent recommended ending immersion at Community Park: Spanish would become one 45-minute class a day, math and science would be taught in English, and families outside the CP zone could no longer opt in.",k2:"Parents, students and a Princeton University expert on bilingual development spoke against cutting immersion. None of the 21 speakers endorsed the plan.",k3:"Nothing is decided yet. The Board could vote at its next meeting.",sumLink:"Read the full meeting summary →",k4:"Parents have not been given a chance to review or discuss these recommendations before they go to the Board.",k5:"Next: Thursday, October 29, 8:30 AM, session with the Superintendent at Community Park School.",waysH:"Five ways to help",waysSub:"Do as many as you can. Every email, every signature, every sign and every person in the room counts.",w5T:"Sign the petition",w5D:"Takes 30 seconds. Add your name to show the Board how many people support DLI.",w5Go:"Sign now ↗",ptK:"Way 4 · Petition",ptH:"Sign the petition",ptP:"It takes 30 seconds. Every name shows the Board and the Superintendent how many families and neighbors want to keep DLI at Community Park.",ptBtn:"Sign the petition ↗",ptShareH:"Share the petition",ptMsg:"Please sign this petition to keep the Dual Language Immersion program at Community Park:",ptSubj:"Please sign: keep Dual Language Immersion at Community Park",w3T:"Order a yard sign",w3D:"Show the Board and your neighbors that families care. Order a \"Defend Princeton DLI\" yard sign.",w3Go:"Get a sign ↗",w4T:"Spread the word",w4D:"Many DLI families don't know about this yet. Share this page in your group chats, or print a sign for the next birthday party or playground visit.",w4Go:"Share the page or a sign ↓",sgK:"Way 3 · Yard sign",sgH:"Order a “Defend Princeton DLI” yard sign",sgP:"A street full of signs is hard to ignore. Order a \"Defend Princeton DLI\" yard sign online and put it where your neighbors, and the Board, will see it.",sgBtn:"Order a yard sign ↗",shK:"Way 5 · Share",shH:"Spread the word",shP:"Many DLI families don't know about this yet. Post this page in your parent and neighborhood group chats so they can email the Board too, send it to anyone in Princeton who would support DLI, or print one of the signs below.",shareH:"Share this page",shNative:"Share…",shCopy:"Copy link",shCopied:"Link copied ✓",shMail:"Email",qrP:"Talking to someone in person? Let them scan this code with their phone camera.",signsP:"Going to a birthday party or the playground? Print a sign and put it up where other parents will see it.",signsParty:"Party sign (PDF)",signsPlay:"Playground sign (PDF)",flyerH:"Share the flyer",back:"↑ Back to the five ways to help",flNote:"<strong>Note:</strong> the flyer lists 25 Valley Road, but the October 27 Board meeting will be at the Princeton High School Performing Arts Center (PAC), 151 Moore St.",flNative:"Share the flyer…",shText:"Text",flSave:"Save image",flTip:"On a phone, “Share the flyer…” sends the image itself. The other buttons send a link to it.",flMsg:"Please see the flyer and this page about the Dual Language Immersion program at Community Park:",shareMsg:"Community Park's Dual Language Immersion program is at risk of being cut. See the dates to show up and email the Board in 2 minutes:",shareSubj:"Help keep and improve Dual Language Immersion at Community Park",w1T:"Email the Board",w1D:"This page helps you write it in under 2 minutes, even from your phone. Send yours today.",w1Go:"Write my email ↓",w2T:"Add the meetings to your calendar",w2D:"One click adds the details. Don't miss the Oct 29 session with the Superintendent.",w2Go:"Add to my calendar ↓",evK:"Way 2 · Show up",evH:"Add the meetings to your calendar",evP:"Click <strong>Google</strong> or <strong>Apple / Outlook</strong> under each date to add it to your calendar with the time and place already filled in. A full room tells the Board how many families care, so come to as many as you can and make sure to speak up.",ctaH:"Email the Board before the vote",ctaP:"The Board and the superintendent need to hear from DLI families before they vote. This page writes the email for you. It takes about two minutes.",howH:"How it works",h1s:"Tell us who you are and if you want to personalize your message with the points that matter to you.",sendNote:"Nothing is sent until you send it yourself.",basicsH:"The basics · Who are you?",readyP:"<strong>That's all you need.</strong> A basic email is already written for you below. A quick email beats no email! Want to make it more personal? Use the next box.",readyGo:"Skip to my email ↓",persOptH:"Personalize your message (optional)",h2s:"Click <strong>Send email</strong> to open your email app with the message ready.",h3s:"Or click <strong>Copy</strong> and paste the address and message into Gmail or any app.",h4s:"Hit Send.",
-persH:"Personalize your message",persSub:"Your choices are added to every email automatically. Nothing is sent until you send it yourself.",
-whoL:"Who are you?",w1:"Current DLI family",w1d:"Your child is in DLI at Community Park now",w2:"Incoming or prospective family",w2d:"You plan to enroll your child in DLI",w3:"DLI alumni family",w3d:"Your child continues the pathway at PMS or PHS",w4:"Princeton community member",w4d:"You care about the program without a child in it",
-ptsL:"Include your support for DLI in your own words and/or add some of the talking points below.",ptsLeg:"Add talking points:",whyLink:"Not sure why we should keep and improve DLI? Here are 6 reasons ↓",whyMini:"Read the full reasons ↓",whyK:"Why it matters",whyTitle:"Why we should keep and improve DLI",whyP:"Six reasons, most important first. Use them in your own words when you talk with other families or with the Board.",whyItems:[["The program hasn't had time to show its full results", ["Research shows the benefits of dual language immersion grow over time and are clearest in middle and high school.", "DLI started in 2015; the first students entered Princeton High School in 2023 and haven't graduated yet.", "Ending it now, after more than a decade of investment and before its results can be assessed, would reflect poorly on the School District."]], ["With the improvements teachers asked for, it can be a model program again", ["In 2016, the New Jersey Department of Education named Princeton's world languages program, which includes DLI, a statewide Model Program. It no longer holds that recognition.", "Community Park teachers have asked for improvements to DLI, which shows they believe in it and want it to succeed.", "The right response is to invest in those improvements so the program can earn that recognition again, not to phase it out."]], ["Families want it: kindergarten classes are full", ["DLI is open to every incoming Princeton kindergartner.", "This year Community Park has three full DLI kindergarten classes.", "Phasing it out would close the door just as interest is growing."]], ["Ending DLI would hurt Spanish-speaking families in the program the most", ["In DLI, Spanish-speaking children's home language is treated as a strength: they help their classmates learn Spanish while their classmates help them learn English.", "The program allows families who are still learning English to take part in their children's education."]], ["Families planned their children's education around it", ["Families chose DLI as a path through elementary, middle and high school. Phasing it out would leave current students in a shrinking program, with less support each year.", "Many families chose DLI as a family project. Phasing it out would shut younger siblings out, taking away their chance to learn Spanish and making it harder for current students to practice Spanish at home."]], ["West Windsor-Plainsboro shows how successful dual language can be", ["West Windsor-Plainsboro started its dual language program in 2018, three years after Princeton.", "Since then, it has expanded: it now offers dual language in Spanish and Mandarin, and it added a middle school continuation program in 2024.", "It is a success: its kindergarten classes are full, with a waitlist, and the New Jersey Department of Education currently names it a Model Program.", "Princeton had a head start and should build on it rather than phase the program out."]]],whyNote:"<strong>Speaking at a Board meeting?</strong> Use these as a starting point and add your own story: what DLI means for your child and your family.",pE:"Too soon to judge",pEd:"The first cohort graduates in 2027, and research shows the biggest gains come in later grades",pD:"Growing demand",pDd:"Three full DLI kindergarten classes this year",p1:"Keep the promise to DLI families",p1d:"Younger siblings would lose their place, and current students would be left in a shrinking program",pN:"Our neighbors are expanding, not cutting",pNd:"West Windsor-Plainsboro runs Spanish and Mandarin DLI, with a waitlist and a new middle school program",p3:"Fairness for Spanish-speaking families",p3d:"Children learn from each other: Spanish speakers help classmates with Spanish, classmates help them with English",pI:"Improve DLI, don't end it",pId:"Teachers asked for improvements; the state named Princeton's program a model in 2016, and it can earn that again",
-nameL:"Your name",gradeL:"Child's grade (optional)",gradePh:"e.g. 2nd grade",whyH:"Why does preserving the DLI program matter to you?",noteL:"Your own words",notePh:"Write your own reasons for supporting DLI, or anything else you want to add. It will go into your email as its own paragraph, exactly as you write it.",privNote:"When you send or copy your email, we keep an anonymous copy of your personal reasons and the arguments you chose, so organizers can see what matters most to families. Your name and email are never saved.",noteHint:"This will be added to your email exactly as you write it.",
-recL:"Your email · ready to send",enNote:"",indL:"Want to write to a Board member directly? (optional)",indSub:"You don't need to: the email above already goes to every Board member. Use these only if you'd like to write to someone in particular.",
-cal:{add:"Add it to your calendar",going:n=>n===1?"1 person added this to their calendar":`${n} people added this to their calendar`,mine:"✓ In your calendar",google:"Google",ics:"Apple / Outlook",meet:"Meet the school board candidates (ask about DLI)",boe:"Board of Education meeting: speak up for DLI",forum:"Session with the Superintendent at Community Park (DLI)",desc:"Show support for the Dual Language Immersion program at Community Park.",tagKey:"Most important",tagAlso:"Also",tagPast:"Past"},
-factsH:"About the program",f1:"Started in 2015 and now runs from Pre-K through 5th grade.",f2:"Part of Princeton's world languages program, which the New Jersey Department of Education named a Model Program in 2016.",f3:"Students learn about half of their core subjects in Spanish and half in English.",f4:"Open to all incoming Princeton kindergartners. This year Community Park has three full DLI kindergarten classes.",f5:"The pathway continues at Princeton Middle School and Princeton High School. The first cohort entered PHS in September 2023 and graduates in 2027.",src:"Sources:",resSrc:"Research:",
-fbH:"Ideas to make this page more helpful?",fbSub:"Spotted a mistake or have a suggestion? Tell the parents who run this page. Only they can read it.",fbL:"Your suggestion",fbC:"Email or phone, if you'd like a reply (optional)",fbSend:"Send suggestion",fbOk:"Thank you! Your suggestion was sent.",fbErr:"That didn't go through. Please try again in a moment.",fbEmpty:"Please write a suggestion first.",
-share:"Share this page with other DLI families. Every email counts.",foot:"An independent effort by Community Park parents, not affiliated with Princeton Public Schools or the Community Park PTO.",
-ui:{send:"Send email",copy:"Copy",copied:"Copied ✓",preview:"Preview",hide:"Hide",rec:"Recommended",primaryTitle:"Board of Education + Superintendent",primarySub:"The board address reaches all members and the superintendent; Dr. LaSusa is also addressed directly",member:"Board member",subjLabel:"Subject",hlNote:"<mark>Highlighted</mark>: the parts that come from you. The highlighting only shows here, not in your email.",copyNote:"To: "},
-subject:"Please keep and improve Dual Language Immersion at Community Park",
-salPrimary:"Dear President Kendal, Members of the Board of Education, and Superintendent LaSusa,",
-salMember:n=>`Dear ${n},`,
-id:{current:"the parent of a student in the Dual Language Immersion program at Community Park School",incoming:"a Princeton parent planning to enroll my child in the Dual Language Immersion program at Community Park School",alum:"the parent of a Community Park DLI graduate who is continuing the pathway in Princeton's middle and high schools",community:"a Princeton resident who values the Dual Language Immersion program at Community Park School"},
-grade:g=>` (${g})`,
-intro:["I am writing as {w}. I urge you to keep and improve the Spanish–English Dual Language Immersion program at Community Park and to reject any proposal to phase it out.", "As {w}, I am asking you to keep and improve the Spanish–English Dual Language Immersion program at Community Park and to vote against phasing it out.", "I am {w}, and I am writing to ask you to protect the Spanish–English Dual Language Immersion program at Community Park. Please do not phase it out."],
-introMember:["I am writing as {w}. As a member of the Board, I ask you to vote to keep and improve the Spanish–English Dual Language Immersion program at Community Park and to reject any proposal to phase it out.", "I am {w}. When this comes before the Board, please vote to keep and improve the Spanish–English Dual Language Immersion program at Community Park and against any plan to phase it out.", "I am writing to you as {w}. Your vote matters: please support keeping and improving the Spanish–English Dual Language Immersion program at Community Park."],
-pts:{"evaluate": ["The program has not yet had a fair chance to show its results. Our first DLI students entered Princeton High School in 2023 and will not graduate until 2027, and research shows the benefits of dual language immersion grow over time and are clearest in middle and high school. Ending the program before its first students finish would cut it off just as its benefits should become clearest. Walking away from a program the district has invested in for over a decade, before its results can be properly assessed, would reflect poorly on Princeton.", "It is too early to judge DLI. Our first cohort only started high school in 2023 and graduates in 2027, and studies of dual language immersion consistently find that its benefits build over the years and show most clearly in the later grades. Phasing it out now would end the program before Princeton can see what it has built. For a district like Princeton, abandoning a major investment before measuring its results would send the wrong message.", "Princeton has not yet seen the full results of its own program. The first DLI students will graduate from Princeton High School in 2027, and the research is clear that the advantages of dual language learning grow with time. Deciding the program's future before then is not a fair way to judge it, and ending it early would reflect poorly on a district that prides itself on careful, evidence-based decisions."], "demand": ["Demand for DLI is growing. Community Park has three full DLI kindergarten classes this year. Families are choosing this program, and phasing it out now would turn them away just as interest is rising.", "Families want this program. This year Community Park has three full DLI kindergarten classes. Phasing out DLI now would close the door just as more families are choosing it.", "Interest in DLI is rising, not falling: Community Park filled three DLI kindergarten classes this year. The district should build on that demand, not turn these families away."], "pathway": ["Families chose DLI as a long-term commitment, and so did the district. Many of us planned for younger siblings to follow the same path, and a phase-out would shut them out, leaving brothers and sisters in different programs. Children already in DLI would be left in a shrinking program, with fewer classmates and less support each year. Families made these choices trusting the district's word; please keep it.", "When families enrolled their children in DLI, they made a long-term commitment, and so did the district. Many of us expected younger siblings to follow; a phase-out would close the door on them and split brothers and sisters between programs. The children already in DLI would be left in a shrinking program, with fewer classmates and less support each year. Please honor the commitment families relied on.", "Families did not choose DLI for a year or two; they chose it as a path through elementary, middle and high school, often planning for younger siblings to join too. Phasing it out would shut those siblings out and leave current students in a program that gets smaller every year. Families trusted the district's word when they made these choices. Please keep it."], "equity": ["DLI is one of the few places in our district where Spanish-speaking children's home language is treated as a strength, not a gap to close. In a DLI classroom they help their classmates learn Spanish while their classmates help them learn English, so every child is both a teacher and a learner. Ending the program would fall hardest on the Spanish-speaking families in the program.", "In DLI, Spanish-speaking children are not only learning English; they are helping their English-speaking classmates learn Spanish, as those classmates help them with English. That is equity in practice: every child's language counts. The program also lets families who are still learning English take part in their children's education. Phasing it out would fall hardest on the Spanish-speaking families in the program.", "Few programs treat Spanish-speaking students' home language as an asset. In DLI they keep and build their Spanish while mastering English, and they are the experts their classmates learn Spanish from, just as they learn English from their classmates. Ending DLI would take that away and would hurt the Spanish-speaking families in the program the most."], "improve": ["Community Park teachers have asked for improvements to the DLI program, not for it to end. In 2016, the New Jersey Department of Education named Princeton's world languages program, including DLI, a statewide Model Program. With the improvements teachers are asking for, Community Park can earn that recognition again. Please invest in DLI instead of phasing it out.", "The teachers who know DLI best have asked to make it better, not to end it. In 2016, the New Jersey Department of Education named Princeton's world languages program, including DLI, a statewide Model Program. With the improvements teachers have requested, Community Park can earn that recognition again. I urge you to support those improvements.", "When teachers ask for improvements, it means they believe in the program and want it to succeed. In 2016 the state named Princeton's world languages program, including DLI, a Model Program; with investment and teacher feedback, it can be one again. Please fix what needs fixing rather than shutting DLI down."], "neighbors": ["Our neighbors in West Windsor-Plainsboro started their dual language program in 2018, three years after Princeton, and now offer it in both Spanish and Mandarin. Their kindergarten classes are full with a waitlist, they added a middle school continuation program in 2024, and the New Jersey Department of Education currently names it a Model Program. Princeton should build on its head start, not end it.", "Right next door, West Windsor-Plainsboro is growing its dual language program instead of cutting it. Started in 2018, three years after ours, it now runs in Spanish and Mandarin, has a waitlist for kindergarten, added a middle school program in 2024, and is currently a New Jersey Model Program. Princeton had a head start; we should not throw it away.", "Our neighbors in West Windsor-Plainsboro show what investing in dual language looks like: Spanish and Mandarin programs, full kindergarten classes with a waitlist, a new middle school continuation program in 2024, and current recognition as a state Model Program. They started in 2018, three years after Princeton. Please keep Princeton's program and build on it."]},
-ask:["Please keep the full program, and its pathway into Princeton Middle School and Princeton High School, intact.", "Please keep the full DLI program, from Community Park through Princeton Middle School and Princeton High School.", "I ask you to keep DLI whole, including its continuation at Princeton Middle School and Princeton High School."],
-close:["Thank you for your service to Princeton's students.", "Thank you for your time and for your work for Princeton's students.", "Thank you for considering my views."],sign:"Sincerely,",yourName:"[your name]",},
-
-es:{tagPast:"Ya pasó",aiNote:"<strong>Cómo usamos la inteligencia artificial para hacer esta página:</strong> las familias la hicieron con la ayuda de un asistente de inteligencia artificial, que ayudó a escribir el código, investigar los datos y redactar los textos. Las familias eligieron cada punto, revisaron la redacción y verificaron los datos con fuentes públicas.",aiNote2:"<strong>Ninguna inteligencia artificial escribe su correo.</strong> Para redactarlo, la página combina nuestro saludo y despedida ya escritos con sus datos, los puntos clave que usted elige y lo que escriba con sus propias palabras. Todo ocurre en su propio dispositivo, y nada de lo que escribe se envía a una inteligencia artificial ni se guarda de ninguna forma. Usamos inteligencia artificial para ayudar a investigar y redactar textos, pero las familias eligieron cada punto, revisaron la redacción y verificaron todos los datos con fuentes públicas y con otras familias de CP. La inteligencia artificial también escribió el código que hace funcionar esta página.",aiShort:"Ninguna inteligencia artificial escribe su correo.",aiMore:"Cómo funciona",badge:"DLI de Community Park · Acción de familias",h1:"Mantengamos y mejoremos la Inmersión Dual en Community Park",
-lede:"El programa de Inmersión Dual español–inglés de Community Park corre el riesgo de ser eliminado gradualmente en la próxima reunión de la Junta de Educación.",
-counter:"correos enviados a la Junta hasta ahora",signTot:"personas han visto el letrero",shareTot:"veces se ha compartido el volante o esta página",goingTot:"eventos agregados a calendarios hasta ahora",datesH:"Anótelo en su calendario",oct:"Oct",
-d0:"<strong>Conozca a los candidatos a la Junta, domingo de 3:00 a 4:00 p. m.</strong>, zona de picnic junto a la torre del reloj, Princeton Shopping Center. Pregunte a Beth Behrend, Eleanor Hubbard y Adam Bierman qué opinan sobre DLI.",
-d1:"<strong>Reunión de la Junta de Educación, 7:00 p. m.</strong>, Performing Arts Center (PAC) de Princeton High School, 151 Moore St. Venga a hablar durante el comentario público.",
-d2:"<strong>Sesión con el superintendente, 8:30 a. m.</strong>, en la escuela Community Park, donde las familias pueden informarse y hacer preguntas.",
-ctaK:"Forma 1 · Correo",knowH:"Qué pasó el 27 de octubre",k1:"El 27 de octubre, el superintendente recomendó poner fin a la inmersión en Community Park: el español pasaría a ser una clase diaria de 45 minutos, matemáticas y ciencias se enseñarían en inglés y las familias de fuera de la zona de CP ya no podrían inscribirse.",k2:"Familias, estudiantes y un especialista en desarrollo bilingüe de la Universidad de Princeton hablaron en contra de recortar la inmersión. Ninguna de las 21 personas que hablaron apoyó el plan.",k3:"Todavía no hay nada decidido. La Junta podría votar en su próxima reunión.",sumLink:"Lea el resumen completo de la reunión →",k4:"Las familias no han tenido la oportunidad de revisar ni comentar estas recomendaciones antes de que lleguen a la Junta.",k5:"Próximo paso: jueves 29 de octubre, 8:30 a. m., sesión con el superintendente en la escuela Community Park.",waysH:"Cinco formas de ayudar",waysSub:"Haga todas las que pueda. Cada correo, cada firma, cada letrero y cada persona en la sala cuentan.",w5T:"Firme la petición",w5D:"Toma 30 segundos. Agregue su nombre para mostrarle a la Junta cuántas personas apoyan DLI.",w5Go:"Firmar ahora ↗",ptK:"Forma 4 · Petición",ptH:"Firme la petición",ptP:"Toma 30 segundos. Cada nombre le muestra a la Junta y al superintendente cuántas familias y vecinos quieren mantener DLI en Community Park.",ptBtn:"Firmar la petición ↗",ptShareH:"Compartir la petición",ptMsg:"Por favor, firme esta petición para mantener el programa de Inmersión Dual en Community Park:",ptSubj:"Por favor, firme: mantengamos la Inmersión Dual en Community Park",w3T:"Pida un letrero para su jardín",w3D:"Muestre a la Junta y a sus vecinos que a las familias nos importa. Pida un letrero \"Defend Princeton DLI\".",w3Go:"Conseguir un letrero ↗",w4T:"Corra la voz",w4D:"Muchas familias de DLI todavía no saben de esto. Comparta esta página en sus chats de grupo o imprima un letrero para la próxima fiesta de cumpleaños o visita al parque.",w4Go:"Compartir la página o un letrero ↓",sgK:"Forma 3 · Letrero",sgH:"Pida un letrero “Defend Princeton DLI” para su jardín",sgP:"Una calle llena de letreros es difícil de ignorar. Pida en línea un letrero \"Defend Princeton DLI\" y póngalo donde sus vecinos, y la Junta, lo vean.",sgBtn:"Pedir un letrero ↗",shK:"Forma 5 · Comparta",shH:"Corra la voz",shP:"Muchas familias de DLI todavía no saben de esto. Publique esta página en sus chats de padres y de vecinos para que también puedan escribir a la Junta, envíela a cualquier persona en Princeton que apoyaría DLI, o imprima uno de los letreros de abajo.",shareH:"Compartir esta página",shNative:"Compartir…",shCopy:"Copiar enlace",shCopied:"Enlace copiado ✓",shMail:"Correo",qrP:"¿Está hablando con alguien en persona? Pídale que escanee este código con la cámara de su teléfono.",signsP:"¿Va a una fiesta de cumpleaños o al parque? Imprima un letrero y póngalo donde otras familias lo vean. (Los letreros están en inglés.)",signsParty:"Para fiestas (PDF)",signsPlay:"Para el parque (PDF)",flyerH:"Compartir el volante",back:"↑ Volver a las cinco formas de ayudar",flNote:"<strong>Nota:</strong> el volante indica 25 Valley Road, pero la reunión de la Junta del 27 de octubre será en el Performing Arts Center (PAC) de Princeton High School, 151 Moore St.",flNative:"Compartir el volante…",shText:"Mensaje de texto",flSave:"Guardar imagen",flTip:"En un teléfono, “Compartir el volante…” envía la imagen. Los otros botones envían un enlace a ella.",flMsg:"Vea el volante y esta página sobre el programa de Inmersión Dual de Community Park:",shareMsg:"El programa de Inmersión Dual de Community Park corre el riesgo de ser eliminado. Vea las fechas para asistir y escriba a la Junta en 2 minutos:",shareSubj:"Ayude a mantener y mejorar la Inmersión Dual en Community Park",w1T:"Escriba a la Junta",w1D:"Esta página le ayuda a escribirlo en menos de 2 minutos, incluso desde su teléfono. Envíe el suyo hoy.",w1Go:"Escribir mi correo ↓",w2T:"Agregue las reuniones a su calendario",w2D:"Un clic agrega todos los detalles. No se pierda la sesión con el superintendente del 29 de octubre.",w2Go:"Agregar a mi calendario ↓",evK:"Forma 2 · Asista",evH:"Agregue las reuniones a su calendario",evP:"Haga clic en <strong>Google</strong> o <strong>Apple / Outlook</strong> debajo de cada fecha para agregarla a su calendario con la hora y el lugar ya incluidos. Una sala llena le muestra a la Junta cuántas familias se preocupan: venga a todas las que pueda y no deje de hacer oír su voz.",ctaH:"Escriba a la Junta antes de la votación",ctaP:"La Junta y el superintendente necesitan escuchar a las familias de DLI antes de votar. Esta página redacta el correo por usted. Toma unos dos minutos.",howH:"Cómo funciona",h1s:"Díganos quién es y, si quiere, personalice su mensaje con los puntos que le importan.",sendNote:"Nada se envía hasta que usted lo envíe.",basicsH:"Lo básico · ¿Quién es usted?",readyP:"<strong>Con eso basta.</strong> Abajo ya tiene un correo básico listo para enviar. ¡Un correo rápido vale más que ninguno! ¿Quiere hacerlo más personal? Use el siguiente recuadro.",readyGo:"Ir a mi correo ↓",persOptH:"Personalice su mensaje (opcional)",h2s:"Haga clic en <strong>Enviar correo</strong> para abrir su app de correo con el mensaje listo.",h3s:"O haga clic en <strong>Copiar</strong> y pegue la dirección y el mensaje en Gmail o cualquier app.",h4s:"Haga clic en Enviar.",
-persH:"Personalice su mensaje",persSub:"Sus elecciones se agregan automáticamente a cada correo. Nada se envía hasta que usted lo envíe.",
-whoL:"¿Quién es usted?",w1:"Familia actual de DLI",w1d:"Su hijo o hija está hoy en DLI en Community Park",w2:"Familia nueva o interesada",w2d:"Piensa inscribir a su hijo o hija en DLI",w3:"Familia de exalumnos de DLI",w3d:"Su hijo o hija continúa el programa en PMS o PHS",w4:"Miembro de la comunidad de Princeton",w4d:"Le importa el programa aunque no tenga hijos en él",
-ptsL:"Exprese su apoyo a DLI con sus propias palabras y/o agregue algunos de los puntos clave de abajo.",ptsLeg:"Agregue puntos clave:",whyLink:"¿Tiene dudas sobre por qué debemos mantener y mejorar DLI? Aquí tiene 6 razones ↓",whyMini:"Lea las razones completas ↓",whyK:"Por qué importa",whyTitle:"Por qué debemos mantener y mejorar DLI",whyP:"Seis razones, de la más importante a la menos. Úselas con sus propias palabras cuando hable con otras familias o con la Junta.",whyItems:[["El programa aún no ha tenido tiempo de mostrar todos sus resultados", ["Las investigaciones muestran que los beneficios de la inmersión dual crecen con el tiempo y se ven con más claridad en la escuela intermedia y secundaria.", "DLI comenzó en 2015; los primeros alumnos entraron a Princeton High School en 2023 y todavía no se han graduado.", "Eliminarlo ahora, después de más de una década de inversión y antes de poder evaluar sus resultados, dejaría mal parado al distrito escolar."]], ["Con las mejoras que pidió el personal docente, puede volver a ser un programa modelo", ["En 2016, el Departamento de Educación de Nueva Jersey nombró Programa Modelo estatal al programa de idiomas de Princeton, que incluye DLI. Hoy ya no tiene ese reconocimiento.", "El personal docente de Community Park ha pedido mejoras a DLI, lo que demuestra que cree en el programa y quiere que funcione.", "La respuesta correcta es invertir en esas mejoras para que el programa pueda volver a ganarse ese reconocimiento, no eliminarlo."]], ["Las familias lo quieren: los grupos de kínder están llenos", ["DLI está abierto a todos los niños que ingresan a kínder en Princeton.", "Este año Community Park tiene tres grupos completos de kínder DLI.", "Eliminarlo cerraría la puerta justo cuando el interés está creciendo."]], ["Eliminar DLI afectaría sobre todo a las familias hispanohablantes del programa", ["En DLI, el idioma materno de los niños hispanohablantes se valora como una fortaleza: ellos ayudan a sus compañeros a aprender español mientras sus compañeros los ayudan a aprender inglés.", "El programa permite que las familias que todavía están aprendiendo inglés participen en la educación de sus hijos."]], ["Las familias planearon la educación de sus hijos en torno a DLI", ["Las familias eligieron DLI como un camino a través de la primaria, la intermedia y la secundaria. Eliminarlo dejaría a los alumnos actuales en un programa cada vez más pequeño, con menos apoyo cada año.", "Muchas familias eligieron DLI como un proyecto familiar. Eliminarlo dejaría fuera a los hermanos menores, que perderían la oportunidad de aprender español, y haría más difícil que los alumnos actuales practiquen español en casa."]], ["West Windsor-Plainsboro demuestra el éxito que puede tener la inmersión dual", ["West Windsor-Plainsboro inició su programa de inmersión dual en 2018, tres años después que Princeton.", "Desde entonces lo ha ampliado: hoy lo ofrece en español y en mandarín, y en 2024 agregó un programa de continuidad en la escuela intermedia.", "Es un éxito: sus grupos de kínder están llenos y tienen lista de espera, y el Departamento de Educación de Nueva Jersey lo reconoce actualmente como Programa Modelo.", "Princeton empezó antes y debería aprovechar esa ventaja en lugar de eliminar el programa."]]],whyNote:"<strong>¿Va a hablar en una reunión de la Junta?</strong> Use estas razones como punto de partida y agregue su propia historia: lo que DLI significa para su hijo o hija y su familia.",pE:"Es muy pronto para juzgar",pEd:"La primera generación se gradúa en 2027 y las investigaciones muestran que los mayores beneficios llegan en los grados superiores",pD:"Demanda creciente",pDd:"Tres grupos completos de kínder DLI este año",p1:"Cumplir la promesa a las familias de DLI",p1d:"Los hermanos menores perderían su lugar y los alumnos actuales quedarían en un programa cada vez más pequeño",pN:"Nuestros vecinos lo amplían, no lo recortan",pNd:"West Windsor-Plainsboro ofrece DLI en español y mandarín, con lista de espera y un nuevo programa en la escuela intermedia",p3:"Equidad para las familias hispanohablantes",p3d:"Los niños aprenden unos de otros: los hispanohablantes enseñan español y sus compañeros, inglés",pI:"Mejorar DLI, no eliminarlo",pId:"Los docentes pidieron mejoras; en 2016 el estado nombró modelo al programa de Princeton y puede volver a serlo",
-nameL:"Su nombre",gradeL:"Grado de su hijo/a, en inglés (opcional)",gradePh:"p. ej. 2nd grade, Kindergarten",whyH:"¿Por qué le importa conservar el programa DLI?",noteL:"Sus propias palabras",notePh:"Escriba aquí sus propias razones para apoyar DLI, o cualquier otra cosa que quiera agregar. Se agregará a su correo como un párrafo aparte, tal como lo escriba. Puede escribir en inglés o en español.",privNote:"Cuando envíe o copie su correo, guardamos una copia anónima de sus razones personales y de los argumentos que eligió, para que los organizadores vean qué es lo que más importa a las familias. Su nombre y su correo nunca se guardan.",noteHint:"Esto se agregará a su correo tal como lo escriba.",
-recL:"Su correo · listo para enviar",enNote:"El correo está escrito en inglés, el idioma en que trabaja la Junta. Los puntos clave que eligió se incluyen traducidos al inglés.",indL:"¿Quiere escribirle directamente a un miembro de la Junta? (opcional)",indSub:"No es necesario: el correo de arriba ya llega a todos los miembros de la Junta. Úselos solo si quiere escribirle a alguien en particular.",
-cal:{add:"Agréguelo a su calendario",going:n=>n===1?"1 persona lo agregó a su calendario":`${n} personas lo agregaron a su calendario`,mine:"✓ En su calendario",google:"Google",ics:"Apple / Outlook",meet:"Conozca a los candidatos a la Junta (pregunte sobre DLI)",boe:"Reunión de la Junta de Educación: apoyemos DLI",forum:"Sesión con el superintendente en Community Park (DLI)",desc:"Muestre su apoyo al programa de Inmersión Dual de Community Park.",tagKey:"Lo más importante",tagAlso:"También",tagPast:"Ya pasó"},
-factsH:"Sobre el programa",f1:"Comenzó en 2015 y hoy abarca desde Pre-K hasta 5.º grado.",f2:"Forma parte del programa de idiomas de Princeton, que el Departamento de Educación de Nueva Jersey nombró Programa Modelo en 2016.",f3:"Los estudiantes aprenden aproximadamente la mitad de sus materias principales en español y la otra mitad en inglés.",f4:"Abierto a todos los niños que ingresan a kínder en Princeton. Este año Community Park tiene tres grupos completos de kínder DLI.",f5:"El programa continúa en Princeton Middle School y Princeton High School. La primera generación entró a PHS en septiembre de 2023 y se gradúa en 2027.",src:"Fuentes:",resSrc:"Investigaciones:",
-fbH:"¿Ideas para que esta página sea más útil?",fbSub:"¿Vio un error o tiene una sugerencia? Cuénteselo a las familias que administran esta página. Solo ellas pueden leerla.",fbL:"Su sugerencia",fbC:"Correo o teléfono, si desea una respuesta (opcional)",fbSend:"Enviar sugerencia",fbOk:"¡Gracias! Su sugerencia fue enviada.",fbErr:"No se pudo enviar. Inténtelo de nuevo en un momento.",fbEmpty:"Primero escriba una sugerencia.",
-share:"Comparta esta página con otras familias de DLI. Cada correo cuenta.",foot:"Un esfuerzo independiente de familias de Community Park, no afiliado a Princeton Public Schools ni a la PTO de Community Park.",
-ui:{send:"Enviar correo",copy:"Copiar",copied:"Copiado ✓",preview:"Ver mensaje",hide:"Ocultar",rec:"Recomendado",primaryTitle:"Junta de Educación + Superintendente",primarySub:"La dirección de la Junta llega a todos sus miembros y al superintendente; el Dr. LaSusa también recibe el correo directamente",member:"Miembro de la Junta",subjLabel:"Asunto",hlNote:"<mark>Resaltado</mark>: las partes que vienen de usted. El resaltado solo se ve aquí, no en su correo.",copyNote:"Para: "},
-subject:"Por favor, mantengan y mejoren la Inmersión Dual en Community Park",
-salPrimary:"Estimada presidenta Kendal, miembros de la Junta de Educación y superintendente LaSusa:",
-salMember:n=>`Apreciable ${n}:`,
-id:{current:"madre o padre de un estudiante del programa de Inmersión Dual (DLI) de la escuela Community Park",incoming:"madre o padre de familia en Princeton que planea inscribir a su hijo o hija en el programa de Inmersión Dual de Community Park",alum:"madre o padre de un egresado del programa DLI de Community Park que continúa el programa en la escuela intermedia y secundaria de Princeton",community:"residente de Princeton que valora el programa de Inmersión Dual de la escuela Community Park"},
-grade:g=>` (${g})`,
-intro:["Les escribo como {w}. Les pido que mantengan y mejoren el programa de Inmersión Dual español–inglés en Community Park y que rechacen cualquier propuesta para eliminarlo gradualmente.", "Como {w}, les pido que mantengan y mejoren el programa de Inmersión Dual español–inglés en Community Park y que voten en contra de eliminarlo.", "Soy {w} y les escribo para pedirles que protejan el programa de Inmersión Dual español–inglés en Community Park. Por favor, no lo eliminen."],
-introMember:["Le escribo como {w}. Como miembro de la Junta, le pido que vote por mantener y mejorar el programa de Inmersión Dual español–inglés en Community Park y que rechace cualquier propuesta para eliminarlo gradualmente.", "Soy {w}. Cuando este tema llegue a la Junta, le pido que vote por mantener y mejorar el programa de Inmersión Dual español–inglés en Community Park y en contra de cualquier plan para eliminarlo.", "Le escribo como {w}. Su voto es importante: por favor, apoye que se mantenga y se mejore el programa de Inmersión Dual español–inglés en Community Park."],
-pts:{"evaluate": ["El programa aún no ha tenido una oportunidad justa de mostrar sus resultados. Nuestros primeros alumnos de DLI entraron a Princeton High School en 2023 y no se graduarán hasta 2027, y las investigaciones muestran que los beneficios de la inmersión dual crecen con el tiempo y se ven con más claridad en la escuela intermedia y secundaria. Eliminar el programa antes de que termine su primera generación sería cortarlo justo cuando sus beneficios deberían ser más evidentes. Abandonar un programa en el que el distrito ha invertido durante más de una década, antes de poder evaluar bien sus resultados, dejaría mal parado a Princeton.", "Es demasiado pronto para juzgar DLI. Nuestra primera generación apenas entró a la secundaria en 2023 y se graduará en 2027, y los estudios sobre la inmersión dual coinciden en que sus beneficios se acumulan con los años y se notan más en los grados superiores. Eliminarlo ahora terminaría el programa antes de que Princeton pueda ver lo que ha construido. Para un distrito como Princeton, abandonar una inversión tan importante antes de medir sus resultados enviaría un mensaje equivocado.", "Princeton aún no ha visto los resultados completos de su propio programa. Los primeros alumnos de DLI se graduarán de Princeton High School en 2027, y las investigaciones muestran claramente que las ventajas del aprendizaje bilingüe crecen con el tiempo. Decidir el futuro del programa antes de eso no es una forma justa de evaluarlo, y terminarlo antes de tiempo dejaría mal parado a un distrito que se precia de tomar decisiones cuidadosas y basadas en evidencia."], "demand": ["La demanda de DLI está creciendo. Community Park tiene este año tres grupos completos de kínder DLI. Las familias están eligiendo este programa, y eliminarlo ahora las rechazaría justo cuando el interés aumenta.", "Las familias quieren este programa. Este año Community Park tiene tres grupos completos de kínder DLI. Eliminar DLI ahora cerraría la puerta justo cuando más familias lo eligen.", "El interés en DLI está creciendo, no disminuyendo: Community Park llenó tres grupos de kínder DLI este año. El distrito debería aprovechar esa demanda, no rechazar a estas familias."], "pathway": ["Las familias eligieron DLI como un compromiso a largo plazo, y el distrito también. Muchos planeamos que nuestros hijos menores siguieran el mismo camino, y una eliminación gradual los dejaría fuera, con hermanos en programas distintos. Los niños que ya están en DLI quedarían en un programa cada vez más pequeño, con menos compañeros y menos apoyo cada año. Las familias tomaron estas decisiones confiando en la palabra del distrito; les pido que la cumplan.", "Cuando las familias inscribieron a sus hijos en DLI, hicieron un compromiso a largo plazo, y el distrito también. Muchos esperábamos que los hermanos menores los siguieran; una eliminación gradual les cerraría la puerta y separaría a hermanos en programas distintos. Los niños que ya están en DLI quedarían en un programa cada vez más pequeño, con menos compañeros y menos apoyo cada año. Les pido que respeten el compromiso en el que confiaron las familias.", "Las familias no eligieron DLI por uno o dos años: lo eligieron como un camino a través de la primaria, la intermedia y la secundaria, muchas veces pensando también en sus hijos menores. Eliminarlo dejaría fuera a esos hermanos y a los alumnos actuales en un programa que se achica cada año. Las familias confiaron en la palabra del distrito al tomar estas decisiones. Les pido que la cumplan."], "equity": ["DLI es uno de los pocos lugares en nuestro distrito donde el idioma materno de los niños hispanohablantes se valora como una fortaleza y no como una carencia. En un salón de DLI ellos ayudan a sus compañeros a aprender español mientras sus compañeros los ayudan a aprender inglés, así que cada niño es a la vez maestro y alumno. Eliminar el programa afectaría sobre todo a las familias hispanohablantes del programa.", "En DLI, los niños hispanohablantes no solo aprenden inglés: también ayudan a sus compañeros angloparlantes a aprender español, mientras esos compañeros los ayudan con el inglés. Eso es equidad en la práctica: el idioma de cada niño cuenta. El programa también permite que las familias que todavía están aprendiendo inglés participen en la educación de sus hijos. Eliminarlo afectaría sobre todo a las familias hispanohablantes del programa.", "Pocos programas tratan el idioma materno de los estudiantes hispanohablantes como un recurso. En DLI conservan y desarrollan su español mientras dominan el inglés, y son los expertos de quienes sus compañeros aprenden español, así como ellos aprenden inglés de sus compañeros. Eliminar DLI les quitaría eso y perjudicaría sobre todo a las familias hispanohablantes del programa."], "improve": ["El personal docente de Community Park ha pedido mejoras al programa DLI, no que se elimine. En 2016, el Departamento de Educación de Nueva Jersey nombró Programa Modelo estatal al programa de idiomas de Princeton, que incluye DLI. Con las mejoras que piden los docentes, Community Park puede volver a ganarse ese reconocimiento. Les pido que inviertan en DLI en lugar de eliminarlo.", "Quienes mejor conocen DLI, sus docentes, han pedido mejorarlo, no eliminarlo. En 2016, el Departamento de Educación de Nueva Jersey nombró Programa Modelo estatal al programa de idiomas de Princeton, incluido DLI. Con las mejoras que han solicitado, Community Park puede volver a ganarse ese reconocimiento. Les pido que apoyen esas mejoras.", "Cuando el personal docente pide mejoras, es porque cree en el programa y quiere que funcione. En 2016 el estado nombró Programa Modelo al programa de idiomas de Princeton, incluido DLI; con inversión y con las sugerencias de los docentes, puede volver a serlo. Por favor, corrijan lo que haya que corregir en lugar de cerrar DLI."], "neighbors": ["Nuestros vecinos de West Windsor-Plainsboro iniciaron su programa de inmersión dual en 2018, tres años después que Princeton, y hoy lo ofrecen en español y en mandarín. Sus grupos de kínder están llenos y tienen lista de espera, en 2024 agregaron un programa de continuidad en la escuela intermedia y el Departamento de Educación de Nueva Jersey lo reconoce actualmente como Programa Modelo. Princeton debería aprovechar su ventaja, no eliminarla.", "Justo al lado, West Windsor-Plainsboro está ampliando su programa de inmersión dual en lugar de recortarlo. Comenzó en 2018, tres años después que el nuestro, y hoy funciona en español y en mandarín, tiene lista de espera para kínder, sumó un programa en la escuela intermedia en 2024 y es actualmente un Programa Modelo de Nueva Jersey. Princeton empezó antes; no deberíamos desaprovechar esa ventaja.", "Nuestros vecinos de West Windsor-Plainsboro muestran lo que significa invertir en la inmersión dual: programas en español y mandarín, grupos de kínder llenos con lista de espera, un nuevo programa de continuidad en la escuela intermedia en 2024 y el reconocimiento actual como Programa Modelo estatal. Empezaron en 2018, tres años después que Princeton. Les pido que mantengan el programa de Princeton y lo fortalezcan."]},
-ask:["Por favor, mantengan completo el programa y su continuidad en Princeton Middle School y Princeton High School.", "Por favor, mantengan completo el programa DLI, desde Community Park hasta Princeton Middle School y Princeton High School.", "Les pido que mantengan DLI completo, incluida su continuidad en Princeton Middle School y Princeton High School."],
-close:["Gracias por su servicio a los estudiantes de Princeton.", "Gracias por su tiempo y por su trabajo por los estudiantes de Princeton.", "Gracias por considerar mi opinión."],sign:"Atentamente,",yourName:"[su nombre]",}
-};
-
-/* ── COUNTER ─────────────────────────────────────────────────── */
-/* Organizers' own browsers: open the page once with ?me=1 and nothing from that browser is counted (?me=0 undoes it). */
-let ME=false;
-try{const q=new URLSearchParams(location.search).get("me"); if(q==="1") localStorage.setItem("cpdli-me","1"); if(q==="0") localStorage.removeItem("cpdli-me"); ME=localStorage.getItem("cpdli-me")==="1";}catch(e){}
-let db=null, SESSION="";
-try{SESSION=sessionStorage.getItem("cpdli_sid")||""; if(!SESSION){SESSION=Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2); sessionStorage.setItem("cpdli_sid",SESSION);}}catch(e){SESSION=Math.random().toString(36).slice(2);}
-try{ if(SUPABASE_URL && SUPABASE_KEY && window.supabase) db=window.supabase.createClient(SUPABASE_URL,SUPABASE_KEY); }catch(e){db=null}
-const COUNTED=["send_email","copy"];
-function bump(){const el=document.getElementById("counter-number"); const n=parseInt(el.textContent.replace(/[^0-9]/g,""))||0; el.textContent=(n+1).toLocaleString(); el.style.transform="scale(1.18)"; setTimeout(()=>el.style.transform="scale(1)",200);}
-let lastInsight="";
-async function saveInsight(){
-  if(!db||ME) return;
-  const s=state(); const key=JSON.stringify([s.who,!!s.note,s.pts]);
-  if(key===lastInsight) return; lastInsight=key;
-  try{await db.from("email_insights").insert([{who:s.who,has_reasons:!!s.note,arguments:s.pts,lang}]);}catch(e){}
+/* Shares the language choice with index.html through the same localStorage key. */
+const TXT={en:{title:"Keep and Improve Dual Language Immersion at Community Park",sub:"What happened at the Oct 27 Board meeting",back:"How you can help →"},
+           es:{title:"Mantengamos y mejoremos la Inmersión Dual en Community Park",sub:"Qué pasó en la reunión de la Junta del 27 de octubre",back:"Cómo puede ayudar →"}};
+function setLang(l,save){
+  document.documentElement.lang=l;
+  document.getElementById("block-en").hidden=l!=="en";
+  document.getElementById("block-es").hidden=l!=="es";
+  document.getElementById("lang-en").setAttribute("aria-pressed",l==="en");
+  document.getElementById("lang-es").setAttribute("aria-pressed",l==="es");
+  document.getElementById("title").textContent=TXT[l].title;
+  document.getElementById("sub").textContent=TXT[l].sub;
+  document.getElementById("back").textContent=TXT[l].back;
+  if(save){try{localStorage.setItem("cpdli-lang",l)}catch(e){}}
 }
-async function track(action,recipient){
-  if(!db||ME) return;
-  saveInsight();
-  try{await db.from("email_actions").insert([{action,recipient,session_id:SESSION,lang}]);}catch(e){}
-}
-async function loadCounter(){
-  if(!db) return;
-  try{
-    const {count,error}=await db.from("email_actions").select("*",{count:"exact",head:true}).in("action",COUNTED);
-    if(error) return;
-    document.getElementById("counter-number").textContent=(count||0).toLocaleString();
-    document.getElementById("counter").hidden=false;
-    db.channel("counter-live").on("postgres_changes",{event:"INSERT",schema:"public",table:"email_actions"},p=>{if(COUNTED.includes(p.new.action) && p.new.session_id!==SESSION) bump();}).subscribe();
-  }catch(e){}
-}
-
-/* ── MESSAGES ────────────────────────────────────────────────── */
+/* The Oct 29 session's calendar buttons disappear once it has ended (9:30 AM EDT). */
+if(Date.now()>Date.UTC(2026,9,29,13,30)) document.querySelectorAll(".cal,.ask").forEach(c=>c.remove());
 let lang="en";
 try{const s=localStorage.getItem("cpdli-lang"); if(s==="es"||s==="en") lang=s;}catch(e){}
-const $=id=>document.getElementById(id);
-function state(){
-  return {who:(document.querySelector('input[name="who"]:checked')||{}).value||"current",
-    pts:[...document.querySelectorAll('#points input:checked')].map(i=>i.value),
-    name:$("f-name").value.trim(),grade:$("f-grade").value.trim(),note:$("f-note").value.trim()};
+/* Sections show one at a time as tabs; #en-s2 style links open that tab. */
+function showTab(id,scroll){
+  const sec=document.getElementById(id); if(!sec) return false;
+  const blk=sec.closest(".lang-block");
+  blk.querySelectorAll("section[id]").forEach(x=>x.hidden=x!==sec);
+  blk.querySelectorAll('.tabs a[role="tab"]').forEach(a=>a.setAttribute("aria-selected",a.getAttribute("href")==="#"+id));
+  if(scroll) blk.querySelector(".toc").scrollIntoView({block:"start"});
+  return true;
 }
-function whoLine(L,s){let w=L.id[s.who]; if(s.grade&&(s.who==="current"||s.who==="incoming")) w+=L.grade(s.grade); return w;}
-/* Each visitor, and each recipient, gets a different mix of wording and order,
-   chosen once per page visit so the text doesn't jump around while typing. */
-const VAR={}, ORD={};
-function pick(key,arr){ if(!(key in VAR)) VAR[key]=Math.floor(Math.random()*arr.length); return arr[VAR[key]%arr.length]; }
-function orderFor(rid){ if(!ORD[rid]){const a=["evaluate","demand","pathway","neighbors","equity","improve"]; for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];} ORD[rid]=a;} return ORD[rid]; }
-/* body() returns the email as a list of [text, highlighted] pieces: the parts the parent supplied
-   (grade, own words, chosen talking points, name) are marked so the preview can highlight them. */
-function bodyParts(L,s,member,rid){
-  const P=[]; const t=x=>P.push([x,false]), h=x=>P.push([x,true]);
-  t((member?L.salMember(member.name):L.salPrimary)+"\n\n");
-  const intro=pick(rid+":intro",member?L.introMember:L.intro);
-  const [a,b]=intro.split("{w}"); t(a+L.id[s.who]);
-  if(s.grade&&(s.who==="current"||s.who==="incoming")){const g=L.grade(s.grade); t(g.match(/^\s*/)[0]); h(g.trim());}
-  t((b||"")+"\n\n");
-  if(s.note){h(s.note); t("\n\n");}
-  orderFor(rid).filter(k=>s.pts.includes(k)).forEach(k=>{h(pick(rid+":"+k,L.pts[k])); t("\n\n");});
-  t(pick(rid+":ask",L.ask)+"\n\n"+pick(rid+":close",L.close)+"\n\n"+L.sign+"\n");
-  if(s.name) h(s.name); else t(L.yourName);
-  return P;
-}
-function body(L,s,member,rid){ return bodyParts(L,s,member,rid).map(x=>x[0]).join(""); }
-function mailto(to,subj,b){return `mailto:${to.join(",")}?subject=${encodeURIComponent(subj)}&body=${encodeURIComponent(b)}`;}
-async function copyText(text,btn,label){
-  let ok=false;
-  try{await navigator.clipboard.writeText(text); ok=true;}catch(e){
-    const ta=document.createElement("textarea"); ta.value=text; ta.style.position="fixed"; ta.style.opacity="0"; document.body.appendChild(ta); ta.select();
-    try{ok=document.execCommand("copy");}catch(_){} ta.remove();
-  }
-  if(ok){btn.textContent=T[lang].ui.copied; btn.classList.add("copied"); setTimeout(()=>{btn.textContent=label; btn.classList.remove("copied")},2200);}
-  return ok;
-}
-const openPrev={boe:true};
-function card(L,s,opts){
-  const {id,title,sub,to,member,primary}=opts;
-  const E=T.en, b=body(E,s,member,id);
-  const el=document.createElement("div"); el.className="auth"+(primary?" primary":"");
-  el.innerHTML=`<div class="auth-top"><div class="auth-info"><h3></h3><span class="sub2"></span><span class="email-addr"></span></div>
-    <div class="actions"><a class="btn btn-email"></a><button type="button" class="btn btn-copy"></button><button type="button" class="btn-preview"></button></div></div>
-    <div class="preview" hidden><div class="subj"></div><pre></pre><div class="hl-note"></div></div>`;
-  el.querySelector("h3").textContent=title; el.querySelector(".sub2").textContent=sub; el.querySelector(".email-addr").textContent=to.join(", ");
-  const a=el.querySelector(".btn-email"); a.textContent=L.ui.send; a.href=mailto(to,E.subject,b);
-  a.addEventListener("click",()=>{bump_if(); track("send_email",id);});
-  const c=el.querySelector(".btn-copy"); c.textContent=L.ui.copy;
-  c.addEventListener("click",async()=>{const ok=await copyText(`${L.ui.copyNote}${to.join(", ")}\n${L.ui.subjLabel}: ${E.subject}\n\n${b}`,c,L.ui.copy); if(ok){bump_if(); track("copy",id);}});
-  const pv=el.querySelector(".preview"), pb=el.querySelector(".btn-preview");
-  el.querySelector(".subj").textContent=`${L.ui.subjLabel}: ${E.subject}`; el.querySelector(".hl-note").innerHTML=L.ui.hlNote; const pre=el.querySelector("pre"); pre.addEventListener("copy",e=>{e.preventDefault(); e.clipboardData.setData("text/plain",String(getSelection()));}); bodyParts(E,s,member,id).forEach(([x,hl])=>{if(hl){const m=document.createElement("mark"); m.textContent=x; pre.appendChild(m);} else pre.appendChild(document.createTextNode(x));});
-  pv.hidden=!openPrev[id]; pb.textContent=openPrev[id]?L.ui.hide:L.ui.preview;
-  pb.addEventListener("click",()=>{openPrev[id]=!openPrev[id]; pv.hidden=!openPrev[id]; pb.textContent=openPrev[id]?L.ui.hide:L.ui.preview;});
-  return el;
-}
-function bump_if(){ if(db && !$("counter").hidden) bump(); }
-function render(){
-  const L=T[lang], s=state();
-  document.documentElement.lang=lang;
-  $("lang-en").setAttribute("aria-pressed",lang==="en"); $("lang-es").setAttribute("aria-pressed",lang==="es");
-  document.querySelectorAll("[data-i18n]").forEach(el=>{const v=L[el.dataset.i18n]; if(typeof v!=="string") return; if(v.includes("<strong>")) el.innerHTML=v; else el.textContent=v;});
-  document.querySelectorAll("[data-i18n-aria]").forEach(el=>{el.setAttribute("aria-label",L[el.dataset.i18nAria].replace("↑ ",""))});
-  document.querySelectorAll("[data-i18n-ph]").forEach(el=>{el.placeholder=L[el.dataset.i18nPh]});
-  renderCal(L);
-  const wl=$("why-list"); wl.innerHTML="";
-  L.whyItems.forEach(([t,x])=>{const d=document.createElement("div"); d.className="why-item"; const h=document.createElement("h3"); h.textContent=t; const ul=document.createElement("ul"); x.forEach(b=>{const li=document.createElement("li"); li.textContent=b; ul.appendChild(li);}); d.append(h,ul); wl.appendChild(d);});
-  const pl=$("primary-list"); pl.innerHTML="";
-  pl.appendChild(card(L,s,{id:PRIMARY.id,title:L.ui.primaryTitle,sub:L.ui.primarySub,to:PRIMARY.to,primary:true}));
-  const ml=$("member-list"); ml.innerHTML="";
-  MEMBERS.forEach(m=>ml.appendChild(card(L,s,{id:m.id,title:m.name,sub:m.role?m.role[lang]:L.ui.member,to:[m.email],member:m})));
-}
-document.querySelectorAll("input,textarea").forEach(el=>el.addEventListener("input",render));
-document.querySelectorAll("input[type=radio],input[type=checkbox]").forEach(el=>el.addEventListener("change",render));
-document.getElementById("ai-more-btn").addEventListener("click",e=>{const b=e.currentTarget, m=document.getElementById("ai-more"); m.hidden=!m.hidden; b.setAttribute("aria-expanded",String(!m.hidden));});
-function setLang(l){lang=l; try{localStorage.setItem("cpdli-lang",l)}catch(e){} render(); renderShare();}
-$("lang-en").addEventListener("click",()=>setLang("en"));
-$("lang-es").addEventListener("click",()=>setLang("es"));
-/* ── EVENTS (times in UTC; Eastern Daylight Time is UTC−4 until Nov 1) ── */
-const EVENTS={
-  meet:{start:"20261018T190000Z",end:"20261018T200000Z",loc:"Clocktower picnic area, Princeton Shopping Center, 301 N Harrison St, Princeton, NJ 08540"},
-  boe:{start:"20261027T230000Z",end:"20261028T010000Z",loc:"Princeton High School Performing Arts Center (PAC), 151 Moore St, Princeton, NJ 08540"},
-  forum:{start:"20261029T123000Z",end:"20261029T133000Z",loc:"Community Park School, 372 Witherspoon St, Princeton, NJ 08540"}
-};
-/* Past meetings stay listed but are marked "Past", greyed out, moved to the end, and lose their calendar buttons. */
-(function(){const u=x=>Date.UTC(+x.slice(0,4),+x.slice(4,6)-1,+x.slice(6,8),+x.slice(9,11),+x.slice(11,13));
-  const ul=document.querySelector(".dates"); if(!ul) return;
-  [...ul.querySelectorAll("li")].forEach(li=>{const b=li.querySelector("[data-ev]"); const e=b&&EVENTS[b.dataset.ev]; if(!e||u(e.end)>=Date.now()) return;
-    li.classList.add("past"); const tag=li.querySelector(".tag"); if(tag){tag.className="tag tag-past"; tag.dataset.i18n="tagPast";} b.remove(); ul.appendChild(li);});})();
-function icsEsc(t){return t.replace(/[\\,;]/g,m=>"\\"+m).replace(/\n/g,"\\n");}
-function renderCal(L){
-  document.querySelectorAll(".cal[data-ev]").forEach(box=>{
-    const k=box.dataset.ev, e=EVENTS[k], title=L.cal[k], url=location.href.split("#")[0];
-    const details=L.cal.desc+" "+SITE;
-    const g="https://calendar.google.com/calendar/render?action=TEMPLATE"+"&text="+encodeURIComponent(title)+"&dates="+e.start+"/"+e.end+"&details="+encodeURIComponent(details)+"&location="+encodeURIComponent(e.loc);
-    const ics=["BEGIN:VCALENDAR","VERSION:2.0","PRODID:-//CP DLI Parents//EN","BEGIN:VEVENT","UID:"+k+"-2026@cp-dli","DTSTAMP:20261014T000000Z","DTSTART:"+e.start,"DTEND:"+e.end,"SUMMARY:"+icsEsc(title),"LOCATION:"+icsEsc(e.loc),"DESCRIPTION:"+icsEsc(details),"END:VEVENT","END:VCALENDAR"].join("\r\n");
-    box.innerHTML="";
-    const lab=document.createElement("span"); lab.className="cal-lab"; lab.textContent=L.cal.add; box.appendChild(lab);
-    const a1=document.createElement("a"); a1.href=g; a1.target="_blank"; a1.rel="noopener"; a1.textContent=L.cal.google; box.appendChild(a1);
-    const a2=document.createElement("a"); a2.href="data:text/calendar;charset=utf-8,"+encodeURIComponent(ics); a2.download=({meet:"candidates-meet-oct-18",boe:"board-meeting-oct-27",forum:"parent-forum-oct-29"}[k])+".ics"; a2.textContent=L.cal.ics; box.appendChild(a2);
-    [a1,a2].forEach(a=>a.addEventListener("click",()=>commitTo(k)));
-    const gs=document.createElement("span"); gs.className="going"; gs.dataset.going=k; box.appendChild(gs);
+document.querySelectorAll(".lang-block").forEach(blk=>{
+  const tabs=[...blk.querySelectorAll('.tabs a[role="tab"]')];
+  tabs.forEach((a,i)=>{
+    const id=a.getAttribute("href").slice(1);
+    a.addEventListener("click",e=>{e.preventDefault();showTab(id,false);history.replaceState(null,"","#"+id);});
+    const nxt=tabs[i+1]; if(!nxt) return;
+    const b=document.createElement("button"); b.type="button"; b.className="next";
+    b.textContent=(blk.id==="block-es"?"Siguiente: ":"Next: ")+nxt.textContent+" →";
+    b.addEventListener("click",()=>{const n=nxt.getAttribute("href").slice(1);showTab(n,true);history.replaceState(null,"","#"+n);});
+    document.getElementById(id).appendChild(b);
   });
-  showGoing();
-}
-
-/* ── COMMITMENTS: adding an event to a calendar counts once per browser ── */
-const GOING={};
-function mineHas(k){ try{return localStorage.getItem("cpdli-going-"+k)==="1";}catch(e){return false;} }
-function showGoing(){
-  const L=T[lang];
-  document.querySelectorAll(".going[data-going]").forEach(el=>{
-    const k=el.dataset.going, n=GOING[k];
-    const parts=[]; if(typeof n==="number" && n>0) parts.push(L.cal.going(n)); if(mineHas(k)) parts.push(L.cal.mine);
-    el.textContent=parts.join(" · ");
-  });
-  const ks=Object.keys(EVENTS);
-  if(ks.every(k=>typeof GOING[k]==="number")){
-    $("going-total-n").textContent=ks.reduce((a,k)=>a+GOING[k],0).toLocaleString();
-    $("going-total").hidden=false;
-  }
-}
-async function loadGoing(){
-  if(!db) return;
-  try{
-    for(const k of Object.keys(EVENTS)){
-      const {count,error}=await db.from("event_commitments").select("*",{count:"exact",head:true}).eq("event",k);
-      if(error) return;
-      GOING[k]=count||0;
-    }
-    showGoing();
-  }catch(e){}
-}
-async function commitTo(k){
-  if(mineHas(k)) return;
-  try{localStorage.setItem("cpdli-going-"+k,"1");}catch(e){}
-  if(typeof GOING[k]==="number") GOING[k]++;
-  showGoing();
-  if(db&&!ME){ try{await db.from("event_commitments").insert([{event:k,session_id:SESSION}]);}catch(e){} }
-}
-
-/* ── SUGGESTIONS (stored in Supabase; readable only from the dashboard) ── */
-if(db) $("feedback").hidden=false;
-$("fb-send").addEventListener("click",async()=>{
-  const L=T[lang], st=$("fb-status"), text=$("fb-text").value.trim();
-  if(!text){st.textContent=L.fbEmpty; return;}
-  const btn=$("fb-send"); btn.disabled=true;
-  try{
-    const {error}=await db.from("suggestions").insert([{message:text,contact:$("fb-contact").value.trim()||null,lang}]);
-    if(error) throw error;
-    st.textContent=L.fbOk; $("fb-text").value=""; $("fb-contact").value="";
-  }catch(e){st.textContent=L.fbErr;}
-  btn.disabled=false;
+  showTab(tabs[0].getAttribute("href").slice(1),false);
 });
-(function shuffleArgs(){const fs=$("points"); const items=[...fs.querySelectorAll("label.opt")]; for(let i=items.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[items[i],items[j]]=[items[j],items[i]];} items.forEach(el=>fs.appendChild(el));})();
-/* ── SHARING ── */
-const SITE="https://cp-pps.github.io/dli/";
-const PETITION="https://www.change.org/p/defend-the-dli-program-at-community-park";
-function renderShare(){
-  const L=T[lang], msg=L.shareMsg+" "+SITE;
-  $("sh-wa").href="https://wa.me/?text="+encodeURIComponent(msg);
-  $("sh-mail").href="mailto:?subject="+encodeURIComponent(L.shareSubj)+"&body="+encodeURIComponent(msg);
-  $("sh-native").hidden=!navigator.share;
-  $("sh-sms").href="sms:?&body="+encodeURIComponent(msg);
-}
-$("sh-native").addEventListener("click",async()=>{try{await navigator.share({title:T[lang].shareSubj,text:T[lang].shareMsg,url:SITE});}catch(e){}});
-$("sh-copy").addEventListener("click",e=>copyText(SITE,e.currentTarget,T[lang].shCopy).then(ok=>{if(ok){e.currentTarget.textContent=T[lang].shCopied;}}));
-try{ if(window.QRCode) new QRCode($("qr"),{text:SITE,width:240,height:240,correctLevel:QRCode.CorrectLevel.M}); else $("qr").hidden=true; }catch(e){ $("qr").hidden=true; }
-/* ── SIGN & SHARE COUNTERS: each button counts once per browser ── */
-const ACT={sign:null,share:null};
-function actDone(k){ try{return localStorage.getItem("cpdli-act-"+k)==="1";}catch(e){return false;} }
-function showActs(){
-  if(typeof ACT.sign==="number"){ $("sign-n").textContent=ACT.sign.toLocaleString(); $("sign-stat").hidden=false; }
-  if(typeof ACT.share==="number"){ $("share-n").textContent=ACT.share.toLocaleString(); $("share-stat").hidden=false; }
-}
-async function loadActs(){
-  if(!db) return;
-  try{
-    for(const a of ["sign","share"]){
-      const {count,error}=await db.from("site_actions").select("*",{count:"exact",head:true}).eq("action",a);
-      if(error) return; ACT[a]=count||0;
-    }
-    showActs();
-  }catch(e){}
-}
-function logAct(action,key){
-  if(actDone(key)) return;
-  try{localStorage.setItem("cpdli-act-"+key,"1");}catch(e){}
-  if(typeof ACT[action]==="number"){ ACT[action]++; showActs(); }
-  if(db&&!ME){ db.from("site_actions").insert([{action,channel:key,session_id:SESSION}]).then(()=>{},()=>{}); }
-}
-$("way-sign").addEventListener("click",()=>logAct("sign","sign"));
-["sh-native","sh-copy","sh-sms","sh-wa","sh-mail","sg-party","sg-play"].forEach(id=>$(id).addEventListener("click",()=>logAct("share",id)));
-$("way-petition").addEventListener("click",()=>logAct("petition","petition"));
-(function(){const w=$("ways"), b=$("to-top"); const upd=()=>{b.hidden=w.getBoundingClientRect().bottom>0;}; addEventListener("scroll",upd,{passive:true}); upd();})();
-/* ── VISITS: one anonymous row per browser session ── */
-(function(){ if(!db||ME) return; try{
-  if(sessionStorage.getItem("cpdli-visited")) return; sessionStorage.setItem("cpdli-visited","1");
-  let v=localStorage.getItem("cpdli-vid"); if(!v){ v=Math.random().toString(36).slice(2)+Math.random().toString(36).slice(2); localStorage.setItem("cpdli-vid",v); }
-  db.from("page_visits").insert([{visitor_id:v,session_id:SESSION,lang}]).then(()=>{},()=>{});
-}catch(e){} })();
-render(); renderShare(); loadCounter(); loadGoing();
+{const h=location.hash.slice(1); if(/^es-/.test(h)) lang="es"; if(/^en-/.test(h)) lang="en"; showTab(h,false);}
+setLang(lang,false);
+document.getElementById("lang-en").addEventListener("click",()=>setLang("en",true));
+document.getElementById("lang-es").addEventListener("click",()=>setLang("es",true));
 </script>
 </body>
 </html>
