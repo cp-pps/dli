@@ -64,9 +64,20 @@ tbody th{font-weight:600;width:30%}
 .cal span{flex-basis:100%;font-size:12px;font-weight:600;color:var(--ink)}
 .cal a{font:600 12px var(--font);color:var(--ink);background:var(--card);border:1.5px solid #f5c2c2;border-radius:7px;padding:4px 10px;text-decoration:none}
 .cal a:hover{border-color:var(--red)}
+
+.tabs a{display:inline-block;padding:7px 13px;border:1.5px solid #d0d8e4;border-radius:999px;background:var(--card);color:var(--ink);font:600 14px var(--font);text-decoration:none;line-height:1.3}
+.tabs a:hover{border-color:var(--ink);text-decoration:none}
+.tabs a[aria-selected="true"]{background:var(--ink);border-color:var(--ink);color:#fff}
+.tabs a.stand-tab{border-color:var(--red);color:var(--red)}
+.tabs a.stand-tab[aria-selected="true"]{background:var(--red);border-color:var(--red);color:#fff}
+.stand{border-color:#f5c2c2}
+.next{align-self:flex-start;margin-top:4px;font:700 14px var(--font);color:var(--link);background:none;border:0;padding:0;cursor:pointer}
+.next:hover{text-decoration:underline}
 .toc ol{margin:0;padding-left:20px;display:flex;flex-direction:column;gap:6px;font-size:15px;line-height:1.45}
 .toc a{font-weight:600;text-decoration:none}
 .toc a:hover{text-decoration:underline}
+.toc .tabs{list-style:none;margin:0;padding:0;flex-direction:row;flex-wrap:wrap;gap:8px}
+.toc .tabs a:hover{text-decoration:none}
 section[id]{scroll-margin-top:16px}
 html{scroll-behavior:smooth}
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
@@ -104,18 +115,19 @@ html{scroll-behavior:smooth}
   </ul>
 </section>
 
-<nav class="card toc" aria-label="Contents">
-  <h2 class="label">Contents</h2>
-  <ol>
-    <li><a href="#en-s1">What's being proposed</a></li>
-    <li><a href="#en-s2">Reasons given for the recommendation</a></li>
-    <li><a href="#en-s3">Where the principal and the Board stand</a></li>
-    <li><a href="#en-s4">What parents, students and community members said</a></li>
+<nav class="card toc" aria-label="Sections">
+  <h2 class="label">Sections</h2>
+  <ol class="tabs" role="tablist">
+    <li><a href="#en-s1" role="tab">The proposal</a></li>
+    <li><a href="#en-s2" role="tab">Reasons given</a></li>
+    <li><a href="#en-s3" role="tab">Principal &amp; Board</a></li>
+    <li><a href="#en-s4" role="tab">Public comment</a></li>
+    <li><a href="#en-s5" role="tab" class="stand-tab">Where CP parents stand</a></li>
   </ol>
 </nav>
 
 <section class="card" id="en-s1">
-  <h2 class="sec-h">1. What's being proposed</h2>
+  <h2 class="sec-h">What's being proposed</h2>
   <p>The superintendent said they had considered, and <strong>rejected</strong>, phasing the program out entirely <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4146s" target="_blank" rel="noopener">1:09:06</a>. The recommendation itself starts at <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4222s" target="_blank" rel="noopener">1:10:22</a>.</p>
   <div class="tbl"><table>
     <thead><tr><th></th><th>Today (DLI)</th><th>Proposed ("Spanish-intensive")</th></tr></thead>
@@ -159,7 +171,7 @@ html{scroll-behavior:smooth}
 </section>
 
 <section class="card" id="en-s2">
-  <h2 class="sec-h">2. Reasons given for the recommendation</h2>
+  <h2 class="sec-h">Reasons given for the recommendation</h2>
   <p>The full presentation starts at <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=641s" target="_blank" rel="noopener">0:10:41</a> and runs about 75 minutes. The main reasons given:</p>
   <p class="flag">Note: the data behind these reasons has not been shared with parents, despite pending public-records (OPRA) requests, so families have not been able to check it themselves. Our comments below rely only on the analysis Dr. LaSusa presented at the meeting.</p>
   <ol class="reasons">
@@ -249,7 +261,7 @@ html{scroll-behavior:smooth}
 </section>
 
 <section class="card" id="en-s3">
-  <h2 class="sec-h">3. Where the principal and the Board stand</h2>
+  <h2 class="sec-h">Where the principal and the Board stand</h2>
   <h3>CP's principal</h3>
   <p>Principal <strong>Dineen Gruchacz</strong> has led CP since DLI began in 2015. The principal thanked the teachers and <strong>supported the change</strong> <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=5240s" target="_blank" rel="noopener">1:27:20</a>: "Supporting this decision does not diminish our pride in dual language… it may be time to move in a new direction."</p>
   <h3>The Board</h3>
@@ -277,7 +289,7 @@ html{scroll-behavior:smooth}
 </section>
 
 <section class="card" id="en-s4">
-  <h2 class="sec-h">4. What parents, students and community members said</h2>
+  <h2 class="sec-h">What parents, students and community members said</h2>
   <p>Public comment starts at <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=7056s" target="_blank" rel="noopener">1:57:36</a>. <strong>21 people spoke:</strong> 15 adults (mostly CP parents, plus a CP alum and a Princeton University professor) and 6 current or former DLI students.</p>
   <h3>Where they stood</h3>
   <ul class="list">
@@ -317,6 +329,17 @@ html{scroll-behavior:smooth}
   </ul>
 </section>
 
+<section class="card stand" id="en-s5">
+  <h2 class="sec-h">Where CP parents stand</h2>
+  <ul class="list">
+    <li><strong>We support DLI at CP, and we support reforming it.</strong> CP teachers have raised real concerns: they teach two groups of students, hold double the parent conferences, and adapt Spanish materials on their own time. We should listen to them and find creative solutions.</li>
+    <li><strong>Our objection is to the process.</strong> Dr. LaSusa spent a year and a half gathering input from teachers and families, and we're grateful for that effort. But it was one-way: he said at the outset that no one, including CP teachers, the principal and the Board, knew what he would recommend <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=985s" target="_blank" rel="noopener">0:16:25</a>. A single recommendation, developed by one person, is now headed for a possible vote at the Board's next meeting.</li>
+    <li><strong>The evidence isn't public.</strong> Families have filed public-records requests for per-pupil costs, Spanish proficiency results, academic performance, enrollment by group, and the teacher and parent input itself. The district has extended its deadline to October 30, three days after the recommendation.</li>
+    <li class="key"><strong>Our ask: don't vote in November.</strong> Convene a working group led by Dr. LaSusa, with CP teachers at its center and parents, students and administrators alongside them. Publish the underlying data, and give the group time to consider solutions. We're not resisting change. We're asking to help shape it.</li>
+    <li><strong>We can help.</strong> Among us are lawyers, scientists, and people whose profession is data and public information. The meeting ran more than three hours, out of reach for most working parents, so we built this account of it, with each point linked to the video.</li>
+  </ul>
+</section>
+
 <p class="foot">How this was made: from an automatic transcript of the meeting video. Please check the video before quoting anyone.</p>
 
   </div>
@@ -334,18 +357,19 @@ html{scroll-behavior:smooth}
   </ul>
 </section>
 
-<nav class="card toc" aria-label="Contenido">
-  <h2 class="label">Contenido</h2>
-  <ol>
-    <li><a href="#es-s1">Qué se propone</a></li>
-    <li><a href="#es-s2">Razones dadas para la recomendación</a></li>
-    <li><a href="#es-s3">La posición de la dirección y de la Junta</a></li>
-    <li><a href="#es-s4">Qué dijeron familias, estudiantes y comunidad</a></li>
+<nav class="card toc" aria-label="Secciones">
+  <h2 class="label">Secciones</h2>
+  <ol class="tabs" role="tablist">
+    <li><a href="#es-s1" role="tab">La propuesta</a></li>
+    <li><a href="#es-s2" role="tab">Razones dadas</a></li>
+    <li><a href="#es-s3" role="tab">Dirección y Junta</a></li>
+    <li><a href="#es-s4" role="tab">Comentarios del público</a></li>
+    <li><a href="#es-s5" role="tab" class="stand-tab">La postura de las familias de CP</a></li>
   </ol>
 </nav>
 
 <section class="card" id="es-s1">
-  <h2 class="sec-h">1. Qué se propone</h2>
+  <h2 class="sec-h">Qué se propone</h2>
   <p>El superintendente dijo que había considerado, y <strong>descartado</strong>, eliminar el programa por completo de forma gradual <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4146s" target="_blank" rel="noopener">1:09:06</a>. La recomendación empieza en <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4222s" target="_blank" rel="noopener">1:10:22</a>.</p>
   <div class="tbl"><table>
     <thead><tr><th></th><th>Hoy (DLI)</th><th>Propuesta ("español intensivo")</th></tr></thead>
@@ -389,7 +413,7 @@ html{scroll-behavior:smooth}
 </section>
 
 <section class="card" id="es-s2">
-  <h2 class="sec-h">2. Razones dadas para la recomendación</h2>
+  <h2 class="sec-h">Razones dadas para la recomendación</h2>
   <p>La presentación completa empieza en <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=641s" target="_blank" rel="noopener">0:10:41</a> y dura unos 75 minutos. Las razones principales:</p>
   <p class="flag">Nota: los datos en los que se basan estas razones no se han compartido con las familias, a pesar de las solicitudes de registros públicos (OPRA) pendientes, así que las familias no han podido revisarlos por su cuenta. Nuestros comentarios se basan únicamente en el análisis que el Dr. LaSusa presentó en la reunión.</p>
   <ol class="reasons">
@@ -479,7 +503,7 @@ html{scroll-behavior:smooth}
 </section>
 
 <section class="card" id="es-s3">
-  <h2 class="sec-h">3. La posición de la dirección y de la Junta</h2>
+  <h2 class="sec-h">La posición de la dirección y de la Junta</h2>
   <h3>La dirección de CP</h3>
   <p><strong>Dineen Gruchacz</strong> dirige CP desde que empezó DLI en 2015. Agradeció a los docentes y <strong>apoyó el cambio</strong> <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=5240s" target="_blank" rel="noopener">1:27:20</a>: "Apoyar esta decisión no disminuye nuestro orgullo por la inmersión dual… puede que sea momento de tomar un nuevo rumbo".</p>
   <h3>La Junta</h3>
@@ -507,7 +531,7 @@ html{scroll-behavior:smooth}
 </section>
 
 <section class="card" id="es-s4">
-  <h2 class="sec-h">4. Qué dijeron familias, estudiantes y comunidad</h2>
+  <h2 class="sec-h">Qué dijeron familias, estudiantes y comunidad</h2>
   <p>Los comentarios del público empiezan en <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=7056s" target="_blank" rel="noopener">1:57:36</a>. <strong>Hablaron 21 personas:</strong> 15 adultos (sobre todo familias de CP, además de una persona exalumna de CP y un miembro del profesorado de la Universidad de Princeton) y 6 estudiantes o exestudiantes de DLI.</p>
   <h3>Sus posiciones</h3>
   <ul class="list">
@@ -547,6 +571,17 @@ html{scroll-behavior:smooth}
   </ul>
 </section>
 
+<section class="card stand" id="es-s5">
+  <h2 class="sec-h">La postura de las familias de CP</h2>
+  <ul class="list">
+    <li><strong>Apoyamos DLI en CP, y apoyamos reformarlo.</strong> Los docentes de CP han planteado inquietudes reales: enseñan a dos grupos de estudiantes, tienen el doble de reuniones con familias y adaptan los materiales en español en su propio tiempo. Debemos escucharlos y buscar soluciones creativas.</li>
+    <li><strong>Lo que objetamos es el proceso.</strong> El Dr. LaSusa dedicó año y medio a recoger opiniones de docentes y familias, y agradecemos ese esfuerzo. Pero fue en una sola dirección: dijo al comienzo que nadie, ni los docentes de CP, ni la directora, ni la Junta, sabía lo que iba a recomendar <a class="ts" href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=985s" target="_blank" rel="noopener">0:16:25</a>. Una sola recomendación, elaborada por una sola persona, va ahora hacia una posible votación en la próxima reunión de la Junta.</li>
+    <li><strong>La evidencia no es pública.</strong> Varias familias presentaron solicitudes de registros públicos sobre el costo por estudiante, los resultados de dominio del español, el desempeño académico, la matrícula por grupo y las propias opiniones de docentes y familias. El distrito extendió su plazo hasta el 30 de octubre, tres días después de la recomendación.</li>
+    <li class="key"><strong>Nuestro pedido: que no se vote en noviembre.</strong> Que se forme un grupo de trabajo dirigido por el Dr. LaSusa, con los docentes de CP en el centro y con familias, estudiantes y administradores a su lado. Que se publiquen los datos y se dé tiempo al grupo para considerar soluciones. No nos resistimos al cambio. Pedimos ser parte de darle forma.</li>
+    <li><strong>Podemos ayudar.</strong> Entre nosotros hay abogados, científicos y personas cuya profesión son los datos y la información pública. La reunión duró más de tres horas, algo imposible para la mayoría de las familias que trabajan, así que preparamos este resumen, con cada punto enlazado al video.</li>
+  </ul>
+</section>
+
 <p class="foot">Cómo se hizo: a partir de una transcripción automática del video de la reunión. Antes de citar a alguien, compruébelo en el video.</p>
 
   </div>
@@ -569,6 +604,29 @@ function setLang(l,save){
 if(Date.now()>Date.UTC(2026,9,29,13,30)) document.querySelectorAll(".cal,.ask").forEach(c=>c.remove());
 let lang="en";
 try{const s=localStorage.getItem("cpdli-lang"); if(s==="es"||s==="en") lang=s;}catch(e){}
+/* Sections show one at a time as tabs; #en-s2 style links open that tab. */
+function showTab(id,scroll){
+  const sec=document.getElementById(id); if(!sec) return false;
+  const blk=sec.closest(".lang-block");
+  blk.querySelectorAll("section[id]").forEach(x=>x.hidden=x!==sec);
+  blk.querySelectorAll(".tabs a").forEach(a=>a.setAttribute("aria-selected",a.getAttribute("href")==="#"+id));
+  if(scroll) blk.querySelector(".toc").scrollIntoView({block:"start"});
+  return true;
+}
+document.querySelectorAll(".lang-block").forEach(blk=>{
+  const tabs=[...blk.querySelectorAll(".tabs a")];
+  tabs.forEach((a,i)=>{
+    const id=a.getAttribute("href").slice(1);
+    a.addEventListener("click",e=>{e.preventDefault();showTab(id,false);history.replaceState(null,"","#"+id);});
+    const nxt=tabs[i+1]; if(!nxt) return;
+    const b=document.createElement("button"); b.type="button"; b.className="next";
+    b.textContent=(blk.id==="block-es"?"Siguiente: ":"Next: ")+nxt.textContent+" →";
+    b.addEventListener("click",()=>{const n=nxt.getAttribute("href").slice(1);showTab(n,true);history.replaceState(null,"","#"+n);});
+    document.getElementById(id).appendChild(b);
+  });
+  showTab(tabs[0].getAttribute("href").slice(1),false);
+});
+{const h=location.hash.slice(1); if(/^es-/.test(h)) lang="es"; if(/^en-/.test(h)) lang="en"; showTab(h,false);}
 setLang(lang,false);
 document.getElementById("lang-en").addEventListener("click",()=>setLang("en",true));
 document.getElementById("lang-es").addEventListener("click",()=>setLang("es",true));
