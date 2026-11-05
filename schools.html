@@ -1,0 +1,763 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Community Park and Princeton's other elementary schools · Save CP Dual Language</title>
+<meta name="description" content="Spending, teachers, students, growth and teacher pay at Community Park compared with Princeton's other elementary schools, from public state and Board of Education records.">
+<style>
+:root {
+  --color-bg: #ffffff; --color-fg: #1d2330; --color-fg-muted: #5d6474; --color-panel: #f7f8fa;
+  --color-border-line: #dfe2e8; --color-ok: #1f7a4d; --color-warn: #a35d00; --color-bad: #b42318;
+  --cds-chart-grid: #e6e8ec; --cds-chart-axis: #9aa0aa; --cds-chart-reference: #7d8492; --cds-chart-muted: #a7adb8;
+  --cds-surface-popover: #ffffff; --cds-border: #d5d9e0; --cds-shadow-popover: 0 4px 16px rgba(20,25,35,.12);
+  --cds-text-secondary: #5d6474;
+  --font-anthropic-sans: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --font-anthropic-serif: Georgia, "Times New Roman", serif;
+  --cds-font-size-caption: 12.5px; --cds-font-size-body: 15px; --cds-font-size-heading: 17px; --cds-font-size-title: 30px;
+  --cds-font-weight-medium: 600;
+  --cds-gap-xs: 4px; --cds-gap-sm: 8px; --cds-gap-md: 16px; --cds-gap-lg: 24px; --cds-gap-xl: 40px;
+  --cds-pad-xs: 4px; --cds-pad-sm: 8px; --cds-pad-md: 12px; --cds-pad-lg: 18px; --cds-pad-xl: 28px;
+  --cds-radius: 8px; --cds-dur-slow: .3s;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-bg: #14171d; --color-fg: #e8eaee; --color-fg-muted: #a3a9b5; --color-panel: #1c2028;
+    --color-border-line: #2d323c; --cds-chart-grid: #2a2f38; --cds-chart-axis: #6b7280;
+    --cds-chart-reference: #8b93a1; --cds-chart-muted: #6b7280; --cds-surface-popover: #222731;
+    --cds-border: #353b46; --cds-text-secondary: #a3a9b5; color-scheme: dark;
+  }
+}
+body { margin: 0; background: var(--color-bg); color: var(--color-fg); font-family: var(--font-anthropic-sans); }
+#dash-root { padding: 24px max(16px, env(safe-area-inset-right, 0px)) 48px max(16px, env(safe-area-inset-left, 0px)); }
+.site-nav { max-width: 72rem; margin: 0 auto 20px; font-size: 14px; }
+.site-nav a { color: inherit; }
+</style>
+<script src="https://cdn.jsdelivr.net/npm/d3@7.9.0/dist/d3.min.js"></script>
+<script>
+// Stand-in for the dashboard runtime: fixed datasets, calcs, drawings.
+window.dash = (() => {
+  const DATA = {"profile":[{"school_year":"2016-17","code":"050","school":"Princeton High School","enrollment":"1576.0","teachers":"129.0","students_per_teacher":"12","students_per_admin":"143","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"","teacher_yrs_in_district":"10.5","teacher_pct_4yrs_in_district":"74.4","econ_dis":"8.9","swd":"13.1","ell":"3.1"},{"school_year":"2016-17","code":"085","school":"Princeton Middle School","enrollment":"788.0","teachers":"71.0","students_per_teacher":"11","students_per_admin":"131","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"","teacher_yrs_in_district":"9.8","teacher_pct_4yrs_in_district":"70.4","econ_dis":"13.5","swd":"16.8","ell":"4.4"},{"school_year":"2016-17","code":"070","school":"Johnson Park","enrollment":"380.0","teachers":"42.0","students_per_teacher":"9","students_per_admin":"380","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"","teacher_yrs_in_district":"10.2","teacher_pct_4yrs_in_district":"76.2","econ_dis":"27.4","swd":"25.3","ell":"6.6"},{"school_year":"2016-17","code":"080","school":"Littlebrook","enrollment":"330.0","teachers":"38.0","students_per_teacher":"9","students_per_admin":"330","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"","teacher_yrs_in_district":"10.7","teacher_pct_4yrs_in_district":"73.7","econ_dis":"9.1","swd":"13.3","ell":"10.9"},{"school_year":"2016-17","code":"090","school":"Riverside","enrollment":"290.0","teachers":"36.0","students_per_teacher":"8","students_per_admin":"290","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"","teacher_yrs_in_district":"11.0","teacher_pct_4yrs_in_district":"63.9","econ_dis":"19.0","swd":"23.4","ell":"4.8"},{"school_year":"2016-17","code":"110","school":"Community Park","enrollment":"375.0","teachers":"36.0","students_per_teacher":"10","students_per_admin":"188","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"","teacher_yrs_in_district":"11.0","teacher_pct_4yrs_in_district":"77.8","econ_dis":"17.6","swd":"16.5","ell":"6.7"},{"school_year":"2017-18","code":"050","school":"Princeton High School","enrollment":"1596.0","teachers":"133.0","students_per_teacher":"12","students_per_admin":"145","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"13.6","teacher_yrs_in_district":"11.0","teacher_pct_4yrs_in_district":"75.9","econ_dis":"8.9","swd":"12.7","ell":"2.3"},{"school_year":"2017-18","code":"085","school":"Princeton Middle School","enrollment":"721.0","teachers":"70.0","students_per_teacher":"10","students_per_admin":"144","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"13.4","teacher_yrs_in_district":"10.2","teacher_pct_4yrs_in_district":"67.1","econ_dis":"11.7","swd":"16.2","ell":"3.6"},{"school_year":"2017-18","code":"070","school":"Johnson Park","enrollment":"390.0","teachers":"41.0","students_per_teacher":"10","students_per_admin":"390","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"13.5","teacher_yrs_in_district":"11.0","teacher_pct_4yrs_in_district":"78.0","econ_dis":"27.9","swd":"27.9","ell":"5.9"},{"school_year":"2017-18","code":"080","school":"Littlebrook","enrollment":"372.0","teachers":"35.0","students_per_teacher":"11","students_per_admin":"372","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"14.5","teacher_yrs_in_district":"11.7","teacher_pct_4yrs_in_district":"80.0","econ_dis":"8.1","swd":"15.1","ell":"9.1"},{"school_year":"2017-18","code":"090","school":"Riverside","enrollment":"298.0","teachers":"35.0","students_per_teacher":"9","students_per_admin":"298","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"13.9","teacher_yrs_in_district":"11.3","teacher_pct_4yrs_in_district":"74.3","econ_dis":"14.1","swd":"24.5","ell":"5.0"},{"school_year":"2017-18","code":"110","school":"Community Park","enrollment":"381.0","teachers":"36.0","students_per_teacher":"11","students_per_admin":"191","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"13.5","teacher_yrs_in_district":"11.5","teacher_pct_4yrs_in_district":"77.8","econ_dis":"20.2","swd":"18.6","ell":"4.5"},{"school_year":"2018-19","code":"050","school":"Princeton High School","enrollment":"1565.0","teachers":"133.0","students_per_teacher":"12","students_per_admin":"130","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"14.0","teacher_yrs_in_district":"11.6","teacher_pct_4yrs_in_district":"82.0","econ_dis":"8.2","swd":"14.0","ell":"2.4"},{"school_year":"2018-19","code":"085","school":"Princeton Middle School","enrollment":"754.0","teachers":"68.0","students_per_teacher":"11","students_per_admin":"189","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"13.1","teacher_yrs_in_district":"10.3","teacher_pct_4yrs_in_district":"70.6","econ_dis":"11.8","swd":"17.8","ell":"3.8"},{"school_year":"2018-19","code":"070","school":"Johnson Park","enrollment":"377.0","teachers":"40.0","students_per_teacher":"9","students_per_admin":"377","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"13.2","teacher_yrs_in_district":"10.7","teacher_pct_4yrs_in_district":"70.0","econ_dis":"30.0","swd":"27.9","ell":"8.8"},{"school_year":"2018-19","code":"080","school":"Littlebrook","enrollment":"378.0","teachers":"37.0","students_per_teacher":"10","students_per_admin":"378","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"14.9","teacher_yrs_in_district":"11.8","teacher_pct_4yrs_in_district":"78.4","econ_dis":"7.1","swd":"14.6","ell":"8.2"},{"school_year":"2018-19","code":"090","school":"Riverside","enrollment":"317.0","teachers":"37.0","students_per_teacher":"9","students_per_admin":"317","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"13.4","teacher_yrs_in_district":"11.2","teacher_pct_4yrs_in_district":"75.7","econ_dis":"11.7","swd":"25.2","ell":"6.9"},{"school_year":"2018-19","code":"110","school":"Community Park","enrollment":"376.0","teachers":"39.0","students_per_teacher":"10","students_per_admin":"188","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"14.5","teacher_yrs_in_district":"12.1","teacher_pct_4yrs_in_district":"84.6","econ_dis":"18.1","swd":"17.3","ell":"8.8"},{"school_year":"2019-20","code":"050","school":"Princeton High School","enrollment":"1560.0","teachers":"124.0","students_per_teacher":"13","students_per_admin":"130","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"15.2","teacher_yrs_in_district":"12.5","teacher_pct_4yrs_in_district":"87.1","econ_dis":"9.4","swd":"13.4","ell":"3.0"},{"school_year":"2019-20","code":"085","school":"Princeton Middle School","enrollment":"777.0","teachers":"68.0","students_per_teacher":"11","students_per_admin":"155","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"12.4","teacher_yrs_in_district":"10.0","teacher_pct_4yrs_in_district":"72.1","econ_dis":"13.5","swd":"15.2","ell":"2.8"},{"school_year":"2019-20","code":"070","school":"Johnson Park","enrollment":"373.0","teachers":"39.0","students_per_teacher":"10","students_per_admin":"373","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"13.6","teacher_yrs_in_district":"11.2","teacher_pct_4yrs_in_district":"69.2","econ_dis":"25.5","swd":"28.2","ell":"9.4"},{"school_year":"2019-20","code":"080","school":"Littlebrook","enrollment":"407.0","teachers":"37.0","students_per_teacher":"11","students_per_admin":"407","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"15.6","teacher_yrs_in_district":"12.6","teacher_pct_4yrs_in_district":"83.8","econ_dis":"6.9","swd":"17.4","ell":"7.1"},{"school_year":"2019-20","code":"090","school":"Riverside","enrollment":"318.0","teachers":"37.0","students_per_teacher":"9","students_per_admin":"318","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"14.2","teacher_yrs_in_district":"11.2","teacher_pct_4yrs_in_district":"75.7","econ_dis":"9.7","swd":"23.3","ell":"6.0"},{"school_year":"2019-20","code":"110","school":"Community Park","enrollment":"408.0","teachers":"34.0","students_per_teacher":"12","students_per_admin":"204","admins":"","counselors":"","child_study_team":"","nurses":"","psychologists":"","social_workers":"","teacher_yrs_total":"15.3","teacher_yrs_in_district":"13.1","teacher_pct_4yrs_in_district":"85.3","econ_dis":"19.6","swd":"13.5","ell":"9.3"},{"school_year":"2020-21","code":"050","school":"Princeton High School","enrollment":"1533.0","teachers":"129.0","students_per_teacher":"12","students_per_admin":"128","admins":"12.0","counselors":"10.0","child_study_team":"7.0","nurses":"2.0","psychologists":"","social_workers":"","teacher_yrs_total":"15.4","teacher_yrs_in_district":"12.5","teacher_pct_4yrs_in_district":"86.0","econ_dis":"8.1","swd":"12.9","ell":"2.4"},{"school_year":"2020-21","code":"085","school":"Princeton Middle School","enrollment":"802.0","teachers":"71.0","students_per_teacher":"11","students_per_admin":"160","admins":"5.0","counselors":"3.0","child_study_team":"3.0","nurses":"1.0","psychologists":"","social_workers":"","teacher_yrs_total":"12.3","teacher_yrs_in_district":"10.0","teacher_pct_4yrs_in_district":"76.1","econ_dis":"13.1","swd":"16.0","ell":"2.9"},{"school_year":"2020-21","code":"070","school":"Johnson Park","enrollment":"337.0","teachers":"39.0","students_per_teacher":"9","students_per_admin":"337","admins":"1.0","counselors":"1.0","child_study_team":"3.0","nurses":"1.0","psychologists":"","social_workers":"","teacher_yrs_total":"14.5","teacher_yrs_in_district":"12.1","teacher_pct_4yrs_in_district":"82.1","econ_dis":"27.9","swd":"27.3","ell":"6.2"},{"school_year":"2020-21","code":"080","school":"Littlebrook","enrollment":"349.0","teachers":"41.0","students_per_teacher":"9","students_per_admin":"349","admins":"1.0","counselors":"1.0","child_study_team":"3.0","nurses":"1.0","psychologists":"","social_workers":"","teacher_yrs_total":"13.7","teacher_yrs_in_district":"11.2","teacher_pct_4yrs_in_district":"75.6","econ_dis":"5.7","swd":"14.0","ell":"6.0"},{"school_year":"2020-21","code":"090","school":"Riverside","enrollment":"283.0","teachers":"38.0","students_per_teacher":"7","students_per_admin":"283","admins":"1.0","counselors":"1.0","child_study_team":"3.0","nurses":"1.0","psychologists":"","social_workers":"","teacher_yrs_total":"13.9","teacher_yrs_in_district":"11.5","teacher_pct_4yrs_in_district":"84.2","econ_dis":"8.1","swd":"24.4","ell":"2.5"},{"school_year":"2020-21","code":"110","school":"Community Park","enrollment":"327.0","teachers":"33.0","students_per_teacher":"10","students_per_admin":"164","admins":"2.0","counselors":"1.0","child_study_team":"3.0","nurses":"1.0","psychologists":"","social_workers":"","teacher_yrs_total":"14.8","teacher_yrs_in_district":"12.8","teacher_pct_4yrs_in_district":"81.8","econ_dis":"17.4","swd":"14.1","ell":"7.6"},{"school_year":"2021-22","code":"050","school":"Princeton High School","enrollment":"1563.0","teachers":"131.0","students_per_teacher":"12","students_per_admin":"142","admins":"11.0","counselors":"10.0","child_study_team":"8.0","nurses":"2.0","psychologists":"2.0","social_workers":"2.0","teacher_yrs_total":"15.4","teacher_yrs_in_district":"12.4","teacher_pct_4yrs_in_district":"80.9","econ_dis":"9.6","swd":"12.7","ell":"3.3"},{"school_year":"2021-22","code":"085","school":"Princeton Middle School","enrollment":"840.0","teachers":"72.0","students_per_teacher":"12","students_per_admin":"168","admins":"5.0","counselors":"4.0","child_study_team":"5.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"12.6","teacher_yrs_in_district":"10.1","teacher_pct_4yrs_in_district":"73.6","econ_dis":"15.6","swd":"16.0","ell":"3.7"},{"school_year":"2021-22","code":"070","school":"Johnson Park","enrollment":"386.0","teachers":"41.0","students_per_teacher":"9","students_per_admin":"386","admins":"1.0","counselors":"1.0","child_study_team":"7.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"15.3","teacher_yrs_in_district":"13.1","teacher_pct_4yrs_in_district":"82.9","econ_dis":"28.2","swd":"21.0","ell":"7.8"},{"school_year":"2021-22","code":"080","school":"Littlebrook","enrollment":"361.0","teachers":"37.0","students_per_teacher":"10","students_per_admin":"361","admins":"1.0","counselors":"1.0","child_study_team":"4.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"15.1","teacher_yrs_in_district":"13.1","teacher_pct_4yrs_in_district":"83.8","econ_dis":"5.3","swd":"14.1","ell":"5.8"},{"school_year":"2021-22","code":"090","school":"Riverside","enrollment":"298.0","teachers":"39.0","students_per_teacher":"8","students_per_admin":"298","admins":"1.0","counselors":"1.0","child_study_team":"6.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"14.5","teacher_yrs_in_district":"11.4","teacher_pct_4yrs_in_district":"79.5","econ_dis":"6.7","swd":"20.5","ell":"8.1"},{"school_year":"2021-22","code":"110","school":"Community Park","enrollment":"328.0","teachers":"33.0","students_per_teacher":"10","students_per_admin":"164","admins":"2.0","counselors":"1.0","child_study_team":"4.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"15.6","teacher_yrs_in_district":"13.6","teacher_pct_4yrs_in_district":"84.8","econ_dis":"14.3","swd":"7.9","ell":"9.5"},{"school_year":"2022-23","code":"050","school":"Princeton High School","enrollment":"1577.0","teachers":"131.0","students_per_teacher":"12","students_per_admin":"131","admins":"12.0","counselors":"9.0","child_study_team":"7.0","nurses":"2.0","psychologists":"2.0","social_workers":"2.0","teacher_yrs_total":"15.2","teacher_yrs_in_district":"12.6","teacher_pct_4yrs_in_district":"77.9","econ_dis":"10.5","swd":"12.3","ell":"3.6"},{"school_year":"2022-23","code":"085","school":"Princeton Middle School","enrollment":"858.0","teachers":"70.0","students_per_teacher":"12","students_per_admin":"215","admins":"4.0","counselors":"5.0","child_study_team":"6.0","nurses":"2.0","psychologists":"1.0","social_workers":"2.0","teacher_yrs_total":"12.7","teacher_yrs_in_district":"10.3","teacher_pct_4yrs_in_district":"78.6","econ_dis":"12.8","swd":"16.0","ell":"5.2"},{"school_year":"2022-23","code":"070","school":"Johnson Park","enrollment":"469.0","teachers":"42.0","students_per_teacher":"11","students_per_admin":"469","admins":"1.0","counselors":"1.0","child_study_team":"6.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"15.9","teacher_yrs_in_district":"13.9","teacher_pct_4yrs_in_district":"92.9","econ_dis":"20.7","swd":"20.7","ell":"10.9"},{"school_year":"2022-23","code":"080","school":"Littlebrook","enrollment":"447.0","teachers":"39.0","students_per_teacher":"11","students_per_admin":"447","admins":"1.0","counselors":"1.0","child_study_team":"4.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"15.0","teacher_yrs_in_district":"12.9","teacher_pct_4yrs_in_district":"82.1","econ_dis":"6.7","swd":"12.8","ell":"8.5"},{"school_year":"2022-23","code":"090","school":"Riverside","enrollment":"352.0","teachers":"37.0","students_per_teacher":"10","students_per_admin":"176","admins":"2.0","counselors":"1.0","child_study_team":"6.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"15.8","teacher_yrs_in_district":"12.6","teacher_pct_4yrs_in_district":"83.8","econ_dis":"4.8","swd":"17.6","ell":"8.8"},{"school_year":"2022-23","code":"110","school":"Community Park","enrollment":"339.0","teachers":"34.0","students_per_teacher":"10","students_per_admin":"170","admins":"2.0","counselors":"1.0","child_study_team":"4.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"15.7","teacher_yrs_in_district":"13.9","teacher_pct_4yrs_in_district":"82.4","econ_dis":"14.5","swd":"7.7","ell":"7.1"},{"school_year":"2023-24","code":"050","school":"Princeton High School","enrollment":"1550.0","teachers":"131.0","students_per_teacher":"12","students_per_admin":"111","admins":"14.0","counselors":"10.0","child_study_team":"9.0","nurses":"3.0","psychologists":"2.0","social_workers":"3.0","teacher_yrs_total":"14.6","teacher_yrs_in_district":"12.1","teacher_pct_4yrs_in_district":"77.1","econ_dis":"9.2","swd":"11.6","ell":"4.8"},{"school_year":"2023-24","code":"085","school":"Princeton Middle School","enrollment":"782.0","teachers":"72.0","students_per_teacher":"11","students_per_admin":"156","admins":"5.0","counselors":"3.0","child_study_team":"6.0","nurses":"2.0","psychologists":"1.0","social_workers":"2.0","teacher_yrs_total":"12.4","teacher_yrs_in_district":"10.1","teacher_pct_4yrs_in_district":"75.0","econ_dis":"11.3","swd":"16.9","ell":"4.5"},{"school_year":"2023-24","code":"070","school":"Johnson Park","enrollment":"418.0","teachers":"42.0","students_per_teacher":"10","students_per_admin":"418","admins":"1.0","counselors":"1.0","child_study_team":"6.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"16.8","teacher_yrs_in_district":"14.8","teacher_pct_4yrs_in_district":"95.2","econ_dis":"19.6","swd":"26.1","ell":"7.2"},{"school_year":"2023-24","code":"080","school":"Littlebrook","enrollment":"429.0","teachers":"43.0","students_per_teacher":"10","students_per_admin":"429","admins":"1.0","counselors":"1.0","child_study_team":"3.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"14.2","teacher_yrs_in_district":"12.4","teacher_pct_4yrs_in_district":"79.1","econ_dis":"6.1","swd":"13.8","ell":"7.2"},{"school_year":"2023-24","code":"090","school":"Riverside","enrollment":"383.0","teachers":"45.0","students_per_teacher":"9","students_per_admin":"128","admins":"3.0","counselors":"1.0","child_study_team":"6.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"13.3","teacher_yrs_in_district":"10.5","teacher_pct_4yrs_in_district":"71.1","econ_dis":"6.8","swd":"14.6","ell":"12.3"},{"school_year":"2023-24","code":"110","school":"Community Park","enrollment":"330.0","teachers":"30.0","students_per_teacher":"11","students_per_admin":"165","admins":"2.0","counselors":"1.0","child_study_team":"4.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"16.7","teacher_yrs_in_district":"14.5","teacher_pct_4yrs_in_district":"86.7","econ_dis":"15.8","swd":"9.7","ell":"7.9"},{"school_year":"2024-25","code":"050","school":"Princeton High School","enrollment":"1506.0","teachers":"129.0","students_per_teacher":"12","students_per_admin":"126","admins":"12.0","counselors":"9.0","child_study_team":"9.0","nurses":"3.0","psychologists":"1.0","social_workers":"4.0","teacher_yrs_total":"14.4","teacher_yrs_in_district":"12.1","teacher_pct_4yrs_in_district":"80.6","econ_dis":"13.6","swd":"12.2","ell":"4.3"},{"school_year":"2024-25","code":"085","school":"Princeton Middle School","enrollment":"794.0","teachers":"69.0","students_per_teacher":"12","students_per_admin":"159","admins":"5.0","counselors":"4.0","child_study_team":"6.0","nurses":"2.0","psychologists":"1.0","social_workers":"2.0","teacher_yrs_total":"12.7","teacher_yrs_in_district":"10.7","teacher_pct_4yrs_in_district":"76.8","econ_dis":"13.2","swd":"15.5","ell":"4.4"},{"school_year":"2024-25","code":"070","school":"Johnson Park","enrollment":"379.0","teachers":"40.0","students_per_teacher":"9","students_per_admin":"379","admins":"1.0","counselors":"1.0","child_study_team":"7.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"17.1","teacher_yrs_in_district":"15.1","teacher_pct_4yrs_in_district":"95.0","econ_dis":"20.6","swd":"26.1","ell":"6.9"},{"school_year":"2024-25","code":"080","school":"Littlebrook","enrollment":"377.0","teachers":"41.0","students_per_teacher":"9","students_per_admin":"377","admins":"1.0","counselors":"1.0","child_study_team":"4.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"15.3","teacher_yrs_in_district":"14.2","teacher_pct_4yrs_in_district":"85.4","econ_dis":"11.4","swd":"13.3","ell":"9.3"},{"school_year":"2024-25","code":"090","school":"Riverside","enrollment":"307.0","teachers":"41.0","students_per_teacher":"7","students_per_admin":"307","admins":"1.0","counselors":"1.0","child_study_team":"6.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"14.8","teacher_yrs_in_district":"11.7","teacher_pct_4yrs_in_district":"78.0","econ_dis":"11.4","swd":"16.6","ell":"12.1"},{"school_year":"2024-25","code":"110","school":"Community Park","enrollment":"319.0","teachers":"29.0","students_per_teacher":"11","students_per_admin":"160","admins":"2.0","counselors":"1.0","child_study_team":"4.0","nurses":"1.0","psychologists":"1.0","social_workers":"1.0","teacher_yrs_total":"16.4","teacher_yrs_in_district":"14.1","teacher_pct_4yrs_in_district":"82.8","econ_dis":"16.9","swd":"12.2","ell":"9.1"}],"ppe":[{"school_year":"2018-19","code":"050","school":"Princeton High School","school_level":"11506","federal":"","state_local":"11506","not_assigned":"4867","not_assigned_source":"state table","central":"2553","avg_daily_enrollment":"1591.8","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=19"},{"school_year":"2018-19","code":"085","school":"Princeton Middle School","school_level":"11879","federal":"105","state_local":"11774","not_assigned":"4867","not_assigned_source":"state table","central":"2553","avg_daily_enrollment":"752.8","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=19"},{"school_year":"2018-19","code":"070","school":"Johnson Park","school_level":"15867","federal":"241","state_local":"15626","not_assigned":"4867","not_assigned_source":"state table","central":"2553","avg_daily_enrollment":"370.4","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=19"},{"school_year":"2018-19","code":"080","school":"Littlebrook","school_level":"13695","federal":"","state_local":"13695","not_assigned":"4867","not_assigned_source":"state table","central":"2553","avg_daily_enrollment":"376.1","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=19"},{"school_year":"2018-19","code":"090","school":"Riverside","school_level":"17874","federal":"105","state_local":"17769","not_assigned":"4867","not_assigned_source":"state table","central":"2553","avg_daily_enrollment":"311.1","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=19"},{"school_year":"2018-19","code":"110","school":"Community Park","school_level":"14862","federal":"167","state_local":"14695","not_assigned":"4867","not_assigned_source":"state table","central":"2553","avg_daily_enrollment":"375.4","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=19"},{"school_year":"2019-20","code":"050","school":"Princeton High School","school_level":"10903","federal":"","state_local":"10903","not_assigned":"4994","not_assigned_source":"state table","central":"2441","avg_daily_enrollment":"1578.0","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=20"},{"school_year":"2019-20","code":"085","school":"Princeton Middle School","school_level":"10859","federal":"64","state_local":"10795","not_assigned":"4994","not_assigned_source":"state table","central":"2441","avg_daily_enrollment":"779.9","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=20"},{"school_year":"2019-20","code":"070","school":"Johnson Park","school_level":"15948","federal":"182","state_local":"15766","not_assigned":"4994","not_assigned_source":"state table","central":"2441","avg_daily_enrollment":"363.0","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=20"},{"school_year":"2019-20","code":"080","school":"Littlebrook","school_level":"13836","federal":"","state_local":"13836","not_assigned":"4994","not_assigned_source":"state table","central":"2441","avg_daily_enrollment":"403.3","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=20"},{"school_year":"2019-20","code":"090","school":"Riverside","school_level":"16657","federal":"78","state_local":"16579","not_assigned":"4994","not_assigned_source":"state table","central":"2441","avg_daily_enrollment":"311.8","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=20"},{"school_year":"2019-20","code":"110","school":"Community Park","school_level":"13796","federal":"120","state_local":"13676","not_assigned":"4994","not_assigned_source":"state table","central":"2441","avg_daily_enrollment":"405.4","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=20"},{"school_year":"2020-21","code":"050","school":"Princeton High School","school_level":"11544","federal":"45","state_local":"11499","not_assigned":"5861","not_assigned_source":"state table","central":"2997","avg_daily_enrollment":"1552.2","source_url":"https://www.nj.gov/education/sprreports/202021/District-Detail/21-4255.pdf"},{"school_year":"2020-21","code":"085","school":"Princeton Middle School","school_level":"11220","federal":"169","state_local":"11051","not_assigned":"5861","not_assigned_source":"state table","central":"2997","avg_daily_enrollment":"805.1","source_url":"https://www.nj.gov/education/sprreports/202021/District-Detail/21-4255.pdf"},{"school_year":"2020-21","code":"070","school":"Johnson Park","school_level":"18102","federal":"539","state_local":"17563","not_assigned":"5861","not_assigned_source":"state table","central":"2997","avg_daily_enrollment":"331.2","source_url":"https://www.nj.gov/education/sprreports/202021/District-Detail/21-4255.pdf"},{"school_year":"2020-21","code":"080","school":"Littlebrook","school_level":"15780","federal":"309","state_local":"15471","not_assigned":"5861","not_assigned_source":"state table","central":"2997","avg_daily_enrollment":"347.6","source_url":"https://www.nj.gov/education/sprreports/202021/District-Detail/21-4255.pdf"},{"school_year":"2020-21","code":"090","school":"Riverside","school_level":"19611","federal":"403","state_local":"19208","not_assigned":"5861","not_assigned_source":"state table","central":"2997","avg_daily_enrollment":"266.6","source_url":"https://www.nj.gov/education/sprreports/202021/District-Detail/21-4255.pdf"},{"school_year":"2020-21","code":"110","school":"Community Park","school_level":"17380","federal":"449","state_local":"16931","not_assigned":"5861","not_assigned_source":"state table","central":"2997","avg_daily_enrollment":"320.6","source_url":"https://www.nj.gov/education/sprreports/202021/District-Detail/21-4255.pdf"},{"school_year":"2021-22","code":"050","school":"Princeton High School","school_level":"12086","federal":"187","state_local":"11899","not_assigned":"4902","not_assigned_source":"state table","central":"3192","avg_daily_enrollment":"1548.5","source_url":"https://www.nj.gov/education/sprreports/202122/District-Detail/21-4255.pdf"},{"school_year":"2021-22","code":"085","school":"Princeton Middle School","school_level":"12116","federal":"483","state_local":"11633","not_assigned":"4902","not_assigned_source":"state table","central":"3192","avg_daily_enrollment":"805.3","source_url":"https://www.nj.gov/education/sprreports/202122/District-Detail/21-4255.pdf"},{"school_year":"2021-22","code":"070","school":"Johnson Park","school_level":"17081","federal":"1093","state_local":"15988","not_assigned":"4902","not_assigned_source":"state table","central":"3192","avg_daily_enrollment":"371.5","source_url":"https://www.nj.gov/education/sprreports/202122/District-Detail/21-4255.pdf"},{"school_year":"2021-22","code":"080","school":"Littlebrook","school_level":"17105","federal":"841","state_local":"16264","not_assigned":"4902","not_assigned_source":"state table","central":"3192","avg_daily_enrollment":"351.1","source_url":"https://www.nj.gov/education/sprreports/202122/District-Detail/21-4255.pdf"},{"school_year":"2021-22","code":"090","school":"Riverside","school_level":"19898","federal":"1014","state_local":"18884","not_assigned":"4902","not_assigned_source":"state table","central":"3192","avg_daily_enrollment":"291.3","source_url":"https://www.nj.gov/education/sprreports/202122/District-Detail/21-4255.pdf"},{"school_year":"2021-22","code":"110","school":"Community Park","school_level":"17965","federal":"1109","state_local":"16856","not_assigned":"4902","not_assigned_source":"state table","central":"3192","avg_daily_enrollment":"321.9","source_url":"https://www.nj.gov/education/sprreports/202122/District-Detail/21-4255.pdf"},{"school_year":"2022-23","code":"050","school":"Princeton High School","school_level":"14027","federal":"8","state_local":"14019","not_assigned":"0","not_assigned_source":"none listed","central":"6073","avg_daily_enrollment":"1523.2","source_url":"https://www.nj.gov/education/sprreports/202223/District-Detail/21-4255.pdf"},{"school_year":"2022-23","code":"085","school":"Princeton Middle School","school_level":"14269","federal":"97","state_local":"14172","not_assigned":"0","not_assigned_source":"none listed","central":"6073","avg_daily_enrollment":"815.8","source_url":"https://www.nj.gov/education/sprreports/202223/District-Detail/21-4255.pdf"},{"school_year":"2022-23","code":"070","school":"Johnson Park","school_level":"17523","federal":"261","state_local":"17262","not_assigned":"0","not_assigned_source":"none listed","central":"6073","avg_daily_enrollment":"415.9","source_url":"https://www.nj.gov/education/sprreports/202223/District-Detail/21-4255.pdf"},{"school_year":"2022-23","code":"080","school":"Littlebrook","school_level":"17913","federal":"57","state_local":"17856","not_assigned":"0","not_assigned_source":"none listed","central":"6073","avg_daily_enrollment":"393.2","source_url":"https://www.nj.gov/education/sprreports/202223/District-Detail/21-4255.pdf"},{"school_year":"2022-23","code":"090","school":"Riverside","school_level":"21905","federal":"78","state_local":"21827","not_assigned":"0","not_assigned_source":"none listed","central":"6073","avg_daily_enrollment":"288.3","source_url":"https://www.nj.gov/education/sprreports/202223/District-Detail/21-4255.pdf"},{"school_year":"2022-23","code":"110","school":"Community Park","school_level":"24439","federal":"218","state_local":"24221","not_assigned":"0","not_assigned_source":"none listed","central":"6073","avg_daily_enrollment":"287.0","source_url":"https://www.nj.gov/education/sprreports/202223/District-Detail/21-4255.pdf"},{"school_year":"2023-24","code":"050","school":"Princeton High School","school_level":"14238","federal":"16","state_local":"14222","not_assigned":"0","not_assigned_source":"none listed","central":"6043","avg_daily_enrollment":"1557.9","source_url":"https://www.nj.gov/education/sprreports/202324/District-Detail/21-4255.pdf"},{"school_year":"2023-24","code":"085","school":"Princeton Middle School","school_level":"14809","federal":"84","state_local":"14725","not_assigned":"0","not_assigned_source":"none listed","central":"6043","avg_daily_enrollment":"780.2","source_url":"https://www.nj.gov/education/sprreports/202324/District-Detail/21-4255.pdf"},{"school_year":"2023-24","code":"070","school":"Johnson Park","school_level":"18088","federal":"364","state_local":"17724","not_assigned":"0","not_assigned_source":"none listed","central":"6043","avg_daily_enrollment":"404.5","source_url":"https://www.nj.gov/education/sprreports/202324/District-Detail/21-4255.pdf"},{"school_year":"2023-24","code":"080","school":"Littlebrook","school_level":"18503","federal":"251","state_local":"18252","not_assigned":"0","not_assigned_source":"none listed","central":"6043","avg_daily_enrollment":"390.1","source_url":"https://www.nj.gov/education/sprreports/202324/District-Detail/21-4255.pdf"},{"school_year":"2023-24","code":"090","school":"Riverside","school_level":"21141","federal":"295","state_local":"20846","not_assigned":"0","not_assigned_source":"none listed","central":"6043","avg_daily_enrollment":"332.0","source_url":"https://www.nj.gov/education/sprreports/202324/District-Detail/21-4255.pdf"},{"school_year":"2023-24","code":"110","school":"Community Park","school_level":"20878","federal":"410","state_local":"20468","not_assigned":"0","not_assigned_source":"none listed","central":"6043","avg_daily_enrollment":"305.3","source_url":"https://www.nj.gov/education/sprreports/202324/District-Detail/21-4255.pdf"},{"school_year":"2024-25","code":"050","school":"Princeton High School","school_level":"14243","federal":"356","state_local":"13887","not_assigned":"3881","not_assigned_source":"derived: district total minus schools and central office","central":"6760","avg_daily_enrollment":"1520.3","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=25"},{"school_year":"2024-25","code":"085","school":"Princeton Middle School","school_level":"12580","federal":"73","state_local":"12507","not_assigned":"3881","not_assigned_source":"derived: district total minus schools and central office","central":"6760","avg_daily_enrollment":"788.6","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=25"},{"school_year":"2024-25","code":"070","school":"Johnson Park","school_level":"13807","federal":"112","state_local":"13695","not_assigned":"3881","not_assigned_source":"derived: district total minus schools and central office","central":"6760","avg_daily_enrollment":"370.9","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=25"},{"school_year":"2024-25","code":"080","school":"Littlebrook","school_level":"10269","federal":"0","state_local":"10269","not_assigned":"3881","not_assigned_source":"derived: district total minus schools and central office","central":"6760","avg_daily_enrollment":"376.5","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=25"},{"school_year":"2024-25","code":"090","school":"Riverside","school_level":"15310","federal":"0","state_local":"15310","not_assigned":"3881","not_assigned_source":"derived: district total minus schools and central office","central":"6760","avg_daily_enrollment":"317.7","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=25"},{"school_year":"2024-25","code":"110","school":"Community Park","school_level":"9589","federal":"67","state_local":"9522","not_assigned":"3881","not_assigned_source":"derived: district total minus schools and central office","central":"6760","avg_daily_enrollment":"315.4","source_url":"https://homeroom4.doe.state.nj.us/audsum/PpeReport?&did=4255&fileformat=html&reportname=PERFORMREPORT&fy=25"}],"bills":[{"fiscal_year":"FY2025","code":"050","school":"Princeton High School","amount":"826272"},{"fiscal_year":"FY2025","code":"070","school":"Johnson Park","amount":"121301"},{"fiscal_year":"FY2025","code":"080","school":"Littlebrook","amount":"102305"},{"fiscal_year":"FY2025","code":"085","school":"Princeton Middle School","amount":"289693"},{"fiscal_year":"FY2025","code":"090","school":"Riverside","amount":"106100"},{"fiscal_year":"FY2025","code":"110","school":"Community Park","amount":"94485"},{"fiscal_year":"FY2026","code":"050","school":"Princeton High School","amount":"1593565"},{"fiscal_year":"FY2026","code":"070","school":"Johnson Park","amount":"256697"},{"fiscal_year":"FY2026","code":"080","school":"Littlebrook","amount":"273904"},{"fiscal_year":"FY2026","code":"085","school":"Princeton Middle School","amount":"673295"},{"fiscal_year":"FY2026","code":"090","school":"Riverside","amount":"283143"},{"fiscal_year":"FY2026","code":"110","school":"Community Park","amount":"200795"},{"fiscal_year":"FY2027","code":"050","school":"Princeton High School","amount":"517944"},{"fiscal_year":"FY2027","code":"070","school":"Johnson Park","amount":"60315"},{"fiscal_year":"FY2027","code":"080","school":"Littlebrook","amount":"96997"},{"fiscal_year":"FY2027","code":"085","school":"Princeton Middle School","amount":"1635805"},{"fiscal_year":"FY2027","code":"090","school":"Riverside","amount":"116114"},{"fiscal_year":"FY2027","code":"110","school":"Community Park","amount":"82876"}],"bills_coverage":[{"fiscal_year":"FY2025","all_bills":"42721545","coded_to_a_school":"1540157","coded_district_or_other":"222070"},{"fiscal_year":"FY2026","all_bills":"70638155","coded_to_a_school":"3281398","coded_district_or_other":"2000613"},{"fiscal_year":"FY2027","all_bills":"17530705","coded_to_a_school":"2510051","coded_district_or_other":"14822841"}],"outcomes":[{"school_year":"2016-17","code":"050","school":"Princeton High School","ela_met":"78.3","math_met":"51.0","ela_sgp":"","math_sgp":"","chronic_abs":"30.8","tests_counted_by_home_zone":"no"},{"school_year":"2016-17","code":"070","school":"Johnson Park","ela_met":"78.3","math_met":"72.6","ela_sgp":"50.5","math_sgp":"44.0","chronic_abs":"6.2","tests_counted_by_home_zone":"no"},{"school_year":"2016-17","code":"080","school":"Littlebrook","ela_met":"77.4","math_met":"79.2","ela_sgp":"54.0","math_sgp":"58.0","chronic_abs":"5.5","tests_counted_by_home_zone":"no"},{"school_year":"2016-17","code":"085","school":"Princeton Middle School","ela_met":"82.6","math_met":"68.0","ela_sgp":"63.0","math_sgp":"51.0","chronic_abs":"12.5","tests_counted_by_home_zone":"no"},{"school_year":"2016-17","code":"090","school":"Riverside","ela_met":"75.7","math_met":"64.1","ela_sgp":"57.0","math_sgp":"55.5","chronic_abs":"5.7","tests_counted_by_home_zone":"no"},{"school_year":"2016-17","code":"110","school":"Community Park","ela_met":"70.5","math_met":"61.8","ela_sgp":"48.0","math_sgp":"61.5","chronic_abs":"4.7","tests_counted_by_home_zone":"no"},{"school_year":"2017-18","code":"050","school":"Princeton High School","ela_met":"78.4","math_met":"50.3","ela_sgp":"","math_sgp":"","chronic_abs":"19.3","tests_counted_by_home_zone":"no"},{"school_year":"2017-18","code":"070","school":"Johnson Park","ela_met":"84.2","math_met":"77.3","ela_sgp":"63.0","math_sgp":"61.5","chronic_abs":"4.7","tests_counted_by_home_zone":"no"},{"school_year":"2017-18","code":"080","school":"Littlebrook","ela_met":"76.1","math_met":"72.5","ela_sgp":"44.0","math_sgp":"63.0","chronic_abs":"3.0","tests_counted_by_home_zone":"no"},{"school_year":"2017-18","code":"085","school":"Princeton Middle School","ela_met":"85.0","math_met":"74.9","ela_sgp":"65.5","math_sgp":"63.0","chronic_abs":"9.2","tests_counted_by_home_zone":"no"},{"school_year":"2017-18","code":"090","school":"Riverside","ela_met":"74.3","math_met":"72.0","ela_sgp":"55.0","math_sgp":"67.0","chronic_abs":"2.9","tests_counted_by_home_zone":"no"},{"school_year":"2017-18","code":"110","school":"Community Park","ela_met":"59.3","math_met":"62.7","ela_sgp":"38.0","math_sgp":"58.0","chronic_abs":"5.1","tests_counted_by_home_zone":"no"},{"school_year":"2018-19","code":"050","school":"Princeton High School","ela_met":"82.0","math_met":"51.1","ela_sgp":"","math_sgp":"","chronic_abs":"26.0","tests_counted_by_home_zone":"no"},{"school_year":"2018-19","code":"070","school":"Johnson Park","ela_met":"71.5","math_met":"65.4","ela_sgp":"42.5","math_sgp":"45.5","chronic_abs":"4.0","tests_counted_by_home_zone":"no"},{"school_year":"2018-19","code":"080","school":"Littlebrook","ela_met":"74.4","math_met":"73.8","ela_sgp":"67.5","math_sgp":"58.5","chronic_abs":"6.0","tests_counted_by_home_zone":"no"},{"school_year":"2018-19","code":"085","school":"Princeton Middle School","ela_met":"82.5","math_met":"71.7","ela_sgp":"62.0","math_sgp":"69.0","chronic_abs":"14.7","tests_counted_by_home_zone":"no"},{"school_year":"2018-19","code":"090","school":"Riverside","ela_met":"71.0","math_met":"64.0","ela_sgp":"53.0","math_sgp":"64.0","chronic_abs":"5.6","tests_counted_by_home_zone":"no"},{"school_year":"2018-19","code":"110","school":"Community Park","ela_met":"62.1","math_met":"61.8","ela_sgp":"56.0","math_sgp":"58.0","chronic_abs":"4.2","tests_counted_by_home_zone":"no"},{"school_year":"2020-21","code":"050","school":"Princeton High School","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"23.2","tests_counted_by_home_zone":"no"},{"school_year":"2020-21","code":"070","school":"Johnson Park","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"4.8","tests_counted_by_home_zone":"no"},{"school_year":"2020-21","code":"080","school":"Littlebrook","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"3.4","tests_counted_by_home_zone":"no"},{"school_year":"2020-21","code":"085","school":"Princeton Middle School","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"9.0","tests_counted_by_home_zone":"no"},{"school_year":"2020-21","code":"090","school":"Riverside","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"3.2","tests_counted_by_home_zone":"no"},{"school_year":"2020-21","code":"110","school":"Community Park","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"4.7","tests_counted_by_home_zone":"no"},{"school_year":"2021-22","code":"050","school":"Princeton High School","ela_met":"75.8","math_met":"44.1","ela_sgp":"","math_sgp":"","chronic_abs":"9.1","tests_counted_by_home_zone":"no"},{"school_year":"2021-22","code":"070","school":"Johnson Park","ela_met":"70.8","math_met":"69.5","ela_sgp":"","math_sgp":"","chronic_abs":"16.3","tests_counted_by_home_zone":"no"},{"school_year":"2021-22","code":"080","school":"Littlebrook","ela_met":"72.4","math_met":"79.7","ela_sgp":"","math_sgp":"","chronic_abs":"9.7","tests_counted_by_home_zone":"no"},{"school_year":"2021-22","code":"085","school":"Princeton Middle School","ela_met":"75.8","math_met":"53.0","ela_sgp":"","math_sgp":"","chronic_abs":"8.0","tests_counted_by_home_zone":"no"},{"school_year":"2021-22","code":"090","school":"Riverside","ela_met":"75.6","math_met":"71.1","ela_sgp":"","math_sgp":"","chronic_abs":"9.4","tests_counted_by_home_zone":"no"},{"school_year":"2021-22","code":"110","school":"Community Park","ela_met":"71.1","math_met":"61.0","ela_sgp":"","math_sgp":"","chronic_abs":"13.1","tests_counted_by_home_zone":"no"},{"school_year":"2022-23","code":"050","school":"Princeton High School","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"18.5","tests_counted_by_home_zone":"yes"},{"school_year":"2022-23","code":"070","school":"Johnson Park","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"13.0","tests_counted_by_home_zone":"yes"},{"school_year":"2022-23","code":"080","school":"Littlebrook","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"13.2","tests_counted_by_home_zone":"yes"},{"school_year":"2022-23","code":"085","school":"Princeton Middle School","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"8.2","tests_counted_by_home_zone":"yes"},{"school_year":"2022-23","code":"090","school":"Riverside","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"9.3","tests_counted_by_home_zone":"yes"},{"school_year":"2022-23","code":"110","school":"Community Park","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"11.3","tests_counted_by_home_zone":"yes"},{"school_year":"2023-24","code":"050","school":"Princeton High School","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"23.3","tests_counted_by_home_zone":"yes"},{"school_year":"2023-24","code":"070","school":"Johnson Park","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"9.5","tests_counted_by_home_zone":"yes"},{"school_year":"2023-24","code":"080","school":"Littlebrook","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"9.6","tests_counted_by_home_zone":"yes"},{"school_year":"2023-24","code":"085","school":"Princeton Middle School","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"22.6","tests_counted_by_home_zone":"yes"},{"school_year":"2023-24","code":"090","school":"Riverside","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"7.6","tests_counted_by_home_zone":"yes"},{"school_year":"2023-24","code":"110","school":"Community Park","ela_met":"","math_met":"","ela_sgp":"","math_sgp":"","chronic_abs":"6.0","tests_counted_by_home_zone":"yes"},{"school_year":"2024-25","code":"050","school":"Princeton High School","ela_met":"74.1","math_met":"49.3","ela_sgp":"","math_sgp":"","chronic_abs":"12.5","tests_counted_by_home_zone":"no"},{"school_year":"2024-25","code":"070","school":"Johnson Park","ela_met":"64.4","math_met":"73.3","ela_sgp":"41.5","math_sgp":"65.0","chronic_abs":"6.7","tests_counted_by_home_zone":"no"},{"school_year":"2024-25","code":"080","school":"Littlebrook","ela_met":"70.8","math_met":"82.3","ela_sgp":"62.0","math_sgp":"78.0","chronic_abs":"5.6","tests_counted_by_home_zone":"no"},{"school_year":"2024-25","code":"085","school":"Princeton Middle School","ela_met":"84.2","math_met":"76.3","ela_sgp":"67.0","math_sgp":"66.0","chronic_abs":"4.1","tests_counted_by_home_zone":"no"},{"school_year":"2024-25","code":"090","school":"Riverside","ela_met":"81.1","math_met":"83.1","ela_sgp":"69.0","math_sgp":"73.0","chronic_abs":"5.6","tests_counted_by_home_zone":"no"},{"school_year":"2024-25","code":"110","school":"Community Park","ela_met":"64.7","math_met":"67.4","ela_sgp":"61.0","math_sgp":"48.0","chronic_abs":"5.5","tests_counted_by_home_zone":"no"}],"salaries":[{"school_year":"2018-19","code":"110","school":"Community Park","teachers":"34","teacher_fte":"33.2","teacher_salary_total":"2886378","teacher_salary_mean":"84893","support_staff":"6","support_salary_total":"450902","enrollment":"376","teacher_salary_per_student":"7677"},{"school_year":"2018-19","code":"050","school":"Princeton High School","teachers":"128","teacher_fte":"130.1","teacher_salary_total":"10804146","teacher_salary_mean":"84407","support_staff":"17","support_salary_total":"1508048","enrollment":"1565","teacher_salary_per_student":"6904"},{"school_year":"2018-19","code":"070","school":"Johnson Park","teachers":"35","teacher_fte":"33.8","teacher_salary_total":"2817916","teacher_salary_mean":"80512","support_staff":"9","support_salary_total":"837489","enrollment":"377","teacher_salary_per_student":"7475"},{"school_year":"2018-19","code":"080","school":"Littlebrook","teachers":"32","teacher_fte":"30.0","teacher_salary_total":"2763026","teacher_salary_mean":"86345","support_staff":"6","support_salary_total":"511111","enrollment":"378","teacher_salary_per_student":"7310"},{"school_year":"2018-19","code":"085","school":"Princeton Middle School","teachers":"63","teacher_fte":"62.2","teacher_salary_total":"5177906","teacher_salary_mean":"82189","support_staff":"8","support_salary_total":"794849","enrollment":"754","teacher_salary_per_student":"6867"},{"school_year":"2018-19","code":"090","school":"Riverside","teachers":"35","teacher_fte":"35.0","teacher_salary_total":"3044218","teacher_salary_mean":"86978","support_staff":"8","support_salary_total":"685167","enrollment":"317","teacher_salary_per_student":"9603"},{"school_year":"2019-20","code":"110","school":"Community Park","teachers":"34","teacher_fte":"34.0","teacher_salary_total":"3014217","teacher_salary_mean":"88653","support_staff":"6","support_salary_total":"416935","enrollment":"408","teacher_salary_per_student":"7388"},{"school_year":"2019-20","code":"050","school":"Princeton High School","teachers":"124","teacher_fte":"125.9","teacher_salary_total":"10808357","teacher_salary_mean":"87164","support_staff":"19","support_salary_total":"1622898","enrollment":"1560","teacher_salary_per_student":"6928"},{"school_year":"2019-20","code":"070","school":"Johnson Park","teachers":"36","teacher_fte":"35.4","teacher_salary_total":"2901282","teacher_salary_mean":"80591","support_staff":"8","support_salary_total":"765550","enrollment":"373","teacher_salary_per_student":"7778"},{"school_year":"2019-20","code":"080","school":"Littlebrook","teachers":"32","teacher_fte":"32.0","teacher_salary_total":"2817552","teacher_salary_mean":"88048","support_staff":"5","support_salary_total":"450655","enrollment":"407","teacher_salary_per_student":"6923"},{"school_year":"2019-20","code":"085","school":"Princeton Middle School","teachers":"63","teacher_fte":"61.8","teacher_salary_total":"5128860","teacher_salary_mean":"81410","support_staff":"9","support_salary_total":"876613","enrollment":"777","teacher_salary_per_student":"6601"},{"school_year":"2019-20","code":"090","school":"Riverside","teachers":"34","teacher_fte":"33.8","teacher_salary_total":"2942037","teacher_salary_mean":"86530","support_staff":"9","support_salary_total":"781101","enrollment":"318","teacher_salary_per_student":"9252"},{"school_year":"2020-21","code":"110","school":"Community Park","teachers":"28","teacher_fte":"28.0","teacher_salary_total":"2552124","teacher_salary_mean":"91147","support_staff":"6","support_salary_total":"416935","enrollment":"327","teacher_salary_per_student":"7805"},{"school_year":"2020-21","code":"050","school":"Princeton High School","teachers":"119","teacher_fte":"118.2","teacher_salary_total":"10088751","teacher_salary_mean":"84779","support_staff":"19","support_salary_total":"1624549","enrollment":"1533","teacher_salary_per_student":"6581"},{"school_year":"2020-21","code":"070","school":"Johnson Park","teachers":"35","teacher_fte":"34.4","teacher_salary_total":"2815615","teacher_salary_mean":"80446","support_staff":"9","support_salary_total":"855096","enrollment":"337","teacher_salary_per_student":"8355"},{"school_year":"2020-21","code":"080","school":"Littlebrook","teachers":"34","teacher_fte":"34.0","teacher_salary_total":"2864096","teacher_salary_mean":"84238","support_staff":"6","support_salary_total":"516705","enrollment":"349","teacher_salary_per_student":"8207"},{"school_year":"2020-21","code":"085","school":"Princeton Middle School","teachers":"62","teacher_fte":"61.4","teacher_salary_total":"5144589","teacher_salary_mean":"82977","support_staff":"9","support_salary_total":"841272","enrollment":"802","teacher_salary_per_student":"6415"},{"school_year":"2020-21","code":"090","school":"Riverside","teachers":"34","teacher_fte":"33.8","teacher_salary_total":"2932628","teacher_salary_mean":"86254","support_staff":"9","support_salary_total":"785102","enrollment":"283","teacher_salary_per_student":"10363"},{"school_year":"2021-22","code":"110","school":"Community Park","teachers":"29","teacher_fte":"28.0","teacher_salary_total":"2689517","teacher_salary_mean":"92742","support_staff":"6","support_salary_total":"444409","enrollment":"328","teacher_salary_per_student":"8200"},{"school_year":"2021-22","code":"050","school":"Princeton High School","teachers":"117","teacher_fte":"115.2","teacher_salary_total":"10425844","teacher_salary_mean":"89110","support_staff":"17","support_salary_total":"1494358","enrollment":"1563","teacher_salary_per_student":"6670"},{"school_year":"2021-22","code":"070","school":"Johnson Park","teachers":"37","teacher_fte":"36.4","teacher_salary_total":"3151262","teacher_salary_mean":"85169","support_staff":"9","support_salary_total":"894886","enrollment":"386","teacher_salary_per_student":"8164"},{"school_year":"2021-22","code":"080","school":"Littlebrook","teachers":"33","teacher_fte":"33.0","teacher_salary_total":"2948845","teacher_salary_mean":"89359","support_staff":"6","support_salary_total":"554909","enrollment":"361","teacher_salary_per_student":"8169"},{"school_year":"2021-22","code":"090","school":"Riverside","teachers":"35","teacher_fte":"34.0","teacher_salary_total":"3107986","teacher_salary_mean":"88800","support_staff":"9","support_salary_total":"838872","enrollment":"298","teacher_salary_per_student":"10429"},{"school_year":"2022-23","code":"110","school":"Community Park","teachers":"30","teacher_fte":"29.0","teacher_salary_total":"2923302","teacher_salary_mean":"97443","support_staff":"5","support_salary_total":"373621","enrollment":"339","teacher_salary_per_student":"8623"},{"school_year":"2022-23","code":"050","school":"Princeton High School","teachers":"123","teacher_fte":"121.6","teacher_salary_total":"11103054","teacher_salary_mean":"90269","support_staff":"19","support_salary_total":"1743349","enrollment":"1577","teacher_salary_per_student":"7041"},{"school_year":"2022-23","code":"070","school":"Johnson Park","teachers":"38","teacher_fte":"37.1","teacher_salary_total":"3311015","teacher_salary_mean":"87132","support_staff":"9","support_salary_total":"854198","enrollment":"469","teacher_salary_per_student":"7060"},{"school_year":"2022-23","code":"080","school":"Littlebrook","teachers":"34","teacher_fte":"34.0","teacher_salary_total":"3146464","teacher_salary_mean":"92543","support_staff":"6","support_salary_total":"572211","enrollment":"447","teacher_salary_per_student":"7039"},{"school_year":"2022-23","code":"085","school":"Princeton Middle School","teachers":"67","teacher_fte":"66.2","teacher_salary_total":"5888985","teacher_salary_mean":"87895","support_staff":"9","support_salary_total":"904178","enrollment":"858","teacher_salary_per_student":"6864"},{"school_year":"2022-23","code":"090","school":"Riverside","teachers":"35","teacher_fte":"35.0","teacher_salary_total":"3190615","teacher_salary_mean":"91160","support_staff":"8","support_salary_total":"732654","enrollment":"352","teacher_salary_per_student":"9064"},{"school_year":"2023-24","code":"110","school":"Community Park","teachers":"26","teacher_fte":"25.0","teacher_salary_total":"2575794","teacher_salary_mean":"99069","support_staff":"6","support_salary_total":"467013","enrollment":"330","teacher_salary_per_student":"7805"},{"school_year":"2023-24","code":"050","school":"Princeton High School","teachers":"123","teacher_fte":"122.8","teacher_salary_total":"11385622","teacher_salary_mean":"92566","support_staff":"21","support_salary_total":"2000058","enrollment":"1550","teacher_salary_per_student":"7346"},{"school_year":"2023-24","code":"070","school":"Johnson Park","teachers":"38","teacher_fte":"37.4","teacher_salary_total":"3391544","teacher_salary_mean":"89251","support_staff":"7","support_salary_total":"652866","enrollment":"418","teacher_salary_per_student":"8114"},{"school_year":"2023-24","code":"080","school":"Littlebrook","teachers":"34","teacher_fte":"34.0","teacher_salary_total":"3191328","teacher_salary_mean":"93863","support_staff":"5","support_salary_total":"506621","enrollment":"429","teacher_salary_per_student":"7439"},{"school_year":"2023-24","code":"085","school":"Princeton Middle School","teachers":"67","teacher_fte":"66.2","teacher_salary_total":"5955188","teacher_salary_mean":"88883","support_staff":"7","support_salary_total":"739052","enrollment":"782","teacher_salary_per_student":"7615"},{"school_year":"2023-24","code":"090","school":"Riverside","teachers":"34","teacher_fte":"34.0","teacher_salary_total":"3172168","teacher_salary_mean":"93299","support_staff":"9","support_salary_total":"833859","enrollment":"383","teacher_salary_per_student":"8282"},{"school_year":"2024-25","code":"110","school":"Community Park","teachers":"24","teacher_fte":"24.0","teacher_salary_total":"2353368","teacher_salary_mean":"98057","support_staff":"6","support_salary_total":"459423","enrollment":"319","teacher_salary_per_student":"7377"},{"school_year":"2024-25","code":"050","school":"Princeton High School","teachers":"124","teacher_fte":"123.8","teacher_salary_total":"11708978","teacher_salary_mean":"94427","support_staff":"22","support_salary_total":"2169299","enrollment":"1506","teacher_salary_per_student":"7775"},{"school_year":"2024-25","code":"070","school":"Johnson Park","teachers":"37","teacher_fte":"36.4","teacher_salary_total":"3398228","teacher_salary_mean":"91844","support_staff":"9","support_salary_total":"866496","enrollment":"379","teacher_salary_per_student":"8966"},{"school_year":"2024-25","code":"080","school":"Littlebrook","teachers":"35","teacher_fte":"35.0","teacher_salary_total":"3358189","teacher_salary_mean":"95948","support_staff":"6","support_salary_total":"628754","enrollment":"377","teacher_salary_per_student":"8908"},{"school_year":"2024-25","code":"085","school":"Princeton Middle School","teachers":"65","teacher_fte":"64.2","teacher_salary_total":"6079810","teacher_salary_mean":"93536","support_staff":"7","support_salary_total":"665093","enrollment":"794","teacher_salary_per_student":"7657"},{"school_year":"2024-25","code":"090","school":"Riverside","teachers":"35","teacher_fte":"35.0","teacher_salary_total":"3264795","teacher_salary_mean":"93280","support_staff":"9","support_salary_total":"886686","enrollment":"307","teacher_salary_per_student":"10635"},{"school_year":"2025-26","code":"110","school":"Community Park","teachers":"28","teacher_fte":"27.6","teacher_salary_total":"2749266","teacher_salary_mean":"98188","support_staff":"5","support_salary_total":"456635","enrollment":"","teacher_salary_per_student":""},{"school_year":"2025-26","code":"050","school":"Princeton High School","teachers":"123","teacher_fte":"123.0","teacher_salary_total":"11989184","teacher_salary_mean":"97473","support_staff":"20","support_salary_total":"2099006","enrollment":"","teacher_salary_per_student":""},{"school_year":"2025-26","code":"070","school":"Johnson Park","teachers":"37","teacher_fte":"36.4","teacher_salary_total":"3530401","teacher_salary_mean":"95416","support_staff":"9","support_salary_total":"890996","enrollment":"","teacher_salary_per_student":""},{"school_year":"2025-26","code":"080","school":"Littlebrook","teachers":"36","teacher_fte":"36.0","teacher_salary_total":"3506094","teacher_salary_mean":"97392","support_staff":"6","support_salary_total":"646430","enrollment":"","teacher_salary_per_student":""},{"school_year":"2025-26","code":"085","school":"Princeton Middle School","teachers":"66","teacher_fte":"65.2","teacher_salary_total":"6356494","teacher_salary_mean":"96311","support_staff":"10","support_salary_total":"963733","enrollment":"","teacher_salary_per_student":""},{"school_year":"2025-26","code":"090","school":"Riverside","teachers":"34","teacher_fte":"34.0","teacher_salary_total":"3259320","teacher_salary_mean":"95862","support_staff":"9","support_salary_total":"926659","enrollment":"","teacher_salary_per_student":""}]};
+  const calcs = {}, memo = {}, draws = {}, listeners = [];
+  const colors = ['#2563eb', '#d97706', '#059669', '#9333ea', '#dc2626', '#0891b2', '#6b7280', '#ca8a04'];
+  function data(id) {
+    if (DATA[id]) return { status: 'ok', data: DATA[id] };
+    if (calcs[id]) {
+      if (!(id in memo)) memo[id] = calcs[id].fn(...calcs[id].inputs.map((i) => data(i).data));
+      return { status: 'ok', data: memo[id] };
+    }
+    return { status: 'missing', data: [] };
+  }
+  function run() {
+    listeners.forEach((fn) => fn());
+    Object.entries(draws).forEach(([name, fn]) =>
+      document.querySelectorAll(`[data-draw="${name}"]`).forEach((el) => fn(el)));
+  }
+  let t;
+  window.addEventListener('resize', () => { clearTimeout(t); t = setTimeout(run, 150); });
+  document.addEventListener('DOMContentLoaded', run);
+  return {
+    data, colors,
+    calc: (id, o) => { calcs[id] = o; },
+    loader: () => {},
+    draw: (name, fn) => { draws[name] = fn; },
+    onData: (fn) => { listeners.push(fn); },
+    params: () => ({}), setParams: () => {}, resetParams: () => {}, setLink: () => {}, refresh: () => {},
+  };
+})();
+</script>
+</head>
+<body>
+<div id="dash-root">
+<nav class="site-nav"><a href="./">← Save CP Dual Language</a></nav>
+<style>
+.rp { max-width: 72rem; margin-inline: auto; display: grid; gap: var(--cds-gap-xl); font-family: var(--font-anthropic-sans); color: var(--color-fg); }
+.rp-head { display: grid; gap: var(--cds-gap-sm); }
+.rp-head h1 { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); margin: 0; text-wrap: balance; }
+.rp-lede { font-size: var(--cds-font-size-body); line-height: 1.55; max-width: 46rem; margin: 0; }
+.rp .rp-lede b, .rp p b { font-weight: 600; font-variant-numeric: tabular-nums; }
+.rp-legend { display: flex; flex-wrap: wrap; gap: var(--cds-gap-sm) var(--cds-gap-md); font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; padding: 0; list-style: none; }
+.rp-legend li { display: inline-flex; align-items: center; gap: 6px; }
+.rp-sw { width: 10px; height: 10px; border-radius: 2px; display: inline-block; background: var(--cds-chart-muted); }
+.rp-sec { display: grid; gap: var(--cds-gap-md); }
+.rp-sec > h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.rp-sec > p { margin: 0; max-width: 46rem; line-height: 1.55; color: var(--color-fg-muted); }
+.rp-grid { display: grid; gap: var(--cds-gap-md); grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr)); }
+.rp-card { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-lg); display: grid; gap: var(--cds-gap-sm); min-width: 0; align-content: start; }
+.rp-card h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.rp-note { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); margin: 0; line-height: 1.5; }
+.rp-chart { position: relative; min-height: 240px; }
+.rp-chart.rp-short { min-height: 200px; }
+.rp-chart svg { display: block; overflow: visible; }
+.rp-tick { fill: var(--color-fg-muted); font-size: 11px; font-family: var(--font-anthropic-sans); font-variant-numeric: tabular-nums; }
+.rp-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); display: grid; gap: 2px; min-width: 11rem; z-index: 2; }
+.rp-tip .rp-tip-h { color: var(--cds-text-secondary); }
+.rp-tip .rp-tip-r { display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
+.rp-tip .rp-tip-r span:last-child { margin-left: auto; padding-left: 12px; }
+.rp-tablebox { overflow-x: auto; }
+.rp table { border-collapse: collapse; width: 100%; font-size: var(--cds-font-size-caption); font-variant-numeric: tabular-nums; }
+.rp th, .rp td { text-align: right; padding: 6px 8px; border-bottom: 1px solid var(--color-border-line); white-space: nowrap; }
+.rp th { font-weight: var(--cds-font-weight-medium); color: var(--color-fg-muted); vertical-align: bottom; white-space: normal; }
+.rp th:first-child, .rp td:first-child { text-align: left; }
+.rp-findings { display: grid; gap: var(--cds-gap-sm); max-width: 46rem; }
+.rp-findings h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.rp-findings ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 6px; line-height: 1.5; }
+.rp-caption { margin: 0; font-size: var(--cds-font-size-body); line-height: 1.5; color: var(--color-fg); border-top: 1px solid var(--color-border-line); padding-top: var(--cds-pad-sm); }
+.rp-source { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.45; }
+.rp-source a { color: inherit; }
+.rp-findings h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.rp-findings a, .rp-list a { color: inherit; }
+.rp-list { margin: 0; padding-left: 1.1rem; display: grid; gap: 6px; line-height: 1.5; max-width: 46rem; }
+.rp-method { display: grid; gap: var(--cds-gap-sm); max-width: 46rem; }
+.rp-method h2 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
+.rp-method ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 6px; line-height: 1.5; font-size: var(--cds-font-size-body); }
+.rp-method a { color: inherit; }
+[data-dash-source-state=empty] { color: transparent; }
+[data-dash-source-state=refreshing] { opacity: .5; transition: opacity var(--cds-dur-slow); }
+</style>
+
+<div class="rp">
+  <header class="rp-head" id="top">
+    <h1>Community Park and Princeton's other elementary schools</h1>
+    <p class="rp-lede">Has the district put extra resources into Community Park, home of its Spanish–English dual language immersion program? In the state's school-level figures, not in a way that shows. In 2024–25 Community Park had the lowest full cost per student of the four elementary schools, <b data-draw="val" data-source="cp_cost" data-field="full" data-where="school_year=2024-25&amp;series=Community%20Park" data-fmt="usd">—</b> against an average of <b data-draw="val" data-source="cp_cost" data-field="full" data-where="school_year=2024-25&amp;series=Other%20elementary%20schools" data-fmt="usd">—</b> at the other three, and the most students per teacher, <b data-draw="val" data-source="cp_staff" data-field="students_per_teacher" data-where="school_year=2024-25&amp;series=Community%20Park" data-fmt="num1">—</b> against <b data-draw="val" data-source="cp_staff" data-field="students_per_teacher" data-where="school_year=2024-25&amp;series=Other%20elementary%20schools" data-fmt="num1">—</b>. Averaged over 2018–19 to 2024–25, its cost per student was about the same as the other three schools' (<b data-draw="val" data-source="period_means" data-field="mean_full" data-where="code=110" data-fmt="usd">—</b> against <b data-draw="val" data-source="period_means" data-field="mean_full" data-where="code=others" data-fmt="usd">—</b>), with fewer teachers for its students.</p>
+  </header>
+
+  <section class="rp-findings" id="answer">
+    <h2>What the figures show</h2>
+    <ul>
+      <li><b>Teachers.</b> Community Park had more students per teacher than the other three schools in <b data-draw="val" data-source="cp_summary" data-field="spt_years_higher" data-fmt="int">—</b> of the <b data-draw="val" data-source="cp_summary" data-field="spt_years" data-fmt="int">—</b> years on record, and the fewest teachers of the four in every year since 2019–20. Its teacher headcount fell from <b data-draw="val" data-source="profile" data-field="teachers" data-where="school_year=2016-17&amp;code=110" data-fmt="int">—</b> in 2016–17 to <b data-draw="val" data-source="profile" data-field="teachers" data-where="school_year=2024-25&amp;code=110" data-fmt="int">—</b> in 2024–25, while enrollment went from <b data-draw="val" data-source="profile" data-field="enrollment" data-where="school_year=2016-17&amp;code=110" data-fmt="int">—</b> to <b data-draw="val" data-source="profile" data-field="enrollment" data-where="school_year=2024-25&amp;code=110" data-fmt="int">—</b>.</li>
+      <li><b>Teacher pay.</b> Community Park's teachers have the highest average salary of the four, because they are the most experienced, but there are fewer of them, so its teacher salaries per student are about average and below Riverside's. In most years this explains part of Community Park's lower spending; it does not explain its higher spending in 2022–23 and 2023–24.</li>
+      <li><b>Spending.</b> Its full cost per student was above the other three schools' average in <b data-draw="val" data-source="cp_summary" data-field="cost_years_above" data-fmt="int">—</b> of <b data-draw="val" data-source="cp_summary" data-field="cost_years" data-fmt="int">—</b> years (by a few dollars in 2021–22, clearly in 2022–23 and 2023–24) and below it in the rest, including 2024–25.</li>
+      <li><b>Purchases.</b> In the 2025–26 bills lists, Community Park had the smallest amount of supplies and services coded to it per student of the four.</li>
+      <li><b>Growth and attendance.</b> In the years the state counts students where they attend, Community Park's test score growth was mixed: lowest of the four in English in 2016–17 and 2017–18 and in math in 2017–18 and 2024–25, and in the middle or above in other years. Its absenteeism was the lowest of the four in the last two years.</li>
+      <li><b>Students.</b> Community Park has a smaller share of students with disabilities than the others, which by itself lowers a school's cost, and the second-largest share of economically disadvantaged students.</li>
+    </ul>
+    <p class="rp-source">Sources: the state's spending reports and School Performance Reports database files, and the Board's bills lists, as cited under each chart below.</p>
+    <p class="rp-note">These are whole-school figures. A dual language program can cost money without adding teachers (bilingual teachers in place of others, materials, training, a coordinator), and some of those costs may be recorded at the district level instead of at Community Park. See the limits at the end.</p>
+  </section>
+
+  <section class="rp-findings" id="records">
+    <h2>What the Board's records say about the program</h2>
+    <ul>
+      <li>The program began in 2015 as a strand within Community Park and later became school-wide (<a href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4146s" target="_blank" rel="noopener">superintendent, October 27, 2026</a>). Kindergarten entry is by lottery and capped, and students cannot join after first grade.</li>
+      <li>On October 27, 2026 the superintendent reported that parents and staff saw Community Park as less supported than other schools, citing class sizes and an art position cut below full time (<a href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=1120s" target="_blank" rel="noopener">video</a>). Public comments in 2025 had compared its kindergarten classes with smaller ones elsewhere (<a href="https://www.youtube.com/watch?v=x2NjipRNsb8&amp;t=4510s" target="_blank" rel="noopener">March 18, 2025</a>).</li>
+      <li>Several program costs are recorded outside the school: the world languages and dual language supervisor is based at the high school, teacher coaching was paid from a federal grant, and busing students into and out of Community Park is a district transportation cost the superintendent called "very costly" (<a href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3995s" target="_blank" rel="noopener">video</a>). Others are coded to the school: a dual language supplies line, aide stipends and a summer program paid from federal Title I funds.</li>
+      <li>The April 2026 budget reduced Community Park's sections and aides to save money. In October 2026 the superintendent proposed turning it into a "Spanish-intensive" neighborhood school; the Board had not voted as of these records (<a href="https://www.youtube.com/watch?v=mDjgV6ShOwk&amp;t=789s" target="_blank" rel="noopener">April 28, 2026</a>; <a href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4222s" target="_blank" rel="noopener">October 27, 2026</a>).</li>
+    </ul>
+    <p class="rp-source">Sources: meeting videos linked above, and Board minutes on <a href="https://go.boarddocs.com/nj/pps/Board.nsf/vpublic?open" target="_blank" rel="noopener">BoardDocs</a>: kindergarten lottery protocol (February 20, 2024); coaching paid from federal Title II funds (August 29, 2017; September 24, 2019); dual language aide stipends and the Title I summer program (May 23, 2023); supervisor's position (personnel agenda, May 6, 2025); dual language supplies line (budget transfer report, September 30, 2025).</p>
+  </section>
+
+  <section class="rp-sec" id="spending">
+    <h2>Spending per student</h2>
+    <div class="rp-grid">
+      <div class="rp-card">
+        <h3>Community Park against the other three</h3>
+        <p class="rp-note">Full cost per student: school spending plus each student's share of district costs. The other three are averaged over their students.</p>
+        <ul class="rp-legend"><li><span class="rp-sw" data-key="Community Park"></span>Community Park</li><li><span class="rp-sw" data-key="Other elementary schools"></span>Other three elementary schools</li></ul>
+        <div class="rp-chart" data-draw="line" data-source="cp_cost" data-series="series" data-y="full" data-fmt="usd"></div>
+        <p class="rp-caption">Community Park stayed close to or below the other schools' average until 2021–22, rose well above it in 2022–23 (by <b data-draw="val" data-source="cp_cost" data-field="gap" data-where="school_year=2022-23&amp;series=Community%20Park" data-fmt="usd">—</b>), and fell below it in 2024–25 (by <b data-draw="val" data-source="cp_cost" data-field="gap_abs" data-where="school_year=2024-25&amp;series=Community%20Park" data-fmt="usd">—</b>), the year the district's split of costs among schools changed.</p>
+        <p class="rp-source">Source: NJ Department of Education, school-level per-pupil expenditures, 2018–19 to 2024–25 (each year linked under Sources). Full cost, averages and the 2024–25 remainder are calculated for this report.</p>
+      </div>
+      <div class="rp-card">
+        <h3>Each elementary school</h3>
+        <p class="rp-note">Full cost per student.</p>
+        <ul class="rp-legend"><li><span class="rp-sw" data-key="110"></span>Community Park</li><li><span class="rp-sw" data-key="090"></span>Riverside</li><li><span class="rp-sw" data-key="080"></span>Littlebrook</li><li><span class="rp-sw" data-key="070"></span>Johnson Park</li></ul>
+        <div class="rp-chart" data-draw="line" data-source="ppe_full" data-only="elem" data-y="full" data-fmt="usd"></div>
+        <p class="rp-caption">Riverside, the smallest school, costs the most per student in every year except 2022–23, when Community Park did. Community Park was third or fourth until 2020–21, first in 2022–23 and last in 2024–25.</p>
+        <p class="rp-source">Source: NJ Department of Education, school-level per-pupil expenditures, 2018–19 to 2024–25 (each year linked under Sources). Full cost, averages and the 2024–25 remainder are calculated for this report.</p>
+      </div>
+      <div class="rp-card">
+        <h3>Spending counted at the school</h3>
+        <p class="rp-note">Per student, before district costs are added.</p>
+        <ul class="rp-legend"><li><span class="rp-sw" data-key="110"></span>Community Park</li><li><span class="rp-sw" data-key="090"></span>Riverside</li><li><span class="rp-sw" data-key="080"></span>Littlebrook</li><li><span class="rp-sw" data-key="070"></span>Johnson Park</li></ul>
+        <div class="rp-chart" data-draw="line" data-source="ppe_full" data-only="elem" data-y="school_level" data-fmt="usd"></div>
+        <p class="rp-caption">Every school jumps in 2022–23, when the state's table stopped listing costs not assigned to a school, and drops in 2024–25. Community Park moves the most both times, which points to changes in how the district books costs rather than to steady extra support.</p>
+        <p class="rp-source">Source: NJ Department of Education, school-level per-pupil expenditures, 2018–19 to 2024–25 (each year linked under Sources). Full cost, averages and the 2024–25 remainder are calculated for this report.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="rp-sec" id="staff">
+    <h2>Teachers</h2>
+    <div class="rp-grid">
+      <div class="rp-card">
+        <h3>Students per teacher</h3>
+        <p class="rp-note">Enrollment divided by teacher headcount. Lower means more teachers for each student.</p>
+        <ul class="rp-legend"><li><span class="rp-sw" data-key="Community Park"></span>Community Park</li><li><span class="rp-sw" data-key="Other elementary schools"></span>Other three elementary schools</li></ul>
+        <div class="rp-chart" data-draw="line" data-source="cp_staff" data-series="series" data-y="students_per_teacher" data-fmt="num1" data-zero="1"></div>
+        <p class="rp-caption">Community Park has had more students for each teacher than the other three schools in every year except 2022–23, and the gap has widened since then.</p>
+        <p class="rp-source">Source: NJ School Performance Reports database files, 2016–17 to 2024–25 (<a href="https://www.nj.gov/education/spr/download/" target="_blank" rel="noopener">download page</a>). Averages for the other three schools are calculated for this report.</p>
+      </div>
+      <div class="rp-card">
+        <h3>Teachers at each school</h3>
+        <p class="rp-note">Headcount reported to the state.</p>
+        <ul class="rp-legend"><li><span class="rp-sw" data-key="110"></span>Community Park</li><li><span class="rp-sw" data-key="090"></span>Riverside</li><li><span class="rp-sw" data-key="080"></span>Littlebrook</li><li><span class="rp-sw" data-key="070"></span>Johnson Park</li></ul>
+        <div class="rp-chart" data-draw="line" data-source="profile" data-only="elem" data-y="teachers" data-fmt="int" data-zero="1"></div>
+        <p class="rp-caption">Community Park has had the fewest teachers of the four since 2019–20, and its count in 2024–25 is the lowest on record.</p>
+        <p class="rp-source">Source: NJ School Performance Reports database files, 2016–17 to 2024–25 (<a href="https://www.nj.gov/education/spr/download/" target="_blank" rel="noopener">download page</a>). Averages for the other three schools are calculated for this report.</p>
+      </div>
+      <div class="rp-card">
+        <h3>Teachers' average years in the district</h3>
+        <ul class="rp-legend"><li><span class="rp-sw" data-key="110"></span>Community Park</li><li><span class="rp-sw" data-key="090"></span>Riverside</li><li><span class="rp-sw" data-key="080"></span>Littlebrook</li><li><span class="rp-sw" data-key="070"></span>Johnson Park</li></ul>
+        <div class="rp-chart" data-draw="line" data-source="profile" data-only="elem" data-y="teacher_yrs_in_district" data-fmt="num1" data-zero="1"></div>
+        <p class="rp-caption">Community Park's teachers have been among the most experienced in the district since 2019–20. Experienced teachers usually earn more, which raises cost per teacher even as the teacher count falls.</p>
+        <p class="rp-source">Source: NJ School Performance Reports database files, 2016–17 to 2024–25 (<a href="https://www.nj.gov/education/spr/download/" target="_blank" rel="noopener">download page</a>). Averages for the other three schools are calculated for this report.</p>
+      </div>
+      <div class="rp-card">
+        <h3>Teacher salaries per student</h3>
+        <p class="rp-note">Base salaries of teachers based at each school, divided by its October enrollment.</p>
+        <ul class="rp-legend"><li><span class="rp-sw" data-key="110"></span>Community Park</li><li><span class="rp-sw" data-key="090"></span>Riverside</li><li><span class="rp-sw" data-key="080"></span>Littlebrook</li><li><span class="rp-sw" data-key="070"></span>Johnson Park</li></ul>
+        <div class="rp-chart" data-draw="line" data-source="salaries" data-only="elem" data-y="teacher_salary_per_student" data-fmt="usd" data-zero="1"></div>
+        <p class="rp-caption">Community Park's teachers earn the highest average salary of the four, because they are the most experienced, but there are fewer of them, so its teacher salaries per student are about the same as Littlebrook's and Johnson Park's and below Riverside's. Teacher pay explains a good part of each school's spending gap in most years, including Community Park's lower spending, but not Community Park's higher spending in 2022–23 and 2023–24.</p>
+        <p class="rp-source">Source: the teachers' association (PREA) reappointment lists the Board approves each May, with each teacher's building and salary for the next year (<a href="https://go.boarddocs.com/nj/pps/Board.nsf/vpublic?open" target="_blank" rel="noopener">BoardDocs</a>, 2018 to 2025). Counts teachers listed at one school, leaving out shared staff, nurses, counselors and similar roles. Base pay only, as planned in May; later hires, stipends and benefits are not included. Totals calculated for this report; no individual is shown.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="rp-sec" id="students">
+    <h2>Who the students are</h2>
+    <p>Shares of each school's October enrollment. Schools with more students who need extra services usually cost more per student.</p>
+    <div class="rp-grid">
+      <div class="rp-card">
+        <h3>Enrollment</h3>
+        <ul class="rp-legend"><li><span class="rp-sw" data-key="110"></span>Community Park</li><li><span class="rp-sw" data-key="090"></span>Riverside</li><li><span class="rp-sw" data-key="080"></span>Littlebrook</li><li><span class="rp-sw" data-key="070"></span>Johnson Park</li></ul>
+        <div class="rp-chart rp-short" data-draw="line" data-source="profile" data-only="elem" data-y="enrollment" data-fmt="int" data-zero="1" data-h="200"></div>
+        <p class="rp-caption">Community Park's enrollment has stayed nearly flat since 2020–21. Littlebrook and Johnson Park grew in 2022–23 and have since fallen back.</p>
+        <p class="rp-source">Source: NJ School Performance Reports database files, 2016–17 to 2024–25 (<a href="https://www.nj.gov/education/spr/download/" target="_blank" rel="noopener">download page</a>). Averages for the other three schools are calculated for this report.</p>
+      </div>
+      <div class="rp-card">
+        <h3>Students with disabilities</h3>
+        <ul class="rp-legend"><li><span class="rp-sw" data-key="110"></span>Community Park</li><li><span class="rp-sw" data-key="090"></span>Riverside</li><li><span class="rp-sw" data-key="080"></span>Littlebrook</li><li><span class="rp-sw" data-key="070"></span>Johnson Park</li></ul>
+        <div class="rp-chart rp-short" data-draw="line" data-source="profile" data-only="elem" data-y="swd" data-fmt="pct" data-zero="1" data-h="200"></div>
+        <p class="rp-caption">Community Park has had the smallest share of students with disabilities since 2021–22. Johnson Park, which has the largest, still costs less per student than Riverside.</p>
+        <p class="rp-source">Source: NJ School Performance Reports database files, 2016–17 to 2024–25 (<a href="https://www.nj.gov/education/spr/download/" target="_blank" rel="noopener">download page</a>). Averages for the other three schools are calculated for this report.</p>
+      </div>
+      <div class="rp-card">
+        <h3>Economically disadvantaged students</h3>
+        <ul class="rp-legend"><li><span class="rp-sw" data-key="110"></span>Community Park</li><li><span class="rp-sw" data-key="090"></span>Riverside</li><li><span class="rp-sw" data-key="080"></span>Littlebrook</li><li><span class="rp-sw" data-key="070"></span>Johnson Park</li></ul>
+        <div class="rp-chart rp-short" data-draw="line" data-source="profile" data-only="elem" data-y="econ_dis" data-fmt="pct" data-zero="1" data-h="200"></div>
+        <p class="rp-caption">Community Park has had the second-largest share of economically disadvantaged students, after Johnson Park, in every year since 2017–18.</p>
+        <p class="rp-source">Source: NJ School Performance Reports database files, 2016–17 to 2024–25 (<a href="https://www.nj.gov/education/spr/download/" target="_blank" rel="noopener">download page</a>). Averages for the other three schools are calculated for this report.</p>
+      </div>
+      <div class="rp-card">
+        <h3>English learners</h3>
+        <p class="rp-note">Called multilingual learners from 2023–24.</p>
+        <ul class="rp-legend"><li><span class="rp-sw" data-key="110"></span>Community Park</li><li><span class="rp-sw" data-key="090"></span>Riverside</li><li><span class="rp-sw" data-key="080"></span>Littlebrook</li><li><span class="rp-sw" data-key="070"></span>Johnson Park</li></ul>
+        <div class="rp-chart rp-short" data-draw="line" data-source="profile" data-only="elem" data-y="ell" data-fmt="pct" data-zero="1" data-h="200"></div>
+        <p class="rp-caption">Community Park's share of English learners is close to the other schools'. Riverside has had the largest share since 2023–24.</p>
+        <p class="rp-source">Source: NJ School Performance Reports database files, 2016–17 to 2024–25 (<a href="https://www.nj.gov/education/spr/download/" target="_blank" rel="noopener">download page</a>). Averages for the other three schools are calculated for this report.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="rp-sec" id="results">
+    <h2>Test score growth and attendance</h2>
+    <p>Growth from the state tests in English language arts and math, taken in English in grades 3 to 5. Growth compares each student with students statewide who scored similarly the year before, so it depends less on who attends a school than raw scores do. There were no state tests in 2019–20 and 2020–21, and no growth scores in 2021–22. Growth still reflects how a school teaches as well as its resources, so it cannot show what caused a difference.</p>
+    <p class="rp-note">Left out: the state's published growth scores for 2022–23 and 2023–24 count students by the school zone they live in rather than the school they attend, as the superintendent told the Board on October 27, 2026 (<a href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3341s" target="_blank" rel="noopener">video</a>). In those two years the state lists more Community Park test-takers than the school had students in grades 3 to 5, which confirms it. In the other years the counts fit each school's enrollment.</p>
+    <div class="rp-grid">
+      <div class="rp-card">
+        <h3>Growth in English language arts</h3>
+        <p class="rp-note">Median student growth percentile: how much students improved compared with students statewide who scored similarly the year before.</p>
+        <ul class="rp-legend"><li><span class="rp-sw" data-key="110"></span>Community Park</li><li><span class="rp-sw" data-key="090"></span>Riverside</li><li><span class="rp-sw" data-key="080"></span>Littlebrook</li><li><span class="rp-sw" data-key="070"></span>Johnson Park</li></ul>
+        <div class="rp-chart rp-short" data-draw="line" data-source="outcomes" data-only="elem" data-y="ela_sgp" data-fmt="num1" data-zero="1" data-h="200"></div>
+        <p class="rp-caption">Community Park was lowest of the four in 2016–17 and 2017–18, and in the middle in 2018–19 and 2024–25.</p>
+        <p class="rp-source">Source: NJ School Performance Reports database files, 2016–17 to 2024–25 (<a href="https://www.nj.gov/education/spr/download/" target="_blank" rel="noopener">download page</a>). Grades 3 to 5. 2022–23 and 2023–24 left out (see above).</p>
+      </div>
+      <div class="rp-card">
+        <h3>Growth in math</h3>
+        <p class="rp-note">Median student growth percentile.</p>
+        <ul class="rp-legend"><li><span class="rp-sw" data-key="110"></span>Community Park</li><li><span class="rp-sw" data-key="090"></span>Riverside</li><li><span class="rp-sw" data-key="080"></span>Littlebrook</li><li><span class="rp-sw" data-key="070"></span>Johnson Park</li></ul>
+        <div class="rp-chart rp-short" data-draw="line" data-source="outcomes" data-only="elem" data-y="math_sgp" data-fmt="num1" data-zero="1" data-h="200"></div>
+        <p class="rp-caption">Community Park was highest of the four in 2016–17, lowest in 2017–18 and 2024–25, and in the middle in 2018–19.</p>
+        <p class="rp-source">Source: NJ School Performance Reports database files, 2016–17 to 2024–25 (<a href="https://www.nj.gov/education/spr/download/" target="_blank" rel="noopener">download page</a>). Grades 3 to 5. 2022–23 and 2023–24 left out (see above).</p>
+      </div>
+      <div class="rp-card">
+        <h3>Chronic absenteeism</h3>
+        <p class="rp-note">Share of students missing a tenth or more of school days.</p>
+        <ul class="rp-legend"><li><span class="rp-sw" data-key="110"></span>Community Park</li><li><span class="rp-sw" data-key="090"></span>Riverside</li><li><span class="rp-sw" data-key="080"></span>Littlebrook</li><li><span class="rp-sw" data-key="070"></span>Johnson Park</li></ul>
+        <div class="rp-chart rp-short" data-draw="line" data-source="outcomes" data-only="elem" data-y="chronic_abs" data-fmt="pct" data-zero="1" data-h="200"></div>
+        <p class="rp-caption">Absences rose at every school after the pandemic and have since come down. Community Park had the lowest rate of the four in 2023–24 and 2024–25.</p>
+        <p class="rp-source">Source: NJ School Performance Reports database files, 2016–17 to 2024–25 (<a href="https://www.nj.gov/education/spr/download/" target="_blank" rel="noopener">download page</a>). No figures were published for 2019–20.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="rp-sec" id="side-by-side">
+    <h2>The four schools in 2024–25</h2>
+    <div class="rp-card">
+      <h3 id="elem-table-h">Elementary schools, 2024–25</h3>
+      <p class="rp-note">Spending per student and daily-average students from the state's spending report; teachers and student shares from the October count; purchases from the 2025–26 bills lists divided by 2024–25 enrollment. Full cost includes the unassigned remainder worked out below.</p>
+      <div class="rp-tablebox">
+        <table data-source="elem_compare" data-row-key="code" aria-labelledby="elem-table-h">
+          <thead><tr>
+            <th data-field="school">School</th>
+            <th data-field="full">Full cost per student</th>
+            <th data-field="school_level">Counted at the school</th>
+            <th data-field="avg_daily_enrollment">Students (daily average)</th>
+            <th data-field="teachers">Teachers</th>
+            <th data-field="students_per_teacher">Students per teacher</th>
+            <th data-field="swd">With disabilities</th>
+            <th data-field="ell">English learners</th>
+            <th data-field="econ_dis">Economically disadvantaged</th>
+            <th data-field="bills_per_student">Purchases per student</th>
+          </tr></thead>
+          <tbody data-draw="elemtable"></tbody>
+        </table>
+      </div>
+      <p class="rp-caption">Community Park is lowest of the four on full cost, spending counted at the school, teachers and purchases per student, and highest on students per teacher.</p>
+        <p class="rp-source">Sources: state per-pupil expenditures 2024–25 (<a href="https://homeroom4.doe.state.nj.us/audsum/PpeReport?&amp;did=4255&amp;fileformat=html&amp;reportname=PERFORMREPORT&amp;fy=25" target="_blank" rel="noopener">report</a>); School Performance Reports database 2024–25; Board bills lists, 2025–26 purchase orders, by account location code.</p>
+    </div>
+    <div class="rp-card">
+      <h3>Purchases coded to each elementary school, 2025–26</h3>
+      <p class="rp-note">Supplies, services and trips on the Board's bills lists, per 2024–25 student. Salaries are not on the bills lists.</p>
+      <ul class="rp-legend"><li><span class="rp-sw" data-key="110"></span>Community Park</li><li><span class="rp-sw" data-key="090"></span>Riverside</li><li><span class="rp-sw" data-key="080"></span>Littlebrook</li><li><span class="rp-sw" data-key="070"></span>Johnson Park</li></ul>
+      <div class="rp-chart rp-short" data-draw="bars" data-source="elem_compare" data-h="180"></div>
+      <p class="rp-caption">Community Park received the least in coded purchases per student. Only a small share of all bills carries a school code (<b data-draw="val" data-source="bills_share" data-field="share" data-where="fiscal_year=FY2026" data-fmt="share">—</b> in 2025–26), so this is a narrow slice of spending.</p>
+        <p class="rp-source">Source: Board of Education bills lists attached to meeting agendas, purchase orders for July 2025 to June 2026, grouped by the school location code in each account number; divided by 2024–25 enrollment from the School Performance Reports database.</p>
+    </div>
+  </section>
+
+  <section class="rp-sec" id="period">
+    <h2>Averages over the whole period</h2>
+    <div class="rp-card">
+      <h3 id="means-table-h">Yearly averages for each elementary school</h3>
+      <p class="rp-note">Each year counts equally. Spending covers 2018–19 to 2024–25; teacher figures cover 2016–17 to 2024–25.</p>
+      <div class="rp-tablebox">
+        <table data-source="period_means" data-row-key="code" aria-labelledby="means-table-h">
+          <thead><tr>
+            <th data-field="school">School</th>
+            <th data-field="mean_full">Full cost per student, average</th>
+            <th data-field="mean_spt">Students per teacher, average</th>
+            <th data-field="mean_teachers">Teachers, average</th>
+          </tr></thead>
+          <tbody data-draw="meanstable"></tbody>
+        </table>
+      </div>
+      <p class="rp-caption">Over the whole period Community Park's average cost per student is about the same as the other three schools' average, below Riverside and above Littlebrook and Johnson Park. Its average number of students per teacher is the highest of the four. Averaging hides the swings: Community Park was above the others only in a few years, and lowest in 2024–25.</p>
+      <p class="rp-source">Source: NJ Department of Education, school-level per-pupil expenditures, 2018–19 to 2024–25, and School Performance Reports database files, 2016–17 to 2024–25. Averages are calculated for this report.</p>
+    </div>
+  </section>
+
+  <section class="rp-sec" id="split-2025">
+    <h2>2024–25: a different split</h2>
+    <div class="rp-card">
+      <p>In the state's 2024–25 table, spending counted at the elementary schools drops sharply. Community Park went from <b data-draw="val" data-source="ppe_full" data-field="school_level" data-where="school_year=2023-24&amp;code=110" data-fmt="usd">—</b> per student in 2023–24 to <b data-draw="val" data-source="ppe_full" data-field="school_level" data-where="school_year=2024-25&amp;code=110" data-fmt="usd">—</b>, and Littlebrook from <b data-draw="val" data-source="ppe_full" data-field="school_level" data-where="school_year=2023-24&amp;code=080" data-fmt="usd">—</b> to <b data-draw="val" data-source="ppe_full" data-field="school_level" data-where="school_year=2024-25&amp;code=080" data-fmt="usd">—</b>. The high school barely changed (<b data-draw="val" data-source="ppe_full" data-field="school_level" data-where="school_year=2023-24&amp;code=050" data-fmt="usd">—</b> to <b data-draw="val" data-source="ppe_full" data-field="school_level" data-where="school_year=2024-25&amp;code=050" data-fmt="usd">—</b>).</p>
+      <p>The same table no longer adds up: after the schools and the central office, <b data-draw="val" data-source="ppe" data-field="not_assigned" data-where="school_year=2024-25&amp;code=050" data-fmt="usd">—</b> per student of the district's total is not shown anywhere. This report spreads that remainder evenly over all students, as the state did with its "not assigned to a school" line in earlier years, so full costs stay comparable. The table does not say why the split changed; the district could explain it.</p>
+      <p class="rp-source">Sources: state per-pupil expenditures, <a href="https://www.nj.gov/education/sprreports/202324/District-Detail/21-4255.pdf" target="_blank" rel="noopener">2023–24</a> and <a href="https://homeroom4.doe.state.nj.us/audsum/PpeReport?&amp;did=4255&amp;fileformat=html&amp;reportname=PERFORMREPORT&amp;fy=25" target="_blank" rel="noopener">2024–25</a>. The remainder is the 2024–25 district total minus the schools and the central office, each weighted by its students.</p>
+    </div>
+  </section>
+
+  <section class="rp-sec" id="limits">
+    <h2>What these figures cannot show</h2>
+    <ul class="rp-list">
+      <li>They cover the whole school. Every Community Park section is now in the program, so the program is inside these figures, but they do not separate its costs or say which teachers are bilingual.</li>
+      <li>Program costs such as a coordinator, curriculum, materials or training may be recorded at the district level and spread over all students, which would hide them from a school-by-school comparison.</li>
+      <li>The district decides how to split shared costs among its schools, the state does not audit that split, and the split changed sharply in 2024–25.</li>
+      <li>The district's own budget documents or a direct question to the district would be needed to see what the program itself costs.</li>
+    </ul>
+  </section>
+
+  <section class="rp-sec" id="levels">
+    <h2>For context: elementary, middle and high school</h2>
+    <div class="rp-grid">
+      <div class="rp-card">
+        <h3>Full cost per student by level</h3>
+        <p class="rp-note">Averaged over each level's students.</p>
+        <ul class="rp-legend"><li><span class="rp-sw" data-key="Elementary schools"></span>Elementary schools</li><li><span class="rp-sw" data-key="Middle school"></span>Middle school</li><li><span class="rp-sw" data-key="High school"></span>High school</li></ul>
+        <div class="rp-chart" data-draw="line" data-source="ppe_group" data-series="group" data-y="full" data-fmt="usd" data-zero="1"></div>
+        <p class="rp-caption">The elementary schools cost more per student than the middle and high schools in every year through 2023–24. In 2024–25, with the new split, the order reversed.</p>
+        <p class="rp-source">Source: NJ Department of Education, school-level per-pupil expenditures, 2018–19 to 2024–25 (each year linked under Sources). Full cost, averages and the 2024–25 remainder are calculated for this report.</p>
+      </div>
+      <div class="rp-card">
+        <h3>Students per teacher by level</h3>
+        <p class="rp-note">Enrollment divided by teacher headcount.</p>
+        <ul class="rp-legend"><li><span class="rp-sw" data-key="Elementary schools"></span>Elementary schools</li><li><span class="rp-sw" data-key="Middle school"></span>Middle school</li><li><span class="rp-sw" data-key="High school"></span>High school</li></ul>
+        <div class="rp-chart" data-draw="line" data-source="profile_group" data-series="group" data-y="students_per_teacher" data-fmt="num1" data-zero="1"></div>
+        <p class="rp-caption">Elementary schools have fewer students per teacher than the middle and high schools in every year, a likely reason they usually cost more per student.</p>
+        <p class="rp-source">Source: NJ School Performance Reports database files, 2016–17 to 2024–25 (<a href="https://www.nj.gov/education/spr/download/" target="_blank" rel="noopener">download page</a>). Averages for the other three schools are calculated for this report.</p>
+      </div>
+    </div>
+    <div class="rp-card">
+      <h3 id="ppe-table-h">All six schools, latest year</h3>
+      <p class="rp-note">Per student. District share is central office costs plus the unassigned remainder.</p>
+      <div class="rp-tablebox">
+        <table data-source="ppe_full" data-row-key="school_year,code" aria-labelledby="ppe-table-h">
+          <thead><tr>
+            <th data-field="school">School</th>
+            <th data-field="school_level">At the school</th>
+            <th data-field="district_share">District share</th>
+            <th data-field="full">Full cost</th>
+            <th data-field="avg_daily_enrollment">Students</th>
+          </tr></thead>
+          <tbody data-draw="ppetable"></tbody>
+        </table>
+      </div>
+      <p class="rp-caption">In 2024–25 Riverside had the highest full cost per student of all six schools and Community Park the lowest.</p>
+      <p class="rp-source">Source: NJ Department of Education, school-level per-pupil expenditures, 2018–19 to 2024–25 (each year linked under Sources). Full cost, averages and the 2024–25 remainder are calculated for this report.</p>
+    </div>
+  </section>
+
+  <section class="rp-method" id="method">
+    <h2>Sources</h2>
+    <ul>
+      <li>Spending per student by year: <a href="https://homeroom4.doe.state.nj.us/audsum/PpeReport?&amp;did=4255&amp;fileformat=html&amp;reportname=PERFORMREPORT&amp;fy=19" target="_blank" rel="noopener">2018–19</a>, <a href="https://homeroom4.doe.state.nj.us/audsum/PpeReport?&amp;did=4255&amp;fileformat=html&amp;reportname=PERFORMREPORT&amp;fy=20" target="_blank" rel="noopener">2019–20</a>, <a href="https://www.nj.gov/education/sprreports/202021/District-Detail/21-4255.pdf" target="_blank" rel="noopener">2020–21</a>, <a href="https://www.nj.gov/education/sprreports/202122/District-Detail/21-4255.pdf" target="_blank" rel="noopener">2021–22</a>, <a href="https://www.nj.gov/education/sprreports/202223/District-Detail/21-4255.pdf" target="_blank" rel="noopener">2022–23</a>, <a href="https://www.nj.gov/education/sprreports/202324/District-Detail/21-4255.pdf" target="_blank" rel="noopener">2023–24</a>, <a href="https://homeroom4.doe.state.nj.us/audsum/PpeReport?&amp;did=4255&amp;fileformat=html&amp;reportname=PERFORMREPORT&amp;fy=25" target="_blank" rel="noopener">2024–25</a>. The state's Audit Summary pages (2018–19, 2019–20, 2024–25) block automated access, so those figures were copied by hand from the pages; the others come from the district detail reports (PDF).</li>
+      <li>Spending per student: the state's school-level per-pupil expenditures for Princeton Public Schools, from the district detail reports of the <a href="https://www.nj.gov/education/spr/" target="_blank" rel="noopener">School Performance Reports</a> (2020–21 to 2023–24) and the state's Audit Summary per-pupil reports (2018–19, 2019–20 and 2024–25, copied by hand). Before 2018–19 the state reported spending for the district only.</li>
+      <li>Teacher salaries: the PREA tenured and non-tenured reappointment lists approved at the Board's staff appointments meetings, May 2018 to May 2025 (BoardDocs), for 2018–19 to 2025–26. The 2017 list is a scanned image and is not included; the 2026–27 lists were not posted publicly. Read by machine from the PDFs and spreadsheets; a handful of lines that could not be read are left out.</li>
+      <li>Test score growth and absenteeism: the state's School Performance Reports database files (the 2024–25 file's trend tables for recent years; earlier files for 2016–17 to 2018–19). Growth scores for 2022–23 and 2023–24 are left out because they count students by home zone.</li>
+      <li>Students, teachers and staff: the state's School Performance Reports database files, 2016–17 to 2024–25, from its <a href="https://www.nj.gov/education/spr/download/" target="_blank" rel="noopener">download page</a>.</li>
+      <li>Purchases: the bills lists attached to Board agendas, by the location code in each account number.</li>
+      <li>The state cautions that districts decide how costs are split among their schools, so school figures should not be compared with schools in other districts.</li>
+    </ul>
+  </section>
+</div>
+
+<script>
+(function () {
+  const ORDER = ['110', '090', '080', '070', '085', '050'];
+  const ELEM = ['110', '090', '080', '070'];
+  const GROUPS = ['Elementary schools', 'Middle school', 'High school'];
+  const CPS = ['Community Park', 'Other elementary schools'];
+  const NAME = { '090': 'Riverside', '110': 'Community Park', '080': 'Littlebrook', '070': 'Johnson Park', '085': 'Princeton Middle School', '050': 'Princeton High School' };
+  const IDX = { '110': 0, '090': 1, '080': 2, '070': 3, '085': 4, '050': 5, 'Community Park': 0, 'Elementary schools': 6, 'Middle school': 4, 'High school': 5 };
+  const color = (k) => (k === 'Other elementary schools' ? 'var(--cds-chart-muted)' : dash.colors[(IDX[k] ?? 7) % dash.colors.length]);
+  const label = (k) => NAME[k] || (k === 'Other elementary schools' ? 'Other three (average)' : k);
+  const num = (v) => (v === '' || v == null || isNaN(Number(v)) ? null : Number(v));
+  const F = {
+    usd: d3.format('$,.0f'),
+    int: d3.format(',.0f'),
+    num1: d3.format('.1f'),
+    pct: (v) => d3.format('.1f')(v) + '%',
+    share: d3.format('.1%'),
+  };
+  const fmtOf = (k) => F[k] || F.int;
+
+  dash.calc('ppe_full', {
+    inputs: ['ppe'],
+    title: 'Full cost per student',
+    description: 'School-level spending per student plus the per-student central and unassigned district costs, added as the state describes. For 2024-25 the unassigned amount is the district total minus the schools and the central office.',
+    fn: (ppe) => ppe.map((r) => ({
+      school_year: r.school_year,
+      code: r.code,
+      school: r.school,
+      school_level: Number(r.school_level),
+      district_share: Number(r.not_assigned) + Number(r.central),
+      full: Number(r.school_level) + Number(r.not_assigned) + Number(r.central),
+      avg_daily_enrollment: Number(r.avg_daily_enrollment),
+    })),
+  });
+
+  dash.calc('cp_cost', {
+    inputs: ['ppe_full'],
+    title: 'Community Park against the other elementary schools: cost',
+    description: 'Community Park\'s full cost per student, and the other three elementary schools\' full cost averaged over their students; gap is Community Park minus that average.',
+    fn: (ppe_full) => {
+      const OTHERS = ['090', '080', '070'];
+      const years = [...new Set(ppe_full.map((r) => r.school_year))].sort();
+      return years.flatMap((y) => {
+        const cp = ppe_full.find((r) => r.school_year === y && r.code === '110');
+        const o = ppe_full.filter((r) => r.school_year === y && OTHERS.includes(r.code));
+        const w = o.reduce((a, r) => a + r.avg_daily_enrollment, 0);
+        const avg = Math.round(o.reduce((a, r) => a + r.full * r.avg_daily_enrollment, 0) / w);
+        return [
+          { school_year: y, series: 'Community Park', full: cp.full, gap: cp.full - avg, gap_abs: Math.abs(cp.full - avg) },
+          { school_year: y, series: 'Other elementary schools', full: avg, gap: null, gap_abs: null },
+        ];
+      });
+    },
+  });
+
+  dash.calc('cp_staff', {
+    inputs: ['profile'],
+    title: 'Community Park against the other elementary schools: teachers',
+    description: 'Enrollment divided by teacher headcount, for Community Park and for the other three elementary schools taken together.',
+    fn: (profile) => {
+      const OTHERS = ['090', '080', '070'];
+      const years = [...new Set(profile.map((r) => r.school_year))].sort();
+      const r1 = (v) => Math.round(v * 10) / 10;
+      return years.flatMap((y) => {
+        const cp = profile.find((r) => r.school_year === y && r.code === '110');
+        const o = profile.filter((r) => r.school_year === y && OTHERS.includes(r.code));
+        const e = o.reduce((a, r) => a + Number(r.enrollment), 0);
+        const t = o.reduce((a, r) => a + Number(r.teachers), 0);
+        return [
+          { school_year: y, series: 'Community Park', students_per_teacher: r1(Number(cp.enrollment) / Number(cp.teachers)), teachers: Number(cp.teachers) },
+          { school_year: y, series: 'Other elementary schools', students_per_teacher: r1(e / t), teachers: t },
+        ];
+      });
+    },
+  });
+
+  dash.calc('cp_summary', {
+    inputs: ['cp_cost', 'cp_staff'],
+    title: 'Years Community Park was above the others',
+    description: 'How many years Community Park\'s full cost per student was above the other three schools\' average, and how many years it had more students per teacher.',
+    fn: (cp_cost, cp_staff) => {
+      const yc = [...new Set(cp_cost.map((r) => r.school_year))];
+      const ys = [...new Set(cp_staff.map((r) => r.school_year))];
+      const cost_years_above = cp_cost.filter((r) => r.series === 'Community Park' && r.gap > 0).length;
+      const spt_years_higher = ys.filter((y) => {
+        const a = cp_staff.find((r) => r.school_year === y && r.series === 'Community Park');
+        const b = cp_staff.find((r) => r.school_year === y && r.series === 'Other elementary schools');
+        return a.students_per_teacher > b.students_per_teacher;
+      }).length;
+      return [{ cost_years_above, cost_years: yc.length, spt_years_higher, spt_years: ys.length }];
+    },
+  });
+
+  dash.calc('period_means', {
+    inputs: ['ppe_full', 'profile', 'cp_cost', 'cp_staff'],
+    title: 'Averages over the period',
+    description: 'For each elementary school, the average of its yearly figures (each year counted equally): full cost per student over all spending years, and students per teacher and teachers over all profile years. The other three schools use their yearly combined averages.',
+    fn: (ppe_full, profile, cp_cost, cp_staff) => {
+      const ELEM = ['110', '090', '080', '070'];
+      const NAMES = { '110': 'Community Park', '090': 'Riverside', '080': 'Littlebrook', '070': 'Johnson Park' };
+      const mean = (a) => a.reduce((x, y) => x + y, 0) / a.length;
+      const r1 = (v) => Math.round(v * 10) / 10;
+      const rows = ELEM.map((c) => {
+        const f = ppe_full.filter((r) => r.code === c);
+        const p = profile.filter((r) => r.code === c);
+        return {
+          code: c, school: NAMES[c],
+          mean_full: Math.round(mean(f.map((r) => r.full))),
+          mean_spt: r1(mean(p.map((r) => Number(r.enrollment) / Number(r.teachers)))),
+          mean_teachers: r1(mean(p.map((r) => Number(r.teachers)))),
+        };
+      });
+      const oc = cp_cost.filter((r) => r.series === 'Other elementary schools');
+      const os = cp_staff.filter((r) => r.series === 'Other elementary schools');
+      rows.push({
+        code: 'others', school: 'Other three (average)',
+        mean_full: Math.round(mean(oc.map((r) => r.full))),
+        mean_spt: r1(mean(os.map((r) => r.students_per_teacher))),
+        mean_teachers: r1(mean(os.map((r) => r.teachers / 3))),
+      });
+      return rows;
+    },
+  });
+
+  dash.calc('ppe_group', {
+    inputs: ['ppe_full'],
+    title: 'Full cost per student by level',
+    description: 'Full cost per student averaged over each level\'s students (weighted by average daily enrollment): the four elementary schools, the middle school, the high school.',
+    fn: (ppe_full) => {
+      const G = { '090': 'Elementary schools', '110': 'Elementary schools', '080': 'Elementary schools', '070': 'Elementary schools', '085': 'Middle school', '050': 'High school' };
+      const acc = {};
+      ppe_full.forEach((r) => {
+        const k = r.school_year + '|' + G[r.code];
+        const a = acc[k] || (acc[k] = { school_year: r.school_year, group: G[r.code], w: 0, s: 0 });
+        a.w += r.avg_daily_enrollment;
+        a.s += r.full * r.avg_daily_enrollment;
+      });
+      return Object.values(acc).map((a) => ({ school_year: a.school_year, group: a.group, full: Math.round(a.s / a.w), students: Math.round(a.w) }));
+    },
+  });
+
+  dash.calc('profile_group', {
+    inputs: ['profile'],
+    title: 'Students per teacher by level',
+    description: 'Each level\'s total enrollment divided by its total teacher headcount.',
+    fn: (profile) => {
+      const G = { '090': 'Elementary schools', '110': 'Elementary schools', '080': 'Elementary schools', '070': 'Elementary schools', '085': 'Middle school', '050': 'High school' };
+      const acc = {};
+      profile.forEach((r) => {
+        const k = r.school_year + '|' + G[r.code];
+        const a = acc[k] || (acc[k] = { school_year: r.school_year, group: G[r.code], e: 0, t: 0 });
+        a.e += Number(r.enrollment); a.t += Number(r.teachers);
+      });
+      return Object.values(acc).map((a) => ({ school_year: a.school_year, group: a.group, enrollment: a.e, teachers: a.t, students_per_teacher: Math.round((a.e / a.t) * 10) / 10 }));
+    },
+  });
+
+  dash.calc('elem_compare', {
+    inputs: ['ppe_full', 'profile', 'bills'],
+    title: 'Elementary schools side by side',
+    description: 'For the latest year with spending figures, each elementary school\'s spending per student, teachers and student shares from the same year, and its 2025-26 coded purchases divided by that year\'s enrollment.',
+    fn: (ppe_full, profile, bills) => {
+      const ELEM = ['110', '090', '080', '070'];
+      const year = ppe_full.map((r) => r.school_year).sort().pop();
+      return ELEM.map((c) => {
+        const s = ppe_full.find((r) => r.school_year === year && r.code === c) || {};
+        const p = profile.find((r) => r.school_year === year && r.code === c) || {};
+        const b = bills.find((r) => r.fiscal_year === 'FY2026' && r.code === c);
+        return {
+          code: c, school: s.school, school_year: year, full: s.full, school_level: s.school_level, avg_daily_enrollment: s.avg_daily_enrollment,
+          teachers: Number(p.teachers), students_per_teacher: Number(p.students_per_teacher),
+          swd: Number(p.swd), ell: Number(p.ell), econ_dis: Number(p.econ_dis),
+          bills_per_student: b ? Math.round(Number(b.amount) / Number(p.enrollment)) : null,
+        };
+      });
+    },
+  });
+
+  dash.calc('bills_share', {
+    inputs: ['bills_coverage'],
+    title: 'Share of bills coded to a school',
+    description: 'Bill dollars coded to one of the six schools, divided by all bill dollars for that fiscal year.',
+    fn: (bills_coverage) => bills_coverage.map((r) => ({ fiscal_year: r.fiscal_year, share: Number(r.coded_to_a_school) / Number(r.all_bills) })),
+  });
+
+  dash.onData(() => {
+    document.querySelectorAll('.rp-sw[data-key]').forEach((el) => { el.style.background = color(el.dataset.key); });
+  });
+
+  const where = (s) => {
+    const o = {};
+    (s || '').split('&').forEach((p) => {
+      if (!p) return;
+      const i = p.indexOf('=');
+      o[decodeURIComponent(p.slice(0, i))] = decodeURIComponent(p.slice(i + 1));
+    });
+    return o;
+  };
+
+  dash.draw('val', (el) => {
+    const d = dash.data(el.dataset.source);
+    if (d.status !== 'ok') { el.textContent = '—'; return; }
+    const w = where(el.dataset.where);
+    const row = d.data.find((r) => Object.entries(w).every(([k, v]) => String(r[k]) === v));
+    const v = row ? num(row[el.dataset.field]) : null;
+    el.textContent = v == null ? '—' : fmtOf(el.dataset.fmt)(v);
+  });
+
+  function tickWidth(svg, labels) {
+    const t = svg.append('text').attr('class', 'rp-tick');
+    let w = 0;
+    labels.forEach((s) => { t.text(s); w = Math.max(w, t.node().getComputedTextLength()); });
+    t.remove();
+    return w;
+  }
+
+  dash.draw('line', (el) => {
+    el.replaceChildren();
+    const d = dash.data(el.dataset.source);
+    if (d.status !== 'ok') { el.textContent = '—'; return; }
+    const key = el.dataset.y;
+    const fmt = fmtOf(el.dataset.fmt);
+    const sk = el.dataset.series || 'code';
+    const series = sk === 'group' ? GROUPS : sk === 'series' ? CPS : (el.dataset.only === 'elem' ? ELEM : ORDER);
+    const allPts = d.data.map((r) => ({ yr: r.school_year, k: r[sk], v: num(r[key]) })).filter((p) => series.includes(p.k));
+    const pts = allPts.filter((p) => p.v != null);
+    if (!pts.length) { el.textContent = '—'; return; }
+    const years = [...new Set(allPts.map((p) => p.yr))].sort();
+    const W = Math.max(280, el.clientWidth || 600);
+    const H = Number(el.dataset.h) || 240;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const lo = el.dataset.zero ? 0 : d3.min(pts, (p) => p.v) * 0.9;
+    const y = d3.scaleLinear([lo, d3.max(pts, (p) => p.v) * 1.05], [H - 24, 8]).nice();
+    const ticks = y.ticks(4);
+    const left = tickWidth(svg, ticks.map(fmt)) + 10;
+    const x = d3.scalePoint(years, [left + 8, W - 10]);
+    const g = svg.append('g');
+    g.selectAll('line.grid').data(ticks).join('line')
+      .attr('x1', left).attr('x2', W - 4).attr('y1', (t) => y(t)).attr('y2', (t) => y(t))
+      .style('stroke', 'var(--cds-chart-grid)').attr('stroke-width', 1);
+    g.selectAll('text.yl').data(ticks).join('text').attr('class', 'rp-tick')
+      .attr('x', left - 6).attr('y', (t) => y(t)).attr('dy', '0.32em').attr('text-anchor', 'end').text(fmt);
+    const short = (yr) => yr.slice(2);
+    const lw = tickWidth(svg, years.map(short)) + 8;
+    const step = years.length > 1 ? (x(years[1]) - x(years[0])) : W;
+    const every = Math.max(1, Math.ceil(lw / step));
+    g.selectAll('text.xl').data(years.filter((_, i) => i % every === 0 || i === years.length - 1)).join('text').attr('class', 'rp-tick')
+      .attr('x', (yr) => x(yr)).attr('y', H - 6).attr('text-anchor', 'middle').text(short);
+    const line = d3.line().defined((p) => p.v != null).x((p) => x(p.yr)).y((p) => y(p.v));
+    [...series].reverse().forEach((k) => {
+      const s = allPts.filter((p) => p.k === k).sort((a, b) => a.yr.localeCompare(b.yr));
+      if (!s.some((p) => p.v != null)) return;
+      const strong = k === 'Community Park' || k === '110';
+      g.append('path').datum(s).attr('d', line).attr('fill', 'none').style('stroke', color(k))
+        .attr('stroke-width', strong ? 3 : 2).attr('stroke-linecap', 'round').attr('stroke-linejoin', 'round');
+      g.selectAll(null).data(s.filter((p) => p.v != null)).join('circle').attr('cx', (p) => x(p.yr)).attr('cy', (p) => y(p.v)).attr('r', strong ? 3.5 : 2.5).style('fill', color(k));
+    });
+    const rule = g.append('line').attr('y1', 8).attr('y2', H - 24).style('stroke', 'var(--cds-chart-reference)').attr('stroke-width', 1).style('opacity', 0);
+    const tip = document.createElement('div');
+    tip.className = 'rp-tip';
+    tip.hidden = true;
+    el.appendChild(tip);
+    svg.append('rect').attr('x', left).attr('y', 0).attr('width', W - left).attr('height', H).attr('fill', 'transparent')
+      .on('pointermove', (ev) => {
+        const [mx] = d3.pointer(ev);
+        const yr = years.reduce((a, b) => (Math.abs(x(b) - mx) < Math.abs(x(a) - mx) ? b : a));
+        const here = pts.filter((p) => p.yr === yr).sort((a, b) => b.v - a.v);
+        rule.attr('x1', x(yr)).attr('x2', x(yr)).style('opacity', 1);
+        tip.replaceChildren();
+        const h = document.createElement('div'); h.className = 'rp-tip-h'; h.textContent = yr; tip.appendChild(h);
+        here.forEach((p) => {
+          const r = document.createElement('div'); r.className = 'rp-tip-r';
+          const sw = document.createElement('span'); sw.className = 'rp-sw'; sw.style.background = color(p.k);
+          const n = document.createElement('span'); n.textContent = label(p.k);
+          const v = document.createElement('span'); v.textContent = fmt(p.v);
+          r.append(sw, n, v); tip.appendChild(r);
+        });
+        tip.hidden = false;
+        const box = el.getBoundingClientRect();
+        const px = (x(yr) / W) * box.width;
+        const tw = tip.offsetWidth;
+        tip.style.left = Math.max(0, Math.min(box.width - tw, px + 12 > box.width - tw ? px - tw - 12 : px + 12)) + 'px';
+        tip.style.top = '4px';
+      })
+      .on('pointerleave', () => { tip.hidden = true; rule.style('opacity', 0); });
+  });
+
+  dash.draw('bars', (el) => {
+    el.replaceChildren();
+    const d = dash.data(el.dataset.source);
+    if (d.status !== 'ok') { el.textContent = '—'; return; }
+    const rows = d.data.filter((r) => r.bills_per_student != null).map((r) => ({ code: r.code, v: Number(r.bills_per_student) })).sort((a, b) => b.v - a.v);
+    if (!rows.length) { el.textContent = '—'; return; }
+    const W = Math.max(280, el.clientWidth || 600);
+    const H = Number(el.dataset.h) || 180;
+    const svg = d3.select(el).append('svg').attr('width', '100%').attr('viewBox', `0 0 ${W} ${H}`).attr('role', 'img');
+    const left = tickWidth(svg, rows.map((r) => NAME[r.code])) + 10;
+    const fmt = F.usd;
+    const right = tickWidth(svg, rows.map((r) => fmt(r.v))) + 8;
+    const y = d3.scaleBand(rows.map((r) => r.code), [4, H - 4]).padding(0.3);
+    const x = d3.scaleLinear([0, d3.max(rows, (r) => r.v)], [left, W - right]);
+    const bh = Math.min(24, y.bandwidth());
+    const g = svg.append('g');
+    g.selectAll('rect').data(rows).join('rect').attr('x', left).attr('y', (r) => y(r.code))
+      .attr('width', (r) => Math.max(1, x(r.v) - left)).attr('height', bh).attr('rx', 3).style('fill', (r) => color(r.code));
+    const mid = (r) => y(r.code) + bh / 2;
+    g.selectAll('text.n').data(rows).join('text').attr('class', 'rp-tick').attr('x', left - 6).attr('y', mid)
+      .attr('dy', '0.32em').attr('text-anchor', 'end').text((r) => NAME[r.code]);
+    g.selectAll('text.v').data(rows).join('text').attr('class', 'rp-tick').attr('x', (r) => x(r.v) + 6).attr('y', mid)
+      .attr('dy', '0.32em').text((r) => fmt(r.v));
+  });
+
+  function fillTable(tbody, source, year, cols, codes) {
+    tbody.replaceChildren();
+    const d = dash.data(source);
+    if (d.status !== 'ok') return;
+    const yr = year === 'latest' ? d.data.map((r) => r.school_year).sort().pop() : year;
+    codes.forEach((c) => {
+      const r = d.data.find((x) => (yr == null || x.school_year === yr) && x.code === c);
+      if (!r) return;
+      const tr = document.createElement('tr');
+      tr.dataset.key = yr == null ? c : `${yr},${c}`;
+      cols.forEach(([field, f]) => {
+        const td = document.createElement('td');
+        const v = r[field];
+        td.textContent = f ? (num(v) == null ? '' : f(num(v))) : String(v ?? '');
+        tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+  }
+
+  dash.draw('elemtable', (tbody) => fillTable(tbody, 'elem_compare', null, [
+    ['school', null], ['full', F.usd], ['school_level', F.usd], ['avg_daily_enrollment', F.int], ['teachers', F.int],
+    ['students_per_teacher', F.int], ['swd', F.pct], ['ell', F.pct], ['econ_dis', F.pct], ['bills_per_student', F.usd],
+  ], ELEM));
+
+  dash.draw('meanstable', (tbody) => fillTable(tbody, 'period_means', null, [
+    ['school', null], ['mean_full', F.usd], ['mean_spt', F.num1], ['mean_teachers', F.num1],
+  ], ['110', '090', '080', '070', 'others']));
+
+  dash.draw('ppetable', (tbody) => fillTable(tbody, 'ppe_full', 'latest', [
+    ['school', null], ['school_level', F.usd], ['district_share', F.usd], ['full', F.usd], ['avg_daily_enrollment', F.int],
+  ], ORDER));
+})();
+</script>
+
+</div>
+</body>
+</html>
