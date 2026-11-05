@@ -91,6 +91,7 @@ window.dash = (() => {
 .rp-chart svg { display: block; overflow: visible; }
 .rp-tick { fill: var(--color-fg-muted); font-size: 11px; font-family: var(--font-anthropic-sans); font-variant-numeric: tabular-nums; }
 .rp-tip { position: absolute; pointer-events: none; background: var(--cds-surface-popover); border: 1px solid var(--cds-border); border-radius: var(--cds-radius); box-shadow: var(--cds-shadow-popover); padding: var(--cds-pad-xs) var(--cds-pad-sm); font-size: var(--cds-font-size-caption); display: grid; gap: 2px; min-width: 11rem; z-index: 2; }
+.rp-tip[hidden] { display: none; }
 .rp-tip .rp-tip-h { color: var(--cds-text-secondary); }
 .rp-tip .rp-tip-r { display: flex; align-items: center; gap: 6px; font-variant-numeric: tabular-nums; }
 .rp-tip .rp-tip-r span:last-child { margin-left: auto; padding-left: 12px; }
@@ -102,6 +103,17 @@ window.dash = (() => {
 .rp-findings { display: grid; gap: var(--cds-gap-sm); max-width: 46rem; }
 .rp-findings h3 { font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); margin: 0; }
 .rp-findings ul { margin: 0; padding-left: 1.1rem; display: grid; gap: 6px; line-height: 1.5; }
+.rp-answer { font-family: var(--font-anthropic-serif); font-size: 21px; line-height: 1.4; margin: 0; max-width: 44rem; text-wrap: pretty; }
+.rp-tiles { display: grid; gap: var(--cds-gap-md); grid-template-columns: repeat(auto-fit, minmax(min(100%, 13rem), 1fr)); }
+.rp-tile { background: var(--color-panel); border: 1px solid var(--color-border-line); border-radius: var(--cds-radius); padding: var(--cds-pad-md) var(--cds-pad-lg); display: grid; gap: 2px; }
+.rp-tile-label { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); }
+.rp .rp-tile-num { font-family: var(--font-anthropic-serif); font-weight: 400; font-size: var(--cds-font-size-title); font-variant-numeric: tabular-nums; }
+.rp-tile-cmp { font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); font-variant-numeric: tabular-nums; }
+.rp-jump { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: var(--cds-font-size-caption); }
+.rp-jump a { color: inherit; }
+.rp-fold { border-top: 1px solid var(--color-border-line); padding-block: var(--cds-pad-sm); }
+.rp-fold > summary { cursor: pointer; font-size: var(--cds-font-size-heading); font-weight: var(--cds-font-weight-medium); padding-block: var(--cds-pad-xs); }
+.rp-fold-body { display: grid; gap: var(--cds-gap-md); padding-top: var(--cds-pad-sm); }
 .rp-caption { margin: 0; font-size: var(--cds-font-size-body); line-height: 1.5; color: var(--color-fg); border-top: 1px solid var(--color-border-line); padding-top: var(--cds-pad-sm); }
 .rp-source { margin: 0; font-size: var(--cds-font-size-caption); color: var(--color-fg-muted); line-height: 1.45; }
 .rp-source a { color: inherit; }
@@ -119,33 +131,27 @@ window.dash = (() => {
 <div class="rp">
   <header class="rp-head" id="top">
     <h1>Community Park and Princeton's other elementary schools</h1>
-    <p class="rp-lede">Has the district put extra resources into Community Park, home of its Spanish–English dual language immersion program? In the state's school-level figures, not in a way that shows. In 2024–25 Community Park had the lowest full cost per student of the four elementary schools, <b data-draw="val" data-source="cp_cost" data-field="full" data-where="school_year=2024-25&amp;series=Community%20Park" data-fmt="usd">—</b> against an average of <b data-draw="val" data-source="cp_cost" data-field="full" data-where="school_year=2024-25&amp;series=Other%20elementary%20schools" data-fmt="usd">—</b> at the other three, and the most students per teacher, <b data-draw="val" data-source="cp_staff" data-field="students_per_teacher" data-where="school_year=2024-25&amp;series=Community%20Park" data-fmt="num1">—</b> against <b data-draw="val" data-source="cp_staff" data-field="students_per_teacher" data-where="school_year=2024-25&amp;series=Other%20elementary%20schools" data-fmt="num1">—</b>. Averaged over 2018–19 to 2024–25, its cost per student was about the same as the other three schools' (<b data-draw="val" data-source="period_means" data-field="mean_full" data-where="code=110" data-fmt="usd">—</b> against <b data-draw="val" data-source="period_means" data-field="mean_full" data-where="code=others" data-fmt="usd">—</b>), with fewer teachers for its students.</p>
+    <p class="rp-answer">Community Park gets about the same spending per student as Princeton's other elementary schools, with fewer teachers for its students.</p>
+    <div class="rp-tiles">
+      <div class="rp-tile">
+        <span class="rp-tile-label">Full cost per student, 2024–25</span>
+        <b class="rp-tile-num" data-draw="val" data-source="cp_cost" data-field="full" data-where="school_year=2024-25&amp;series=Community%20Park" data-fmt="usd">—</b>
+        <span class="rp-tile-cmp">Other three: <span data-draw="val" data-source="cp_cost" data-field="full" data-where="school_year=2024-25&amp;series=Other%20elementary%20schools" data-fmt="usd">—</span></span>
+      </div>
+      <div class="rp-tile">
+        <span class="rp-tile-label">Students per teacher, 2024–25</span>
+        <b class="rp-tile-num" data-draw="val" data-source="cp_staff" data-field="students_per_teacher" data-where="school_year=2024-25&amp;series=Community%20Park" data-fmt="num1">—</b>
+        <span class="rp-tile-cmp">Other three: <span data-draw="val" data-source="cp_staff" data-field="students_per_teacher" data-where="school_year=2024-25&amp;series=Other%20elementary%20schools" data-fmt="num1">—</span></span>
+      </div>
+      <div class="rp-tile">
+        <span class="rp-tile-label">Average cost per student, 2018–25</span>
+        <b class="rp-tile-num" data-draw="val" data-source="period_means" data-field="mean_full" data-where="code=110" data-fmt="usd">—</b>
+        <span class="rp-tile-cmp">Other three: <span data-draw="val" data-source="period_means" data-field="mean_full" data-where="code=others" data-fmt="usd">—</span></span>
+      </div>
+    </div>
+    <nav class="rp-jump" aria-label="Sections"><a href="#spending">Spending</a><a href="#staff">Teachers</a><a href="#students">Students</a><a href="#results">Growth and attendance</a><a href="#side-by-side">2024–25 side by side</a><a href="#more">Background and sources</a></nav>
+    <p class="rp-note">From public state and Board of Education records. Community Park is home to the district's Spanish–English dual language immersion program.</p>
   </header>
-
-  <section class="rp-findings" id="answer">
-    <h2>What the figures show</h2>
-    <ul>
-      <li><b>Teachers.</b> Community Park had more students per teacher than the other three schools in <b data-draw="val" data-source="cp_summary" data-field="spt_years_higher" data-fmt="int">—</b> of the <b data-draw="val" data-source="cp_summary" data-field="spt_years" data-fmt="int">—</b> years on record, and the fewest teachers of the four in every year since 2019–20. Its teacher headcount fell from <b data-draw="val" data-source="profile" data-field="teachers" data-where="school_year=2016-17&amp;code=110" data-fmt="int">—</b> in 2016–17 to <b data-draw="val" data-source="profile" data-field="teachers" data-where="school_year=2024-25&amp;code=110" data-fmt="int">—</b> in 2024–25, while enrollment went from <b data-draw="val" data-source="profile" data-field="enrollment" data-where="school_year=2016-17&amp;code=110" data-fmt="int">—</b> to <b data-draw="val" data-source="profile" data-field="enrollment" data-where="school_year=2024-25&amp;code=110" data-fmt="int">—</b>.</li>
-      <li><b>Teacher pay.</b> Community Park's teachers have the highest average salary of the four, because they are the most experienced, but there are fewer of them, so its teacher salaries per student are about average and below Riverside's. In most years this explains part of Community Park's lower spending; it does not explain its higher spending in 2022–23 and 2023–24.</li>
-      <li><b>Spending.</b> Its full cost per student was above the other three schools' average in <b data-draw="val" data-source="cp_summary" data-field="cost_years_above" data-fmt="int">—</b> of <b data-draw="val" data-source="cp_summary" data-field="cost_years" data-fmt="int">—</b> years (by a few dollars in 2021–22, clearly in 2022–23 and 2023–24) and below it in the rest, including 2024–25.</li>
-      <li><b>Purchases.</b> In the 2025–26 bills lists, Community Park had the smallest amount of supplies and services coded to it per student of the four.</li>
-      <li><b>Growth and attendance.</b> In the years the state counts students where they attend, Community Park's test score growth was mixed: lowest of the four in English in 2016–17 and 2017–18 and in math in 2017–18 and 2024–25, and in the middle or above in other years. Its absenteeism was the lowest of the four in the last two years.</li>
-      <li><b>Students.</b> Community Park has a smaller share of students with disabilities than the others, which by itself lowers a school's cost, and the second-largest share of economically disadvantaged students.</li>
-    </ul>
-    <p class="rp-source">Sources: the state's spending reports and School Performance Reports database files, and the Board's bills lists, as cited under each chart below.</p>
-    <p class="rp-note">These are whole-school figures. A dual language program can cost money without adding teachers (bilingual teachers in place of others, materials, training, a coordinator), and some of those costs may be recorded at the district level instead of at Community Park. See the limits at the end.</p>
-  </section>
-
-  <section class="rp-findings" id="records">
-    <h2>What the Board's records say about the program</h2>
-    <ul>
-      <li>The program began in 2015 as a strand within Community Park and later became school-wide (<a href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4146s" target="_blank" rel="noopener">superintendent, October 27, 2026</a>). Kindergarten entry is by lottery and capped, and students cannot join after first grade.</li>
-      <li>On October 27, 2026 the superintendent reported that parents and staff saw Community Park as less supported than other schools, citing class sizes and an art position cut below full time (<a href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=1120s" target="_blank" rel="noopener">video</a>). Public comments in 2025 had compared its kindergarten classes with smaller ones elsewhere (<a href="https://www.youtube.com/watch?v=x2NjipRNsb8&amp;t=4510s" target="_blank" rel="noopener">March 18, 2025</a>).</li>
-      <li>Several program costs are recorded outside the school: the world languages and dual language supervisor is based at the high school, teacher coaching was paid from a federal grant, and busing students into and out of Community Park is a district transportation cost the superintendent called "very costly" (<a href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3995s" target="_blank" rel="noopener">video</a>). Others are coded to the school: a dual language supplies line, aide stipends and a summer program paid from federal Title I funds.</li>
-      <li>The April 2026 budget reduced Community Park's sections and aides to save money. In October 2026 the superintendent proposed turning it into a "Spanish-intensive" neighborhood school; the Board had not voted as of these records (<a href="https://www.youtube.com/watch?v=mDjgV6ShOwk&amp;t=789s" target="_blank" rel="noopener">April 28, 2026</a>; <a href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4222s" target="_blank" rel="noopener">October 27, 2026</a>).</li>
-    </ul>
-    <p class="rp-source">Sources: meeting videos linked above, and Board minutes on <a href="https://go.boarddocs.com/nj/pps/Board.nsf/vpublic?open" target="_blank" rel="noopener">BoardDocs</a>: kindergarten lottery protocol (February 20, 2024); coaching paid from federal Title II funds (August 29, 2017; September 24, 2019); dual language aide stipends and the Title I summer program (May 23, 2023); supervisor's position (personnel agenda, May 6, 2025); dual language supplies line (budget transfer report, September 30, 2025).</p>
-  </section>
 
   <section class="rp-sec" id="spending">
     <h2>Spending per student</h2>
@@ -175,6 +181,16 @@ window.dash = (() => {
         <p class="rp-source">Source: NJ Department of Education, school-level per-pupil expenditures, 2018–19 to 2024–25 (each year linked under Sources). Full cost, averages and the 2024–25 remainder are calculated for this report.</p>
       </div>
     </div>
+  </section>
+
+  <section class="rp-findings" id="brief">
+    <h2>In brief</h2>
+    <ul>
+      <li><b>Teachers:</b> Community Park has had more students per teacher than the other three in nearly every year, and the fewest teachers since 2019–20.</li>
+      <li><b>Spending:</b> above the other three's average only around 2022–23 and 2023–24, and the lowest of the four in 2024–25.</li>
+      <li><b>Teacher pay:</b> the highest average salary, because its teachers are the most experienced, but about average per student.</li>
+      <li><b>Growth and attendance:</b> mixed test score growth; the lowest absenteeism of the four in the last two years.</li>
+    </ul>
   </section>
 
   <section class="rp-sec" id="staff">
@@ -317,8 +333,24 @@ window.dash = (() => {
     </div>
   </section>
 
-  <section class="rp-sec" id="period">
-    <h2>Averages over the whole period</h2>
+  <section class="rp-sec" id="more">
+    <h2>Background and sources</h2>
+    <p class="rp-note">Tap a heading to open it.</p>
+    <details class="rp-fold" id="records">
+      <summary>What the Board's records say about the program</summary>
+      <div class="rp-fold-body">
+    <ul>
+      <li>The program began in 2015 as a strand within Community Park and later became school-wide (<a href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4146s" target="_blank" rel="noopener">superintendent, October 27, 2026</a>). Kindergarten entry is by lottery and capped, and students cannot join after first grade.</li>
+      <li>On October 27, 2026 the superintendent reported that parents and staff saw Community Park as less supported than other schools, citing class sizes and an art position cut below full time (<a href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=1120s" target="_blank" rel="noopener">video</a>). Public comments in 2025 had compared its kindergarten classes with smaller ones elsewhere (<a href="https://www.youtube.com/watch?v=x2NjipRNsb8&amp;t=4510s" target="_blank" rel="noopener">March 18, 2025</a>).</li>
+      <li>Several program costs are recorded outside the school: the world languages and dual language supervisor is based at the high school, teacher coaching was paid from a federal grant, and busing students into and out of Community Park is a district transportation cost the superintendent called "very costly" (<a href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=3995s" target="_blank" rel="noopener">video</a>). Others are coded to the school: a dual language supplies line, aide stipends and a summer program paid from federal Title I funds.</li>
+      <li>The April 2026 budget reduced Community Park's sections and aides to save money. In October 2026 the superintendent proposed turning it into a "Spanish-intensive" neighborhood school; the Board had not voted as of these records (<a href="https://www.youtube.com/watch?v=mDjgV6ShOwk&amp;t=789s" target="_blank" rel="noopener">April 28, 2026</a>; <a href="https://www.youtube.com/watch?v=KmP_fZecncM&amp;t=4222s" target="_blank" rel="noopener">October 27, 2026</a>).</li>
+    </ul>
+    <p class="rp-source">Sources: meeting videos linked above, and Board minutes on <a href="https://go.boarddocs.com/nj/pps/Board.nsf/vpublic?open" target="_blank" rel="noopener">BoardDocs</a>: kindergarten lottery protocol (February 20, 2024); coaching paid from federal Title II funds (August 29, 2017; September 24, 2019); dual language aide stipends and the Title I summer program (May 23, 2023); supervisor's position (personnel agenda, May 6, 2025); dual language supplies line (budget transfer report, September 30, 2025).</p>
+      </div>
+    </details>
+    <details class="rp-fold" id="period">
+      <summary>Averages over the whole period</summary>
+      <div class="rp-fold-body">
     <div class="rp-card">
       <h3 id="means-table-h">Yearly averages for each elementary school</h3>
       <p class="rp-note">Each year counts equally. Spending covers 2018–19 to 2024–25; teacher figures cover 2016–17 to 2024–25.</p>
@@ -336,29 +368,32 @@ window.dash = (() => {
       <p class="rp-caption">Over the whole period Community Park's average cost per student is about the same as the other three schools' average, below Riverside and above Littlebrook and Johnson Park. Its average number of students per teacher is the highest of the four. Averaging hides the swings: Community Park was above the others only in a few years, and lowest in 2024–25.</p>
       <p class="rp-source">Source: NJ Department of Education, school-level per-pupil expenditures, 2018–19 to 2024–25, and School Performance Reports database files, 2016–17 to 2024–25. Averages are calculated for this report.</p>
     </div>
-  </section>
-
-  <section class="rp-sec" id="split-2025">
-    <h2>2024–25: a different split</h2>
+      </div>
+    </details>
+    <details class="rp-fold" id="split-2025">
+      <summary>2024–25: a different split</summary>
+      <div class="rp-fold-body">
     <div class="rp-card">
       <p>In the state's 2024–25 table, spending counted at the elementary schools drops sharply. Community Park went from <b data-draw="val" data-source="ppe_full" data-field="school_level" data-where="school_year=2023-24&amp;code=110" data-fmt="usd">—</b> per student in 2023–24 to <b data-draw="val" data-source="ppe_full" data-field="school_level" data-where="school_year=2024-25&amp;code=110" data-fmt="usd">—</b>, and Littlebrook from <b data-draw="val" data-source="ppe_full" data-field="school_level" data-where="school_year=2023-24&amp;code=080" data-fmt="usd">—</b> to <b data-draw="val" data-source="ppe_full" data-field="school_level" data-where="school_year=2024-25&amp;code=080" data-fmt="usd">—</b>. The high school barely changed (<b data-draw="val" data-source="ppe_full" data-field="school_level" data-where="school_year=2023-24&amp;code=050" data-fmt="usd">—</b> to <b data-draw="val" data-source="ppe_full" data-field="school_level" data-where="school_year=2024-25&amp;code=050" data-fmt="usd">—</b>).</p>
       <p>The same table no longer adds up: after the schools and the central office, <b data-draw="val" data-source="ppe" data-field="not_assigned" data-where="school_year=2024-25&amp;code=050" data-fmt="usd">—</b> per student of the district's total is not shown anywhere. This report spreads that remainder evenly over all students, as the state did with its "not assigned to a school" line in earlier years, so full costs stay comparable. The table does not say why the split changed; the district could explain it.</p>
       <p class="rp-source">Sources: state per-pupil expenditures, <a href="https://www.nj.gov/education/sprreports/202324/District-Detail/21-4255.pdf" target="_blank" rel="noopener">2023–24</a> and <a href="https://homeroom4.doe.state.nj.us/audsum/PpeReport?&amp;did=4255&amp;fileformat=html&amp;reportname=PERFORMREPORT&amp;fy=25" target="_blank" rel="noopener">2024–25</a>. The remainder is the 2024–25 district total minus the schools and the central office, each weighted by its students.</p>
     </div>
-  </section>
-
-  <section class="rp-sec" id="limits">
-    <h2>What these figures cannot show</h2>
+      </div>
+    </details>
+    <details class="rp-fold" id="limits">
+      <summary>What these figures cannot show</summary>
+      <div class="rp-fold-body">
     <ul class="rp-list">
       <li>They cover the whole school. Every Community Park section is now in the program, so the program is inside these figures, but they do not separate its costs or say which teachers are bilingual.</li>
       <li>Program costs such as a coordinator, curriculum, materials or training may be recorded at the district level and spread over all students, which would hide them from a school-by-school comparison.</li>
       <li>The district decides how to split shared costs among its schools, the state does not audit that split, and the split changed sharply in 2024–25.</li>
       <li>The district's own budget documents or a direct question to the district would be needed to see what the program itself costs.</li>
     </ul>
-  </section>
-
-  <section class="rp-sec" id="levels">
-    <h2>For context: elementary, middle and high school</h2>
+      </div>
+    </details>
+    <details class="rp-fold" id="levels">
+      <summary>For context: elementary, middle and high school</summary>
+      <div class="rp-fold-body">
     <div class="rp-grid">
       <div class="rp-card">
         <h3>Full cost per student by level</h3>
@@ -395,10 +430,11 @@ window.dash = (() => {
       <p class="rp-caption">In 2024–25 Riverside had the highest full cost per student of all six schools and Community Park the lowest.</p>
       <p class="rp-source">Source: NJ Department of Education, school-level per-pupil expenditures, 2018–19 to 2024–25 (each year linked under Sources). Full cost, averages and the 2024–25 remainder are calculated for this report.</p>
     </div>
-  </section>
-
-  <section class="rp-method" id="method">
-    <h2>Sources</h2>
+      </div>
+    </details>
+    <details class="rp-fold" id="method">
+      <summary>Sources</summary>
+      <div class="rp-fold-body rp-method">
     <ul>
       <li>Spending per student by year: <a href="https://homeroom4.doe.state.nj.us/audsum/PpeReport?&amp;did=4255&amp;fileformat=html&amp;reportname=PERFORMREPORT&amp;fy=19" target="_blank" rel="noopener">2018–19</a>, <a href="https://homeroom4.doe.state.nj.us/audsum/PpeReport?&amp;did=4255&amp;fileformat=html&amp;reportname=PERFORMREPORT&amp;fy=20" target="_blank" rel="noopener">2019–20</a>, <a href="https://www.nj.gov/education/sprreports/202021/District-Detail/21-4255.pdf" target="_blank" rel="noopener">2020–21</a>, <a href="https://www.nj.gov/education/sprreports/202122/District-Detail/21-4255.pdf" target="_blank" rel="noopener">2021–22</a>, <a href="https://www.nj.gov/education/sprreports/202223/District-Detail/21-4255.pdf" target="_blank" rel="noopener">2022–23</a>, <a href="https://www.nj.gov/education/sprreports/202324/District-Detail/21-4255.pdf" target="_blank" rel="noopener">2023–24</a>, <a href="https://homeroom4.doe.state.nj.us/audsum/PpeReport?&amp;did=4255&amp;fileformat=html&amp;reportname=PERFORMREPORT&amp;fy=25" target="_blank" rel="noopener">2024–25</a>. The state's Audit Summary pages (2018–19, 2019–20, 2024–25) block automated access, so those figures were copied by hand from the pages; the others come from the district detail reports (PDF).</li>
       <li>Spending per student: the state's school-level per-pupil expenditures for Princeton Public Schools, from the district detail reports of the <a href="https://www.nj.gov/education/spr/" target="_blank" rel="noopener">School Performance Reports</a> (2020–21 to 2023–24) and the state's Audit Summary per-pupil reports (2018–19, 2019–20 and 2024–25, copied by hand). Before 2018–19 the state reported spending for the district only.</li>
@@ -408,6 +444,8 @@ window.dash = (() => {
       <li>Purchases: the bills lists attached to Board agendas, by the location code in each account number.</li>
       <li>The state cautions that districts decide how costs are split among their schools, so school figures should not be compared with schools in other districts.</li>
     </ul>
+      </div>
+    </details>
   </section>
 </div>
 
