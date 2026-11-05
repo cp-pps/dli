@@ -225,26 +225,19 @@ window.dash = (() => {
       </div>
       <div class="rp-card rp-wide">
         <h3>Staff appointed to each school, by role</h3>
-        <p class="rp-note">Teachers and specialists the Board reappointed to each school for the coming year, grouped by their listed job. Staff shared between schools are split evenly among them. Each school also has one English as a second language teacher (Community Park had two in 2018–19). Students per classroom teacher uses the school's whole October enrollment, so it is not class size; 2025–26 enrollment is not yet published.</p>
+        <p class="rp-note">Teachers and specialists the Board reappointed to each school for the coming year, grouped by their listed job. Staff shared between schools are split evenly among them. Each school also has one English as a second language teacher (Community Park had two in 2018–19). Students per classroom teacher uses the school's whole October enrollment, so it is not class size. Students with disabilities are enrollment times the state's reported share. 2025–26 enrollment is not yet published.</p>
         <ul class="rp-legend"><li><span class="rp-sw" data-key="110"></span>Community Park</li><li><span class="rp-sw" data-key="090"></span>Riverside</li><li><span class="rp-sw" data-key="080"></span>Littlebrook</li><li><span class="rp-sw" data-key="070"></span>Johnson Park</li></ul>
         <div class="rp-minis">
           <div><h4>Classroom teachers (K–5)</h4><div class="rp-chart rp-mini" data-draw="line" data-source="roles_wide" data-only="elem" data-y="classroom" data-fmt="num1" data-zero="1" data-h="160"></div></div>
           <div><h4>Students per classroom teacher</h4><div class="rp-chart rp-mini" data-draw="line" data-source="roles_wide" data-only="elem" data-y="students_per_classroom" data-fmt="num1" data-zero="1" data-h="160"></div></div>
           <div><h4>Special education</h4><div class="rp-chart rp-mini" data-draw="line" data-source="roles_wide" data-only="elem" data-y="sped" data-fmt="num1" data-zero="1" data-h="160"></div></div>
+          <div><h4>Special education teachers per student with disabilities</h4><div class="rp-chart rp-mini" data-draw="line" data-source="roles_wide" data-only="elem" data-y="sped_per_swd" data-fmt="num2" data-zero="1" data-h="160"></div></div>
           <div><h4>Intervention and coaching</h4><div class="rp-chart rp-mini" data-draw="line" data-source="roles_wide" data-only="elem" data-y="intervention" data-fmt="num1" data-zero="1" data-h="160"></div></div>
           <div><h4>Art, music and physical education</h4><div class="rp-chart rp-mini" data-draw="line" data-source="roles_wide" data-only="elem" data-y="arts" data-fmt="num1" data-zero="1" data-h="160"></div></div>
           <div><h4>Support services</h4><div class="rp-chart rp-mini" data-draw="line" data-source="roles_wide" data-only="elem" data-y="support" data-fmt="num1" data-zero="1" data-h="160"></div></div>
         </div>
-        <p class="rp-caption">Community Park's classroom teachers have gone up and down more than the other schools': from <b data-draw="val" data-source="roles_wide" data-field="classroom" data-where="school_year=2019-20&amp;code=110" data-fmt="int">—</b> in 2019–20 to <b data-draw="val" data-source="roles_wide" data-field="classroom" data-where="school_year=2024-25&amp;code=110" data-fmt="int">—</b> in 2024–25, then back to <b data-draw="val" data-source="roles_wide" data-field="classroom" data-where="school_year=2025-26&amp;code=110" data-fmt="int">—</b>. Per classroom teacher, Community Park was close to the others through 2021–22 (a little above them in 2020–21), had fewer students in 2022–23 and 2023–24, but the most in 2024–25: <b data-draw="val" data-source="roles_wide" data-field="students_per_classroom" data-where="school_year=2024-25&amp;code=110" data-fmt="num1">—</b>, against <b data-draw="val" data-source="roles_wide" data-field="students_per_classroom" data-where="school_year=2024-25&amp;code=090" data-fmt="num1">—</b> at Riverside to <b data-draw="val" data-source="roles_wide" data-field="students_per_classroom" data-where="school_year=2024-25&amp;code=070" data-fmt="num1">—</b> at Johnson Park. Its special education staff has stayed between five and seven, while Johnson Park went from <b data-draw="val" data-source="roles_wide" data-field="sped" data-where="school_year=2018-19&amp;code=070" data-fmt="int">—</b> to <b data-draw="val" data-source="roles_wide" data-field="sped" data-where="school_year=2025-26&amp;code=070" data-fmt="int">—</b> and Littlebrook from <b data-draw="val" data-source="roles_wide" data-field="sped" data-where="school_year=2018-19&amp;code=080" data-fmt="int">—</b> to <b data-draw="val" data-source="roles_wide" data-field="sped" data-where="school_year=2025-26&amp;code=080" data-fmt="int">—</b>; Community Park has the smallest share of students with disabilities. Art, music and physical education fell at every school, most at Community Park, where Spanish is taught in the classroom rather than by a separate teacher. Support services look similar across the four; Community Park has had slightly fewer intervention teachers since 2023–24.</p>
-        <p class="rp-source">Source: the teachers' association (PREA) tenured and non-tenured reappointment lists approved each May, 2018 to 2025, for 2018–19 to 2025–26 (<a href="https://go.boarddocs.com/nj/pps/Board.nsf/vpublic?open" target="_blank" rel="noopener">BoardDocs</a>). Counts calculated for this report from each person's listed building and assignment; no individual is shown.</p>
-      </div>
-      <div class="rp-card">
-        <h3>Special education teachers per 100 students with disabilities</h3>
-        <p class="rp-note">Special education teachers reappointed to each school, against the number of its students with disabilities that year.</p>
-        <ul class="rp-legend"><li><span class="rp-sw" data-key="110"></span>Community Park</li><li><span class="rp-sw" data-key="090"></span>Riverside</li><li><span class="rp-sw" data-key="080"></span>Littlebrook</li><li><span class="rp-sw" data-key="070"></span>Johnson Park</li></ul>
-        <div class="rp-chart" data-draw="line" data-source="sped_need" data-only="elem" data-y="sped_per_100_swd" data-fmt="num1" data-zero="1"></div>
-        <p class="rp-caption">Against its number of students with disabilities, Community Park had less special education staff than the other three in 2018–19 and 2020–21, more in 2021–22 and 2022–23, and has been in between since. Community Park has few students with disabilities, so one teacher more or less moves its figure a lot.</p>
-        <p class="rp-source">Source: PREA reappointment lists, May 2018 to May 2024 (<a href="https://go.boarddocs.com/nj/pps/Board.nsf/vpublic?open" target="_blank" rel="noopener">BoardDocs</a>), and enrollment and share of students with disabilities from the NJ School Performance Reports database files (<a href="https://www.nj.gov/education/spr/download/" target="_blank" rel="noopener">download page</a>). Calculated for this report.</p>
+        <p class="rp-caption">Community Park's classroom teachers have gone up and down more than the other schools': from <b data-draw="val" data-source="roles_wide" data-field="classroom" data-where="school_year=2019-20&amp;code=110" data-fmt="int">—</b> in 2019–20 to <b data-draw="val" data-source="roles_wide" data-field="classroom" data-where="school_year=2024-25&amp;code=110" data-fmt="int">—</b> in 2024–25, then back to <b data-draw="val" data-source="roles_wide" data-field="classroom" data-where="school_year=2025-26&amp;code=110" data-fmt="int">—</b>. Per classroom teacher, Community Park was close to the others through 2021–22 (a little above them in 2020–21), had fewer students in 2022–23 and 2023–24, but the most in 2024–25: <b data-draw="val" data-source="roles_wide" data-field="students_per_classroom" data-where="school_year=2024-25&amp;code=110" data-fmt="num1">—</b>, against <b data-draw="val" data-source="roles_wide" data-field="students_per_classroom" data-where="school_year=2024-25&amp;code=090" data-fmt="num1">—</b> at Riverside to <b data-draw="val" data-source="roles_wide" data-field="students_per_classroom" data-where="school_year=2024-25&amp;code=070" data-fmt="num1">—</b> at Johnson Park. Its special education staff has stayed between five and seven, while Johnson Park went from <b data-draw="val" data-source="roles_wide" data-field="sped" data-where="school_year=2018-19&amp;code=070" data-fmt="int">—</b> to <b data-draw="val" data-source="roles_wide" data-field="sped" data-where="school_year=2025-26&amp;code=070" data-fmt="int">—</b> and Littlebrook from <b data-draw="val" data-source="roles_wide" data-field="sped" data-where="school_year=2018-19&amp;code=080" data-fmt="int">—</b> to <b data-draw="val" data-source="roles_wide" data-field="sped" data-where="school_year=2025-26&amp;code=080" data-fmt="int">—</b>; Community Park has the smallest share of students with disabilities: per student with disabilities, it had less special education staff than the other three in 2018–19 and 2020–21, more in 2021–22 and 2022–23, and has been in between since. With so few such students, one teacher more or less moves its figure a lot. Art, music and physical education fell at every school, most at Community Park, where Spanish is taught in the classroom rather than by a separate teacher. Support services look similar across the four; Community Park has had slightly fewer intervention teachers since 2023–24.</p>
+        <p class="rp-source">Source: the teachers' association (PREA) tenured and non-tenured reappointment lists approved each May, 2018 to 2025, for 2018–19 to 2025–26 (<a href="https://go.boarddocs.com/nj/pps/Board.nsf/vpublic?open" target="_blank" rel="noopener">BoardDocs</a>). Enrollment and share of students with disabilities from the NJ School Performance Reports database files (<a href="https://www.nj.gov/education/spr/download/" target="_blank" rel="noopener">download page</a>). Counts calculated for this report from each person's listed building and assignment; no individual is shown.</p>
       </div>
     </div>
   </section>
@@ -497,6 +490,7 @@ window.dash = (() => {
     usd: d3.format('$,.0f'),
     int: d3.format(',.0f'),
     num1: d3.format('.1f'),
+    num2: d3.format('.2f'),
     pct: (v) => d3.format('.1f')(v) + '%',
     share: d3.format('.1%'),
   };
@@ -642,7 +636,7 @@ window.dash = (() => {
   dash.calc('roles_wide', {
     inputs: ['appointees', 'profile'],
     title: 'Staff by role at each elementary school, by year',
-    description: 'Reappointed teachers and specialists at each elementary school each year, one column per role, and October enrollment divided by classroom teachers for years with enrollment figures.',
+    description: 'Reappointed teachers and specialists at each elementary school each year, one column per role, October enrollment divided by classroom teachers, and special education teachers divided by the number of students with disabilities (enrollment times their share), for years with enrollment figures.',
     fn: (appointees, profile) => {
       const COL = { 'Classroom': 'classroom', 'Special education': 'sped', 'Intervention & coaching': 'intervention', 'ESL': 'esl', 'Arts, music & PE': 'arts', 'Support services': 'support' };
       const out = {};
@@ -654,23 +648,14 @@ window.dash = (() => {
       });
       return Object.values(out).map((r) => {
         const p = profile.find((x) => x.school_year === r.school_year && x.code === r.code);
-        return { ...r, students_per_classroom: p && r.classroom ? Math.round(Number(p.enrollment) / r.classroom * 10) / 10 : null };
+        const swd = p && Number(p.swd) ? Number(p.enrollment) * Number(p.swd) / 100 : null;
+        return {
+          ...r,
+          students_per_classroom: p && r.classroom ? Math.round(Number(p.enrollment) / r.classroom * 10) / 10 : null,
+          sped_per_swd: swd && r.sped != null ? Math.round(r.sped / swd * 1000) / 1000 : null,
+        };
       });
     },
-  });
-
-  dash.calc('sped_need', {
-    inputs: ['appointees', 'profile'],
-    title: 'Special education teachers per 100 students with disabilities',
-    description: 'Special education teachers reappointed to each elementary school, divided by its enrollment times its share of students with disabilities, for years with both figures.',
-    fn: (appointees, profile) => appointees
-      .filter((r) => r.category === 'Special education')
-      .flatMap((r) => {
-        const p = profile.find((x) => x.school_year === r.school_year && x.code === r.code);
-        if (!p || !Number(p.swd)) return [];
-        const swd = Number(p.enrollment) * Number(p.swd) / 100;
-        return [{ school_year: r.school_year, code: r.code, sped: Number(r.appointees), students_with_disabilities: Math.round(swd), sped_per_100_swd: Math.round(Number(r.appointees) / swd * 1000) / 10 }];
-      }),
   });
 
   dash.calc('elem_compare', {
